@@ -40,7 +40,8 @@ EXPOSE 8080
 
 COPY /docker/install_wordpress.sh /install_wordpress.sh 
 
-ENTRYPOINT [ "install_wordpress" ]
+ENTRYPOINT [ "/bin/bash", "install_wordpress" ]
+
 
 
 
