@@ -1,50 +1,44 @@
-const express = require('express');
-const next = require('next');
+const express = require('express')
+const next = require('next')
 
-const dev = process.env.NODE_ENV !== 'production';
-const app = next({ dev });
-const handle = app.getRequestHandler();
+const dev = process.env.NODE_ENV !== 'production'
+const app = next({ dev })
+const handle = app.getRequestHandler()
 
-app
-  .prepare()
-  .then(() => {
-    const server = express();
+app.prepare().then(() => {
+  const server = express()
 
-    server.get('/post/:slug', (req, res) => {
-      const actualPage = '/post';
-      const queryParams = { slug: req.params.slug, apiRoute: 'post' };
-      app.render(req, res, actualPage, queryParams);
-    });
+  // Upcoming pages
 
-    server.get('/page/:slug', (req, res) => {
-      const actualPage = '/post';
-      const queryParams = { slug: req.params.slug, apiRoute: 'page' };
-      app.render(req, res, actualPage, queryParams);
-    });
-
-    server.get('/category/:slug', (req, res) => {
-      const actualPage = '/category';
-      const queryParams = { slug: req.params.slug };
-      app.render(req, res, actualPage, queryParams);
-    });
-
-    server.get('/_preview/:id/:rev/:type/:status/:wpnonce', (req, res) => {
-      const actualPage = '/preview';
-      const { id, rev, type, status, wpnonce } = req.params;
-      const queryParams = { id, rev, type, status, wpnonce };
-      app.render(req, res, actualPage, queryParams);
-    });
-
-    server.get('*', (req, res) => {
-      return handle(req, res);
-    });
-
-    server.listen(3000, err => {
-      if (err) throw err;
-      console.log('> Ready on http://localhost:3000');
-    });
+  server.get('/article/:lin', (req, res) => {
+    const actualPage = '/article'
+    const queryParams = { slug: req.params.slug }
+    app.render(req, res, actualPage, queryParams)
   })
-  .catch(ex => {
-    console.error(ex.stack);
-    process.exit(1);
-  });
+
+  server.get('/section/:slug', (req, res) => {
+    const actualPage = '/section'
+    const queryParams = { slug: req.params.slug }
+    app.render(req, res, actualPage, queryParams)
+  })
+
+  server.get('/author/:user', (req, res) => {
+    const actualPage = '/author'
+    const queryParams = { user: req.params.user }
+    app.render(req, res, actualPage, queryParams)
+  })
+
+  server.get('/issue/:issue_num', (req, res) => {
+    const actualPage = '/issue'
+    const queryParams = { issue_num: req.params.issuenum }
+    app.render(req, res, actualPage, queryParams)
+  })
+
+  server.get('*', (req, res) => handle(req, res))
+
+  server.listen(process.env.PORT, err => {
+    if (err) throw err
+    // eslint-disable-next-line no-console
+    console.log(`🤘 on http://localhost:${process.env.PORT}`)
+  })
+})

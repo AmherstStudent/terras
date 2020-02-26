@@ -1,8 +1,8 @@
 {
-  "name": "headless-wp-starter",
+  "name": "terras",
   "version": "2.0.0",
   "repository": "git@github.com:postlight/headless-wp-starter.git",
-  "author": "Postlight",
+  "author": "Amherst Student",
   "license": "GPL 2.0",
   "private": true,
   "scripts": {

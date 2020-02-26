@@ -1,6 +1,16 @@
 version: '3'
 
 services:
+    nginx:
+        image: nginx:latest
+        volumes:
+            - ./docker/nginx/nginx.conf:/etc/nginx/nginx.conf
+            - ./wordpress:/var/www/html
+        ports:
+          - '80:80'
+        depends_on: 
+            - wp-headless
+            - frontend-graphql
     db-headless:
         container_name: db-headless
         environment:
@@ -13,41 +23,28 @@ services:
             - '3307:3306'
     wp-headless:
         build: .
-        command: bash -c 'install_wordpress && apache2-foreground'
         container_name: wp-headless
         depends_on:
             - db-headless
-        env_file: ./.env
-        ports:
-            - '8080:8080'
+        env_file: .env
         user: www-data
         volumes:
             - ./wordpress:/var/www/html
             - ./docker/install_wordpress.sh:/usr/local/bin/install_wordpress
             - ./docker/migratedb_import.sh:/usr/local/bin/migratedb_import
             - ./docker/postlightheadlesswpstarter.wordpress.xml:/var/www/postlightheadlesswpstarter.wordpress.xml
+            - ./docker/images:/var/www/images
             - ./docker/plugins:/var/www/plugins
-    frontend:
-        command: bash -c 'yarn && yarn start'
-        container_name: frontend
+            - ./nginx/www.conf:/etc/php7.4/fpm/pool.d/www.conf
+    frontend-graphql:
+        command: bash -c 'yarn && yarn build && yarn start'
+        container_name: frontend-graphql
         expose:
             - '3000'
-        image: node
+        image: node:13
         ports:
             - '3000:3000'
         user: node
         volumes:
             - ./frontend:/home/node/app
-        working_dir: /home/node/app
-    frontend-graphql:
-        command: bash -c 'yarn && yarn start'
-        container_name: frontend-graphql
-        expose:
-            - '3001'
-        image: node
-        ports:
-            - '3001:3001'
-        user: node
-        volumes:
-            - ./frontend-graphql:/home/node/app
         working_dir: /home/node/app

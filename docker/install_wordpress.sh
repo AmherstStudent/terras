@@ -4,6 +4,7 @@ set -e
 
 mysql_ready='nc -z db-headless 3306'
 
+
 if ! $mysql_ready
 then
     printf 'Waiting for MySQL.'
@@ -17,7 +18,8 @@ fi
 
 if wp core is-installed
 then
-    echo "WordPress is already installed, exiting."
+    echo "WordPress is already installed, exiting." 
+    exec "apache2-foreground"
     exit
 fi
 
@@ -47,15 +49,16 @@ wp plugin delete akismet hello
 wp plugin install --activate --force \
     acf-to-wp-api \
     advanced-custom-fields \
-    custom-post-type-ui \
     wordpress-importer \
     wp-rest-api-v2-menus \
     jwt-authentication-for-wp-rest-api \
-    https://github.com/wp-graphql/wp-graphql/archive/v0.3.6.zip \
-    https://github.com/wp-graphql/wp-graphql-jwt-authentication/archive/V0.3.2.zip \
+    slate-admin-theme \
+    co-authors-plus \
+    https://github.com/wp-graphql/wp-graphql/archive/v0.4.0.zip \
+    https://github.com/pristas-peter/wp-graphql-gutenberg/archive/v0.1.4.zip \
     /var/www/plugins/*.zip
 
-wp term update category 1 --name="Sample Category"
+wp term update category 1 --name="News"
 wp menu create "Header Menu"
 wp menu item add-post header-menu 1
 wp menu item add-post header-menu 2
@@ -66,3 +69,6 @@ wp post update 1 --post_title="Sample Post" --post_name=sample-post
 wp import /var/www/postlightheadlesswpstarter.wordpress.xml --authors=skip
 
 echo "Great. You can now log into WordPress at: $WORDPRESS_URL/wp-admin ($WORDPRESS_ADMIN_USER/$WORDPRESS_ADMIN_PASSWORD)"
+
+
+exec "apache2-foreground"
