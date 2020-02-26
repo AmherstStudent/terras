@@ -1,0 +1,11 @@
+overwrite: true
+schema: "http://localhost:8080/graphql"
+documents: "**/*.graphql"
+generates:
+  ./_generated_/_generated-schema.graphql:
+    plugins:
+      - schema-ast
+  ./fragmentTypes.json:
+    plugins:
+      - fragment-matcher
+

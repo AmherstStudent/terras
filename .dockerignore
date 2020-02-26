@@ -1,0 +1,8 @@
+.git
+.results
+scripts
+*Dockerfile*
+frontend/node_modules
+.env
+frontend/.git
+

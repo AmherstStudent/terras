@@ -1,0 +1,1 @@
+{"ast":null,"code":"import styled from 'styled-components';\nconst FeaturedImage = styled.img`\n  width: 100%;\n  border-bottom: 10px solid #3f1f69;\n  max-height: 600px;\n  object-fit: cover;\n`;\nexport default FeaturedImage;","map":null,"metadata":{},"sourceType":"module"}

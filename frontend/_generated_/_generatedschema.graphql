@@ -1,0 +1,4574 @@
+schema {
+  query: RootQuery
+  mutation: RootMutation
+}
+
+type Avatar {
+  default: String
+  extraAttr: String
+  forceDefault: Boolean
+  foundAvatar: Boolean
+  height: Int
+  isRestricted: Boolean
+  rating: String
+  scheme: String
+  size: Int
+  url: String
+  width: Int
+}
+
+enum AvatarRatingEnum {
+  G
+  PG
+  R
+  X
+}
+
+interface Block {
+  innerBlocks: [Block]!
+  isValid: Boolean!
+  name: String!
+  originalContent: String!
+  parent: PostObjectTypesWithBlocksUnion
+  parentId: Int
+  saveContent: String!
+}
+
+scalar BlockAttributesArray
+
+scalar BlockAttributesObject
+
+scalar BlockJsonArray
+
+interface BlocksPost {
+  blocks: [Block]
+  blocksJSON: BlockJsonArray
+  id: ID!
+  link: String
+}
+
+type Category implements Node {
+  ancestors: [Category]
+  categoryId: Int
+  children(first: Int, last: Int, after: String, before: String, where: CategoryToCategoryConnectionWhereArgs): CategoryToCategoryConnection
+  count: Int
+  description: String
+  id: ID!
+  isRestricted: Boolean
+  link: String
+  name: String
+  parent: Category
+  posts(first: Int, last: Int, after: String, before: String, where: CategoryToPostConnectionWhereArgs): CategoryToPostConnection
+  slug: String
+  taxonomy: Taxonomy
+  termGroupId: Int
+  termTaxonomyId: Int
+}
+
+type CategoryToCategoryConnection {
+  edges: [CategoryToCategoryConnectionEdge]
+  nodes: [Category]
+  pageInfo: WPPageInfo
+  taxonomyInfo: Taxonomy
+}
+
+type CategoryToCategoryConnectionEdge {
+  cursor: String
+  node: Category
+}
+
+input CategoryToCategoryConnectionWhereArgs {
+  cacheDomain: String
+  childOf: Int
+  childless: Boolean
+  descriptionLike: String
+  exclude: [ID]
+  excludeTree: [ID]
+  hideEmpty: Boolean
+  hierarchical: Boolean
+  include: [ID]
+  name: [String]
+  nameLike: String
+  objectIds: [ID]
+  orderby: TermObjectsConnectionOrderbyEnum
+  padCounts: Boolean
+  parent: Int
+  search: String
+  shouldOnlyIncludeConnectedItems: Boolean
+  shouldOutputInFlatList: Boolean
+  slug: [String]
+  termTaxonomId: [ID]
+  updateTermMetaCache: Boolean
+}
+
+type CategoryToPostConnection {
+  edges: [CategoryToPostConnectionEdge]
+  nodes: [Post]
+  pageInfo: WPPageInfo
+  postTypeInfo: PostType
+}
+
+type CategoryToPostConnectionEdge {
+  cursor: String
+  node: Post
+}
+
+input CategoryToPostConnectionWhereArgs {
+  author: Int
+  authorIn: [ID]
+  authorName: String
+  authorNotIn: [ID]
+  categoryId: Int
+  categoryIn: [ID]
+  categoryName: String
+  categoryNotIn: [ID]
+  dateQuery: DateQueryInput
+  hasPassword: Boolean
+  id: Int
+  in: [ID]
+  mimeType: MimeTypeEnum
+  name: String
+  nameIn: [String]
+  notIn: [ID]
+  orderby: [PostObjectsConnectionOrderbyInput]
+  parent: String
+  parentIn: [ID]
+  parentNotIn: [ID]
+  password: String
+  search: String
+  stati: [PostStatusEnum]
+  status: PostStatusEnum
+  tag: String
+  tagId: String
+  tagIn: [ID]
+  tagNotIn: [ID]
+  tagSlugAnd: [String]
+  tagSlugIn: [String]
+  title: String
+}
+
+type CoAuthor {
+  avatar: String
+  bio: String
+  display_name: String
+  id: ID
+  slug: String
+}
+
+type Comment implements Node {
+  agent: String
+  approved: Boolean
+  author: CommentAuthorUnion
+  authorIp: String
+  children(first: Int, last: Int, after: String, before: String, where: CommentToCommentConnectionWhereArgs): CommentToCommentConnection
+  commentId: Int
+  commentedOn: PostObjectUnion
+  content(format: PostObjectFieldFormatEnum): String
+  date: String
+  dateGmt: String
+  id: ID!
+  isRestricted: Boolean
+  karma: Int
+  parent: Comment
+  type: String
+}
+
+type CommentAuthor implements Node {
+  email: String
+  id: ID!
+  isRestricted: Boolean
+  name: String
+  url: String
+}
+
+union CommentAuthorUnion = User | CommentAuthor
+
+enum CommentsConnectionOrderbyEnum {
+  COMMENT_AGENT
+  COMMENT_APPROVED
+  COMMENT_AUTHOR
+  COMMENT_AUTHOR_EMAIL
+  COMMENT_AUTHOR_IP
+  COMMENT_AUTHOR_URL
+  COMMENT_CONTENT
+  COMMENT_DATE
+  COMMENT_DATE_GMT
+  COMMENT_ID
+  COMMENT_IN
+  COMMENT_KARMA
+  COMMENT_PARENT
+  COMMENT_POST_ID
+  COMMENT_TYPE
+  USER_ID
+}
+
+type CommentToCommentConnection {
+  edges: [CommentToCommentConnectionEdge]
+  nodes: [Comment]
+  pageInfo: WPPageInfo
+}
+
+type CommentToCommentConnectionEdge {
+  cursor: String
+  node: Comment
+}
+
+input CommentToCommentConnectionWhereArgs {
+  authorEmail: String
+  authorIn: [ID]
+  authorNotIn: [ID]
+  authorUrl: String
+  commentIn: [ID]
+  commentNotIn: [ID]
+  commentType: String
+  commentTypeIn: [String]
+  commentTypeNotIn: String
+  contentAuthor: [ID]
+  contentAuthorIn: [ID]
+  contentAuthorNotIn: [ID]
+  contentId: ID
+  contentIdIn: [ID]
+  contentIdNotIn: [ID]
+  contentName: String
+  contentParent: Int
+  contentStatus: [PostStatusEnum]
+  contentType: [PostTypeEnum]
+  includeUnapproved: [ID]
+  karma: Int
+  order: OrderEnum
+  orderby: CommentsConnectionOrderbyEnum
+  parent: Int
+  parentIn: [ID]
+  parentNotIn: [ID]
+  search: String
+  status: String
+  userId: ID
+}
+
+type CoreArchivesBlock implements Block {
+  attributes: CoreArchivesBlockAttributes
+  innerBlocks: [Block]!
+  isValid: Boolean!
+  name: String!
+  originalContent: String!
+  parent: PostObjectTypesWithBlocksUnion
+  parentId: Int
+  renderedContent: String!
+  saveContent: String!
+}
+
+type CoreArchivesBlockAttributes {
+  align: String
+  className: String
+  displayAsDropdown: Boolean!
+  showPostCounts: Boolean!
+}
+
+type CoreAudioBlock implements Block {
+  attributes: CoreAudioBlockAttributes
+  innerBlocks: [Block]!
+  isValid: Boolean!
+  name: String!
+  originalContent: String!
+  parent: PostObjectTypesWithBlocksUnion
+  parentId: Int
+  saveContent: String!
+}
+
+type CoreAudioBlockAttributes {
+  align: String
+  autoplay: Boolean
+  caption: String
+  className: String
+  id: Float
+  loop: Boolean
+  preload: String
+  src: String
+}
+
+type CoreButtonBlock implements Block {
+  attributes: CoreButtonBlockAttributes
+  innerBlocks: [Block]!
+  isValid: Boolean!
+  name: String!
+  originalContent: String!
+  parent: PostObjectTypesWithBlocksUnion
+  parentId: Int
+  saveContent: String!
+}
+
+type CoreButtonBlockAttributes {
+  align: String
+  backgroundColor: String
+  borderRadius: Float
+  className: String
+  color: String @deprecated(reason: "Deprecated without breaking change.")
+  customBackgroundColor: String
+  customTextColor: String
+  linkTarget: String
+  placeholder: String
+  rel: String
+  text: String
+  textColor: String
+  title: String
+  url: String
+}
+
+type CoreCalendarBlock implements Block {
+  attributes: CoreCalendarBlockAttributes
+  innerBlocks: [Block]!
+  isValid: Boolean!
+  name: String!
+  originalContent: String!
+  parent: PostObjectTypesWithBlocksUnion
+  parentId: Int
+  renderedContent: String!
+  saveContent: String!
+}
+
+type CoreCalendarBlockAttributes {
+  align: String
+  className: String
+  month: Int
+  year: Int
+}
+
+type CoreCategoriesBlock implements Block {
+  attributes: CoreCategoriesBlockAttributes
+  innerBlocks: [Block]!
+  isValid: Boolean!
+  name: String!
+  originalContent: String!
+  parent: PostObjectTypesWithBlocksUnion
+  parentId: Int
+  renderedContent: String!
+  saveContent: String!
+}
+
+type CoreCategoriesBlockAttributes {
+  align: String
+  className: String
+  displayAsDropdown: Boolean!
+  showHierarchy: Boolean!
+  showPostCounts: Boolean!
+}
+
+type CoreCodeBlock implements Block {
+  attributes: CoreCodeBlockAttributes
+  innerBlocks: [Block]!
+  isValid: Boolean!
+  name: String!
+  originalContent: String!
+  parent: PostObjectTypesWithBlocksUnion
+  parentId: Int
+  saveContent: String!
+}
+
+type CoreCodeBlockAttributes {
+  className: String
+  content: String
+}
+
+type CoreColumnBlock implements Block {
+  attributes: CoreColumnBlockAttributes
+  innerBlocks: [Block]!
+  isValid: Boolean!
+  name: String!
+  originalContent: String!
+  parent: PostObjectTypesWithBlocksUnion
+  parentId: Int
+  saveContent: String!
+}
+
+type CoreColumnBlockAttributes {
+  className: String
+  verticalAlignment: String
+  width: Float
+}
+
+type CoreColumnsBlock implements Block {
+  attributes: CoreColumnsBlockAttributes
+  innerBlocks: [Block]!
+  isValid: Boolean!
+  name: String!
+  originalContent: String!
+  parent: PostObjectTypesWithBlocksUnion
+  parentId: Int
+  saveContent: String!
+}
+
+type CoreColumnsBlockAttributes {
+  align: String
+  className: String
+  columns: Float! @deprecated(reason: "Deprecated without breaking change.")
+  verticalAlignment: String
+}
+
+type CoreCoverBlock implements Block {
+  attributes: CoreCoverBlockAttributes
+  innerBlocks: [Block]!
+  isValid: Boolean!
+  name: String!
+  originalContent: String!
+  parent: PostObjectTypesWithBlocksUnion
+  parentId: Int
+  saveContent: String!
+}
+
+type CoreCoverBlockAttributes {
+  align: String
+  backgroundType: String!
+  className: String
+  contentAlign: String! @deprecated(reason: "Deprecated without breaking change.")
+  customOverlayColor: String
+  dimRatio: Float!
+  focalPoint: BlockAttributesObject
+  hasParallax: Boolean!
+  id: Float
+  minHeight: Float
+  overlayColor: String
+  title: String @deprecated(reason: "Deprecated without breaking change.")
+  url: String
+}
+
+type CoreEmbedAmazonKindleBlock implements Block {
+  attributes: CoreEmbedAmazonKindleBlockAttributes
+  innerBlocks: [Block]!
+  isValid: Boolean!
+  name: String!
+  originalContent: String!
+  parent: PostObjectTypesWithBlocksUnion
+  parentId: Int
+  saveContent: String!
+}
+
+type CoreEmbedAmazonKindleBlockAttributes {
+  align: String
+  allowResponsive: Boolean!
+  caption: String
+  className: String
+  providerNameSlug: String
+  type: String
+  url: String
+}
+
+type CoreEmbedAnimotoBlock implements Block {
+  attributes: CoreEmbedAnimotoBlockAttributes
+  innerBlocks: [Block]!
+  isValid: Boolean!
+  name: String!
+  originalContent: String!
+  parent: PostObjectTypesWithBlocksUnion
+  parentId: Int
+  saveContent: String!
+}
+
+type CoreEmbedAnimotoBlockAttributes {
+  align: String
+  allowResponsive: Boolean!
+  caption: String
+  className: String
+  providerNameSlug: String
+  type: String
+  url: String
+}
+
+type CoreEmbedBlock implements Block {
+  attributes: CoreEmbedBlockAttributes
+  innerBlocks: [Block]!
+  isValid: Boolean!
+  name: String!
+  originalContent: String!
+  parent: PostObjectTypesWithBlocksUnion
+  parentId: Int
+  saveContent: String!
+}
+
+type CoreEmbedBlockAttributes {
+  align: String
+  allowResponsive: Boolean!
+  caption: String
+  className: String
+  providerNameSlug: String
+  type: String
+  url: String
+}
+
+type CoreEmbedCloudupBlock implements Block {
+  attributes: CoreEmbedCloudupBlockAttributes
+  innerBlocks: [Block]!
+  isValid: Boolean!
+  name: String!
+  originalContent: String!
+  parent: PostObjectTypesWithBlocksUnion
+  parentId: Int
+  saveContent: String!
+}
+
+type CoreEmbedCloudupBlockAttributes {
+  align: String
+  allowResponsive: Boolean!
+  caption: String
+  className: String
+  providerNameSlug: String
+  type: String
+  url: String
+}
+
+type CoreEmbedCollegehumorBlock implements Block {
+  attributes: CoreEmbedCollegehumorBlockAttributes
+  innerBlocks: [Block]!
+  isValid: Boolean!
+  name: String!
+  originalContent: String!
+  parent: PostObjectTypesWithBlocksUnion
+  parentId: Int
+  saveContent: String!
+}
+
+type CoreEmbedCollegehumorBlockAttributes {
+  align: String
+  allowResponsive: Boolean!
+  caption: String
+  className: String
+  providerNameSlug: String
+  type: String
+  url: String
+}
+
+type CoreEmbedCrowdsignalBlock implements Block {
+  attributes: CoreEmbedCrowdsignalBlockAttributes
+  innerBlocks: [Block]!
+  isValid: Boolean!
+  name: String!
+  originalContent: String!
+  parent: PostObjectTypesWithBlocksUnion
+  parentId: Int
+  saveContent: String!
+}
+
+type CoreEmbedCrowdsignalBlockAttributes {
+  align: String
+  allowResponsive: Boolean!
+  caption: String
+  className: String
+  providerNameSlug: String
+  type: String
+  url: String
+}
+
+type CoreEmbedDailymotionBlock implements Block {
+  attributes: CoreEmbedDailymotionBlockAttributes
+  innerBlocks: [Block]!
+  isValid: Boolean!
+  name: String!
+  originalContent: String!
+  parent: PostObjectTypesWithBlocksUnion
+  parentId: Int
+  saveContent: String!
+}
+
+type CoreEmbedDailymotionBlockAttributes {
+  align: String
+  allowResponsive: Boolean!
+  caption: String
+  className: String
+  providerNameSlug: String
+  type: String
+  url: String
+}
+
+type CoreEmbedFacebookBlock implements Block {
+  attributes: CoreEmbedFacebookBlockAttributes
+  innerBlocks: [Block]!
+  isValid: Boolean!
+  name: String!
+  originalContent: String!
+  parent: PostObjectTypesWithBlocksUnion
+  parentId: Int
+  saveContent: String!
+}
+
+type CoreEmbedFacebookBlockAttributes {
+  align: String
+  allowResponsive: Boolean!
+  caption: String
+  className: String
+  providerNameSlug: String
+  type: String
+  url: String
+}
+
+type CoreEmbedFlickrBlock implements Block {
+  attributes: CoreEmbedFlickrBlockAttributes
+  innerBlocks: [Block]!
+  isValid: Boolean!
+  name: String!
+  originalContent: String!
+  parent: PostObjectTypesWithBlocksUnion
+  parentId: Int
+  saveContent: String!
+}
+
+type CoreEmbedFlickrBlockAttributes {
+  align: String
+  allowResponsive: Boolean!
+  caption: String
+  className: String
+  providerNameSlug: String
+  type: String
+  url: String
+}
+
+type CoreEmbedHuluBlock implements Block {
+  attributes: CoreEmbedHuluBlockAttributes
+  innerBlocks: [Block]!
+  isValid: Boolean!
+  name: String!
+  originalContent: String!
+  parent: PostObjectTypesWithBlocksUnion
+  parentId: Int
+  saveContent: String!
+}
+
+type CoreEmbedHuluBlockAttributes {
+  align: String
+  allowResponsive: Boolean!
+  caption: String
+  className: String
+  providerNameSlug: String
+  type: String
+  url: String
+}
+
+type CoreEmbedImgurBlock implements Block {
+  attributes: CoreEmbedImgurBlockAttributes
+  innerBlocks: [Block]!
+  isValid: Boolean!
+  name: String!
+  originalContent: String!
+  parent: PostObjectTypesWithBlocksUnion
+  parentId: Int
+  saveContent: String!
+}
+
+type CoreEmbedImgurBlockAttributes {
+  align: String
+  allowResponsive: Boolean!
+  caption: String
+  className: String
+  providerNameSlug: String
+  type: String
+  url: String
+}
+
+type CoreEmbedInstagramBlock implements Block {
+  attributes: CoreEmbedInstagramBlockAttributes
+  innerBlocks: [Block]!
+  isValid: Boolean!
+  name: String!
+  originalContent: String!
+  parent: PostObjectTypesWithBlocksUnion
+  parentId: Int
+  saveContent: String!
+}
+
+type CoreEmbedInstagramBlockAttributes {
+  align: String
+  allowResponsive: Boolean!
+  caption: String
+  className: String
+  providerNameSlug: String
+  type: String
+  url: String
+}
+
+type CoreEmbedIssuuBlock implements Block {
+  attributes: CoreEmbedIssuuBlockAttributes
+  innerBlocks: [Block]!
+  isValid: Boolean!
+  name: String!
+  originalContent: String!
+  parent: PostObjectTypesWithBlocksUnion
+  parentId: Int
+  saveContent: String!
+}
+
+type CoreEmbedIssuuBlockAttributes {
+  align: String
+  allowResponsive: Boolean!
+  caption: String
+  className: String
+  providerNameSlug: String
+  type: String
+  url: String
+}
+
+type CoreEmbedKickstarterBlock implements Block {
+  attributes: CoreEmbedKickstarterBlockAttributes
+  innerBlocks: [Block]!
+  isValid: Boolean!
+  name: String!
+  originalContent: String!
+  parent: PostObjectTypesWithBlocksUnion
+  parentId: Int
+  saveContent: String!
+}
+
+type CoreEmbedKickstarterBlockAttributes {
+  align: String
+  allowResponsive: Boolean!
+  caption: String
+  className: String
+  providerNameSlug: String
+  type: String
+  url: String
+}
+
+type CoreEmbedMeetupComBlock implements Block {
+  attributes: CoreEmbedMeetupComBlockAttributes
+  innerBlocks: [Block]!
+  isValid: Boolean!
+  name: String!
+  originalContent: String!
+  parent: PostObjectTypesWithBlocksUnion
+  parentId: Int
+  saveContent: String!
+}
+
+type CoreEmbedMeetupComBlockAttributes {
+  align: String
+  allowResponsive: Boolean!
+  caption: String
+  className: String
+  providerNameSlug: String
+  type: String
+  url: String
+}
+
+type CoreEmbedMixcloudBlock implements Block {
+  attributes: CoreEmbedMixcloudBlockAttributes
+  innerBlocks: [Block]!
+  isValid: Boolean!
+  name: String!
+  originalContent: String!
+  parent: PostObjectTypesWithBlocksUnion
+  parentId: Int
+  saveContent: String!
+}
+
+type CoreEmbedMixcloudBlockAttributes {
+  align: String
+  allowResponsive: Boolean!
+  caption: String
+  className: String
+  providerNameSlug: String
+  type: String
+  url: String
+}
+
+type CoreEmbedPolldaddyBlock implements Block {
+  attributes: CoreEmbedPolldaddyBlockAttributes
+  innerBlocks: [Block]!
+  isValid: Boolean!
+  name: String!
+  originalContent: String!
+  parent: PostObjectTypesWithBlocksUnion
+  parentId: Int
+  saveContent: String!
+}
+
+type CoreEmbedPolldaddyBlockAttributes {
+  align: String
+  allowResponsive: Boolean!
+  caption: String
+  className: String
+  providerNameSlug: String
+  type: String
+  url: String
+}
+
+type CoreEmbedRedditBlock implements Block {
+  attributes: CoreEmbedRedditBlockAttributes
+  innerBlocks: [Block]!
+  isValid: Boolean!
+  name: String!
+  originalContent: String!
+  parent: PostObjectTypesWithBlocksUnion
+  parentId: Int
+  saveContent: String!
+}
+
+type CoreEmbedRedditBlockAttributes {
+  align: String
+  allowResponsive: Boolean!
+  caption: String
+  className: String
+  providerNameSlug: String
+  type: String
+  url: String
+}
+
+type CoreEmbedReverbnationBlock implements Block {
+  attributes: CoreEmbedReverbnationBlockAttributes
+  innerBlocks: [Block]!
+  isValid: Boolean!
+  name: String!
+  originalContent: String!
+  parent: PostObjectTypesWithBlocksUnion
+  parentId: Int
+  saveContent: String!
+}
+
+type CoreEmbedReverbnationBlockAttributes {
+  align: String
+  allowResponsive: Boolean!
+  caption: String
+  className: String
+  providerNameSlug: String
+  type: String
+  url: String
+}
+
+type CoreEmbedScreencastBlock implements Block {
+  attributes: CoreEmbedScreencastBlockAttributes
+  innerBlocks: [Block]!
+  isValid: Boolean!
+  name: String!
+  originalContent: String!
+  parent: PostObjectTypesWithBlocksUnion
+  parentId: Int
+  saveContent: String!
+}
+
+type CoreEmbedScreencastBlockAttributes {
+  align: String
+  allowResponsive: Boolean!
+  caption: String
+  className: String
+  providerNameSlug: String
+  type: String
+  url: String
+}
+
+type CoreEmbedScribdBlock implements Block {
+  attributes: CoreEmbedScribdBlockAttributes
+  innerBlocks: [Block]!
+  isValid: Boolean!
+  name: String!
+  originalContent: String!
+  parent: PostObjectTypesWithBlocksUnion
+  parentId: Int
+  saveContent: String!
+}
+
+type CoreEmbedScribdBlockAttributes {
+  align: String
+  allowResponsive: Boolean!
+  caption: String
+  className: String
+  providerNameSlug: String
+  type: String
+  url: String
+}
+
+type CoreEmbedSlideshareBlock implements Block {
+  attributes: CoreEmbedSlideshareBlockAttributes
+  innerBlocks: [Block]!
+  isValid: Boolean!
+  name: String!
+  originalContent: String!
+  parent: PostObjectTypesWithBlocksUnion
+  parentId: Int
+  saveContent: String!
+}
+
+type CoreEmbedSlideshareBlockAttributes {
+  align: String
+  allowResponsive: Boolean!
+  caption: String
+  className: String
+  providerNameSlug: String
+  type: String
+  url: String
+}
+
+type CoreEmbedSmugmugBlock implements Block {
+  attributes: CoreEmbedSmugmugBlockAttributes
+  innerBlocks: [Block]!
+  isValid: Boolean!
+  name: String!
+  originalContent: String!
+  parent: PostObjectTypesWithBlocksUnion
+  parentId: Int
+  saveContent: String!
+}
+
+type CoreEmbedSmugmugBlockAttributes {
+  align: String
+  allowResponsive: Boolean!
+  caption: String
+  className: String
+  providerNameSlug: String
+  type: String
+  url: String
+}
+
+type CoreEmbedSoundcloudBlock implements Block {
+  attributes: CoreEmbedSoundcloudBlockAttributes
+  innerBlocks: [Block]!
+  isValid: Boolean!
+  name: String!
+  originalContent: String!
+  parent: PostObjectTypesWithBlocksUnion
+  parentId: Int
+  saveContent: String!
+}
+
+type CoreEmbedSoundcloudBlockAttributes {
+  align: String
+  allowResponsive: Boolean!
+  caption: String
+  className: String
+  providerNameSlug: String
+  type: String
+  url: String
+}
+
+type CoreEmbedSpeakerBlock implements Block {
+  attributes: CoreEmbedSpeakerBlockAttributes
+  innerBlocks: [Block]!
+  isValid: Boolean!
+  name: String!
+  originalContent: String!
+  parent: PostObjectTypesWithBlocksUnion
+  parentId: Int
+  saveContent: String!
+}
+
+type CoreEmbedSpeakerBlockAttributes {
+  align: String
+  allowResponsive: Boolean!
+  caption: String
+  className: String
+  providerNameSlug: String
+  type: String
+  url: String
+}
+
+type CoreEmbedSpeakerDeckBlock implements Block {
+  attributes: CoreEmbedSpeakerDeckBlockAttributes
+  innerBlocks: [Block]!
+  isValid: Boolean!
+  name: String!
+  originalContent: String!
+  parent: PostObjectTypesWithBlocksUnion
+  parentId: Int
+  saveContent: String!
+}
+
+type CoreEmbedSpeakerDeckBlockAttributes {
+  align: String
+  allowResponsive: Boolean!
+  caption: String
+  className: String
+  providerNameSlug: String
+  type: String
+  url: String
+}
+
+type CoreEmbedSpotifyBlock implements Block {
+  attributes: CoreEmbedSpotifyBlockAttributes
+  innerBlocks: [Block]!
+  isValid: Boolean!
+  name: String!
+  originalContent: String!
+  parent: PostObjectTypesWithBlocksUnion
+  parentId: Int
+  saveContent: String!
+}
+
+type CoreEmbedSpotifyBlockAttributes {
+  align: String
+  allowResponsive: Boolean!
+  caption: String
+  className: String
+  providerNameSlug: String
+  type: String
+  url: String
+}
+
+type CoreEmbedTedBlock implements Block {
+  attributes: CoreEmbedTedBlockAttributes
+  innerBlocks: [Block]!
+  isValid: Boolean!
+  name: String!
+  originalContent: String!
+  parent: PostObjectTypesWithBlocksUnion
+  parentId: Int
+  saveContent: String!
+}
+
+type CoreEmbedTedBlockAttributes {
+  align: String
+  allowResponsive: Boolean!
+  caption: String
+  className: String
+  providerNameSlug: String
+  type: String
+  url: String
+}
+
+type CoreEmbedTumblrBlock implements Block {
+  attributes: CoreEmbedTumblrBlockAttributes
+  innerBlocks: [Block]!
+  isValid: Boolean!
+  name: String!
+  originalContent: String!
+  parent: PostObjectTypesWithBlocksUnion
+  parentId: Int
+  saveContent: String!
+}
+
+type CoreEmbedTumblrBlockAttributes {
+  align: String
+  allowResponsive: Boolean!
+  caption: String
+  className: String
+  providerNameSlug: String
+  type: String
+  url: String
+}
+
+type CoreEmbedTwitterBlock implements Block {
+  attributes: CoreEmbedTwitterBlockAttributes
+  innerBlocks: [Block]!
+  isValid: Boolean!
+  name: String!
+  originalContent: String!
+  parent: PostObjectTypesWithBlocksUnion
+  parentId: Int
+  saveContent: String!
+}
+
+type CoreEmbedTwitterBlockAttributes {
+  align: String
+  allowResponsive: Boolean!
+  caption: String
+  className: String
+  providerNameSlug: String
+  type: String
+  url: String
+}
+
+type CoreEmbedVideopressBlock implements Block {
+  attributes: CoreEmbedVideopressBlockAttributes
+  innerBlocks: [Block]!
+  isValid: Boolean!
+  name: String!
+  originalContent: String!
+  parent: PostObjectTypesWithBlocksUnion
+  parentId: Int
+  saveContent: String!
+}
+
+type CoreEmbedVideopressBlockAttributes {
+  align: String
+  allowResponsive: Boolean!
+  caption: String
+  className: String
+  providerNameSlug: String
+  type: String
+  url: String
+}
+
+type CoreEmbedVimeoBlock implements Block {
+  attributes: CoreEmbedVimeoBlockAttributes
+  innerBlocks: [Block]!
+  isValid: Boolean!
+  name: String!
+  originalContent: String!
+  parent: PostObjectTypesWithBlocksUnion
+  parentId: Int
+  saveContent: String!
+}
+
+type CoreEmbedVimeoBlockAttributes {
+  align: String
+  allowResponsive: Boolean!
+  caption: String
+  className: String
+  providerNameSlug: String
+  type: String
+  url: String
+}
+
+type CoreEmbedWordpressBlock implements Block {
+  attributes: CoreEmbedWordpressBlockAttributes
+  innerBlocks: [Block]!
+  isValid: Boolean!
+  name: String!
+  originalContent: String!
+  parent: PostObjectTypesWithBlocksUnion
+  parentId: Int
+  saveContent: String!
+}
+
+type CoreEmbedWordpressBlockAttributes {
+  align: String
+  allowResponsive: Boolean!
+  caption: String
+  className: String
+  providerNameSlug: String
+  type: String
+  url: String
+}
+
+type CoreEmbedWordpressTvBlock implements Block {
+  attributes: CoreEmbedWordpressTvBlockAttributes
+  innerBlocks: [Block]!
+  isValid: Boolean!
+  name: String!
+  originalContent: String!
+  parent: PostObjectTypesWithBlocksUnion
+  parentId: Int
+  saveContent: String!
+}
+
+type CoreEmbedWordpressTvBlockAttributes {
+  align: String
+  allowResponsive: Boolean!
+  caption: String
+  className: String
+  providerNameSlug: String
+  type: String
+  url: String
+}
+
+type CoreEmbedYoutubeBlock implements Block {
+  attributes: CoreEmbedYoutubeBlockAttributes
+  innerBlocks: [Block]!
+  isValid: Boolean!
+  name: String!
+  originalContent: String!
+  parent: PostObjectTypesWithBlocksUnion
+  parentId: Int
+  saveContent: String!
+}
+
+type CoreEmbedYoutubeBlockAttributes {
+  align: String
+  allowResponsive: Boolean!
+  caption: String
+  className: String
+  providerNameSlug: String
+  type: String
+  url: String
+}
+
+type CoreFileBlock implements Block {
+  attributes: CoreFileBlockAttributes
+  innerBlocks: [Block]!
+  isValid: Boolean!
+  name: String!
+  originalContent: String!
+  parent: PostObjectTypesWithBlocksUnion
+  parentId: Int
+  saveContent: String!
+}
+
+type CoreFileBlockAttributes {
+  align: String
+  className: String
+  downloadButtonText: String
+  fileName: String
+  href: String
+  id: Float
+  showDownloadButton: Boolean!
+  textLinkHref: String
+  textLinkTarget: String
+}
+
+type CoreFreeformBlock implements Block {
+  attributes: CoreFreeformBlockAttributes
+  innerBlocks: [Block]!
+  isValid: Boolean!
+  name: String!
+  originalContent: String!
+  parent: PostObjectTypesWithBlocksUnion
+  parentId: Int
+  saveContent: String!
+}
+
+type CoreFreeformBlockAttributes {
+  content: String
+}
+
+type CoreGalleryBlock implements Block {
+  attributes: CoreGalleryBlockAttributes
+  innerBlocks: [Block]!
+  isValid: Boolean!
+  name: String!
+  originalContent: String!
+  parent: PostObjectTypesWithBlocksUnion
+  parentId: Int
+  saveContent: String!
+}
+
+type CoreGalleryBlockAttributes {
+  align: String
+  caption: String
+  className: String
+  columns: Float
+  ids: BlockAttributesArray!
+  imageCrop: Boolean!
+  images: BlockAttributesArray!
+  linkTo: String!
+}
+
+type CoreGroupBlock implements Block {
+  attributes: CoreGroupBlockAttributes
+  innerBlocks: [Block]!
+  isValid: Boolean!
+  name: String!
+  originalContent: String!
+  parent: PostObjectTypesWithBlocksUnion
+  parentId: Int
+  saveContent: String!
+}
+
+type CoreGroupBlockAttributes {
+  align: String
+  anchor: String
+  backgroundColor: String
+  className: String
+  customBackgroundColor: String
+}
+
+type CoreHeadingBlock implements Block {
+  attributes: CoreHeadingBlockAttributes
+  innerBlocks: [Block]!
+  isValid: Boolean!
+  name: String!
+  originalContent: String!
+  parent: PostObjectTypesWithBlocksUnion
+  parentId: Int
+  saveContent: String!
+}
+
+type CoreHeadingBlockAttributes {
+  align: String
+  anchor: String
+  className: String
+  content: String!
+  customTextColor: String
+  level: Float!
+  placeholder: String
+  textColor: String
+}
+
+type CoreHtmlBlock implements Block {
+  attributes: CoreHtmlBlockAttributes
+  innerBlocks: [Block]!
+  isValid: Boolean!
+  name: String!
+  originalContent: String!
+  parent: PostObjectTypesWithBlocksUnion
+  parentId: Int
+  saveContent: String!
+}
+
+type CoreHtmlBlockAttributes {
+  content: String
+}
+
+type CoreImageBlock implements Block {
+  attributes: CoreImageBlockAttributes
+  innerBlocks: [Block]!
+  isValid: Boolean!
+  name: String!
+  originalContent: String!
+  parent: PostObjectTypesWithBlocksUnion
+  parentId: Int
+  saveContent: String!
+}
+
+type CoreImageBlockAttributes {
+  align: String
+  alt: String!
+  caption: String
+  className: String
+  height: Float
+  href: String
+  id: Float
+  linkClass: String
+  linkDestination: String!
+  linkTarget: String
+  rel: String
+  sizeSlug: String
+  url: String
+  width: Float
+}
+
+type CoreLatestCommentsBlock implements Block {
+  attributes: CoreLatestCommentsBlockAttributes
+  innerBlocks: [Block]!
+  isValid: Boolean!
+  name: String!
+  originalContent: String!
+  parent: PostObjectTypesWithBlocksUnion
+  parentId: Int
+  renderedContent: String!
+  saveContent: String!
+}
+
+type CoreLatestCommentsBlockAttributes {
+  align: String
+  className: String
+  commentsToShow: Float!
+  displayAvatar: Boolean!
+  displayDate: Boolean!
+  displayExcerpt: Boolean!
+}
+
+type CoreLatestPostsBlock implements Block {
+  attributes: CoreLatestPostsBlockAttributes
+  innerBlocks: [Block]!
+  isValid: Boolean!
+  name: String!
+  originalContent: String!
+  parent: PostObjectTypesWithBlocksUnion
+  parentId: Int
+  renderedContent: String!
+  saveContent: String!
+}
+
+type CoreLatestPostsBlockAttributes {
+  align: String
+  categories: String
+  className: String
+  columns: Float!
+  displayPostContent: Boolean!
+  displayPostContentRadio: String!
+  displayPostDate: Boolean!
+  excerptLength: Float!
+  order: String!
+  orderBy: String!
+  postLayout: String!
+  postsToShow: Float!
+}
+
+type CoreListBlock implements Block {
+  attributes: CoreListBlockAttributes
+  innerBlocks: [Block]!
+  isValid: Boolean!
+  name: String!
+  originalContent: String!
+  parent: PostObjectTypesWithBlocksUnion
+  parentId: Int
+  saveContent: String!
+}
+
+type CoreListBlockAttributes {
+  className: String
+  ordered: Boolean!
+  reversed: Boolean
+  start: Float
+  values: String!
+}
+
+type CoreMediaTextBlock implements Block {
+  attributes: CoreMediaTextBlockAttributes
+  innerBlocks: [Block]!
+  isValid: Boolean!
+  name: String!
+  originalContent: String!
+  parent: PostObjectTypesWithBlocksUnion
+  parentId: Int
+  saveContent: String!
+}
+
+type CoreMediaTextBlockAttributes {
+  align: String!
+  backgroundColor: String
+  className: String
+  customBackgroundColor: String
+  focalPoint: BlockAttributesObject
+  imageFill: Boolean
+  isStackedOnMobile: Boolean!
+  mediaAlt: String!
+  mediaId: Float
+  mediaPosition: String!
+  mediaType: String
+  mediaUrl: String
+  mediaWidth: Float!
+  verticalAlignment: String
+}
+
+type CoreMissingBlock implements Block {
+  attributes: CoreMissingBlockAttributes
+  innerBlocks: [Block]!
+  isValid: Boolean!
+  name: String!
+  originalContent: String!
+  parent: PostObjectTypesWithBlocksUnion
+  parentId: Int
+  saveContent: String!
+}
+
+type CoreMissingBlockAttributes {
+  originalContent: String
+  originalName: String
+  originalUndelimitedContent: String
+}
+
+type CoreMoreBlock implements Block {
+  attributes: CoreMoreBlockAttributes
+  innerBlocks: [Block]!
+  isValid: Boolean!
+  name: String!
+  originalContent: String!
+  parent: PostObjectTypesWithBlocksUnion
+  parentId: Int
+  saveContent: String!
+}
+
+type CoreMoreBlockAttributes {
+  customText: String
+  noTeaser: Boolean!
+}
+
+type CoreNextpageBlock implements Block {
+  innerBlocks: [Block]!
+  isValid: Boolean!
+  name: String!
+  originalContent: String!
+  parent: PostObjectTypesWithBlocksUnion
+  parentId: Int
+  saveContent: String!
+}
+
+type CoreParagraphBlock implements Block {
+  attributes: CoreParagraphBlockAttributesUnion
+  innerBlocks: [Block]!
+  isValid: Boolean!
+  name: String!
+  originalContent: String!
+  parent: PostObjectTypesWithBlocksUnion
+  parentId: Int
+  saveContent: String!
+}
+
+type CoreParagraphBlockAttributes {
+  align: String
+  backgroundColor: String
+  className: String
+  content: String!
+  customBackgroundColor: String
+  customFontSize: Float
+  customTextColor: String
+  direction: String
+  dropCap: Boolean!
+  fontSize: String
+  placeholder: String
+  textColor: String
+}
+
+union CoreParagraphBlockAttributesUnion = CoreParagraphBlockAttributes | CoreParagraphBlockAttributesV2 | CoreParagraphBlockAttributesV3
+
+type CoreParagraphBlockAttributesV2 {
+  align: String
+  backgroundColor: String
+  className: String
+  content: String!
+  customBackgroundColor: String @deprecated(reason: "Deprecated without breaking change.")
+  customFontSize: Float @deprecated(reason: "Deprecated without breaking change.")
+  customTextColor: String @deprecated(reason: "Deprecated without breaking change.")
+  direction: String
+  dropCap: Boolean!
+  fontSize: Float
+  placeholder: String
+  textColor: String
+}
+
+type CoreParagraphBlockAttributesV3 {
+  align: String
+  backgroundColor: String
+  className: String
+  content: String!
+  customBackgroundColor: String
+  customFontSize: Float
+  customTextColor: String
+  direction: String
+  dropCap: Boolean!
+  fontSize: String
+  placeholder: String
+  textColor: String
+  width: String @deprecated(reason: "Deprecated without breaking change.")
+}
+
+type CorePreformattedBlock implements Block {
+  attributes: CorePreformattedBlockAttributes
+  innerBlocks: [Block]!
+  isValid: Boolean!
+  name: String!
+  originalContent: String!
+  parent: PostObjectTypesWithBlocksUnion
+  parentId: Int
+  saveContent: String!
+}
+
+type CorePreformattedBlockAttributes {
+  className: String
+  content: String!
+}
+
+type CorePullquoteBlock implements Block {
+  attributes: CorePullquoteBlockAttributesUnion
+  innerBlocks: [Block]!
+  isValid: Boolean!
+  name: String!
+  originalContent: String!
+  parent: PostObjectTypesWithBlocksUnion
+  parentId: Int
+  saveContent: String!
+}
+
+type CorePullquoteBlockAttributes {
+  align: String!
+  citation: String
+  className: String
+  customMainColor: String
+  customTextColor: String
+  mainColor: String
+  textColor: String
+  value: String
+}
+
+union CorePullquoteBlockAttributesUnion = CorePullquoteBlockAttributes | CorePullquoteBlockAttributesV2
+
+type CorePullquoteBlockAttributesV2 {
+  align: String
+  citation: String!
+  className: String
+  customMainColor: String
+  customTextColor: String
+  mainColor: String
+  textColor: String
+  value: String
+}
+
+type CoreQuoteBlock implements Block {
+  attributes: CoreQuoteBlockAttributes
+  innerBlocks: [Block]!
+  isValid: Boolean!
+  name: String!
+  originalContent: String!
+  parent: PostObjectTypesWithBlocksUnion
+  parentId: Int
+  saveContent: String!
+}
+
+type CoreQuoteBlockAttributes {
+  align: String
+  citation: String!
+  className: String
+  style: Float! @deprecated(reason: "Deprecated without breaking change.")
+  value: String!
+}
+
+type CoreRssBlock implements Block {
+  attributes: CoreRssBlockAttributes
+  innerBlocks: [Block]!
+  isValid: Boolean!
+  name: String!
+  originalContent: String!
+  parent: PostObjectTypesWithBlocksUnion
+  parentId: Int
+  renderedContent: String!
+  saveContent: String!
+}
+
+type CoreRssBlockAttributes {
+  align: String
+  blockLayout: String!
+  className: String
+  columns: Float!
+  displayAuthor: Boolean!
+  displayDate: Boolean!
+  displayExcerpt: Boolean!
+  excerptLength: Float!
+  feedURL: String!
+  itemsToShow: Float!
+}
+
+type CoreSearchBlock implements Block {
+  attributes: CoreSearchBlockAttributes
+  innerBlocks: [Block]!
+  isValid: Boolean!
+  name: String!
+  originalContent: String!
+  parent: PostObjectTypesWithBlocksUnion
+  parentId: Int
+  renderedContent: String!
+  saveContent: String!
+}
+
+type CoreSearchBlockAttributes {
+  align: String
+  buttonText: String!
+  className: String
+  label: String!
+  placeholder: String!
+}
+
+type CoreSeparatorBlock implements Block {
+  attributes: CoreSeparatorBlockAttributes
+  innerBlocks: [Block]!
+  isValid: Boolean!
+  name: String!
+  originalContent: String!
+  parent: PostObjectTypesWithBlocksUnion
+  parentId: Int
+  saveContent: String!
+}
+
+type CoreSeparatorBlockAttributes {
+  className: String
+  color: String
+  customColor: String
+}
+
+type CoreShortcodeBlock implements Block {
+  attributes: CoreShortcodeBlockAttributes
+  innerBlocks: [Block]!
+  isValid: Boolean!
+  name: String!
+  originalContent: String!
+  parent: PostObjectTypesWithBlocksUnion
+  parentId: Int
+  renderedContent: String!
+  saveContent: String!
+}
+
+type CoreShortcodeBlockAttributes {
+  text: String
+}
+
+type CoreSpacerBlock implements Block {
+  attributes: CoreSpacerBlockAttributes
+  innerBlocks: [Block]!
+  isValid: Boolean!
+  name: String!
+  originalContent: String!
+  parent: PostObjectTypesWithBlocksUnion
+  parentId: Int
+  saveContent: String!
+}
+
+type CoreSpacerBlockAttributes {
+  className: String
+  height: Float!
+}
+
+type CoreSubheadBlock implements Block {
+  attributes: CoreSubheadBlockAttributes
+  innerBlocks: [Block]!
+  isValid: Boolean!
+  name: String!
+  originalContent: String!
+  parent: PostObjectTypesWithBlocksUnion
+  parentId: Int
+  saveContent: String!
+}
+
+type CoreSubheadBlockAttributes {
+  align: String
+  className: String
+  content: String
+}
+
+type CoreTableBlock implements Block {
+  attributes: CoreTableBlockAttributes
+  innerBlocks: [Block]!
+  isValid: Boolean!
+  name: String!
+  originalContent: String!
+  parent: PostObjectTypesWithBlocksUnion
+  parentId: Int
+  saveContent: String!
+}
+
+type CoreTableBlockAttributes {
+  align: String
+  backgroundColor: String
+  body: BlockAttributesArray!
+  className: String
+  foot: BlockAttributesArray!
+  hasFixedLayout: Boolean!
+  head: BlockAttributesArray!
+}
+
+type CoreTagCloudBlock implements Block {
+  attributes: CoreTagCloudBlockAttributes
+  innerBlocks: [Block]!
+  isValid: Boolean!
+  name: String!
+  originalContent: String!
+  parent: PostObjectTypesWithBlocksUnion
+  parentId: Int
+  renderedContent: String!
+  saveContent: String!
+}
+
+type CoreTagCloudBlockAttributes {
+  align: String
+  className: String
+  showTagCounts: Boolean!
+  taxonomy: String!
+}
+
+type CoreTextColumnsBlock implements Block {
+  attributes: CoreTextColumnsBlockAttributes
+  innerBlocks: [Block]!
+  isValid: Boolean!
+  name: String!
+  originalContent: String!
+  parent: PostObjectTypesWithBlocksUnion
+  parentId: Int
+  saveContent: String!
+}
+
+type CoreTextColumnsBlockAttributes {
+  className: String
+  columns: Float!
+  content: BlockAttributesArray!
+  width: String
+}
+
+type CoreVerseBlock implements Block {
+  attributes: CoreVerseBlockAttributes
+  innerBlocks: [Block]!
+  isValid: Boolean!
+  name: String!
+  originalContent: String!
+  parent: PostObjectTypesWithBlocksUnion
+  parentId: Int
+  saveContent: String!
+}
+
+type CoreVerseBlockAttributes {
+  className: String
+  content: String!
+  textAlign: String
+}
+
+type CoreVideoBlock implements Block {
+  attributes: CoreVideoBlockAttributes
+  innerBlocks: [Block]!
+  isValid: Boolean!
+  name: String!
+  originalContent: String!
+  parent: PostObjectTypesWithBlocksUnion
+  parentId: Int
+  saveContent: String!
+}
+
+type CoreVideoBlockAttributes {
+  align: String
+  autoplay: Boolean
+  caption: String
+  className: String
+  controls: Boolean!
+  id: Float
+  loop: Boolean
+  muted: Boolean
+  playsInline: Boolean
+  poster: String
+  preload: String!
+  src: String
+}
+
+input CreateCategoryInput {
+  aliasOf: String
+  clientMutationId: String!
+  description: String
+  name: String!
+  parentId: ID
+  slug: String
+}
+
+type CreateCategoryPayload {
+  category: Category
+  clientMutationId: String!
+}
+
+input CreateCommentInput {
+  agent: String
+  approved: String
+  author: String
+  authorEmail: String
+  authorIp: String
+  authorUrl: String
+  clientMutationId: String!
+  commentOn: Int
+  content: String
+  date: String
+  parent: ID
+  type: String
+  userId: Int
+}
+
+type CreateCommentPayload {
+  clientMutationId: String!
+  comment: Comment
+  success: Boolean
+}
+
+input CreateIssueInput {
+  aliasOf: String
+  clientMutationId: String!
+  description: String
+  name: String!
+  parentId: ID
+  slug: String
+}
+
+type CreateIssuePayload {
+  issue: Issue
+  clientMutationId: String!
+}
+
+input CreateMediaItemInput {
+  altText: String
+  authorId: ID
+  caption: String
+  clientMutationId: String!
+  commentStatus: String
+  date: String
+  dateGmt: String
+  description: String
+  filePath: String
+  fileType: MimeTypeEnum
+  parentId: ID
+  pingStatus: String
+  slug: String
+  status: MediaItemStatusEnum
+  title: String
+}
+
+type CreateMediaItemPayload {
+  clientMutationId: String!
+  mediaItem: MediaItem
+}
+
+input CreatePageInput {
+  authorId: ID
+  clientMutationId: String!
+  commentCount: Int
+  commentStatus: String
+  content: String
+  date: String
+  excerpt: String
+  menuOrder: Int
+  mimeType: MimeTypeEnum
+  parentId: ID
+  password: String
+  pingStatus: String
+  pinged: [String]
+  slug: String
+  status: PostStatusEnum
+  title: String
+  toPing: [String]
+}
+
+type CreatePagePayload {
+  clientMutationId: String!
+  page: Page
+}
+
+input CreatePostInput {
+  issues: PostIssuesInput
+  seriesN: PostSeriesNInput
+  authorId: ID
+  categories: PostCategoriesInput
+  clientMutationId: String!
+  commentCount: Int
+  commentStatus: String
+  content: String
+  date: String
+  excerpt: String
+  menuOrder: Int
+  mimeType: MimeTypeEnum
+  parentId: ID
+  password: String
+  pingStatus: String
+  pinged: [String]
+  slug: String
+  status: PostStatusEnum
+  tags: PostTagsInput
+  title: String
+  toPing: [String]
+}
+
+type CreatePostPayload {
+  clientMutationId: String!
+  post: Post
+}
+
+input CreateSeriesInput {
+  aliasOf: String
+  clientMutationId: String!
+  description: String
+  name: String!
+  parentId: ID
+  slug: String
+}
+
+type CreateSeriesPayload {
+  series: Series
+  clientMutationId: String!
+}
+
+input CreateTagInput {
+  aliasOf: String
+  clientMutationId: String!
+  description: String
+  name: String!
+  slug: String
+}
+
+type CreateTagPayload {
+  clientMutationId: String!
+  tag: Tag
+}
+
+input CreateUserInput {
+  aim: String
+  clientMutationId: String!
+  description: String
+  displayName: String
+  email: String
+  firstName: String
+  jabber: String
+  lastName: String
+  locale: String
+  nicename: String
+  nickname: String
+  password: String
+  registered: String
+  richEditing: String
+  roles: [String]
+  username: String!
+  websiteUrl: String
+  yim: String
+}
+
+type CreateUserPayload {
+  clientMutationId: String!
+  user: User
+}
+
+input DateInput {
+  day: Int
+  month: Int
+  year: Int
+}
+
+input DateQueryInput {
+  after: DateInput
+  before: DateInput
+  column: PostObjectsConnectionDateColumnEnum
+  compare: String
+  day: Int
+  hour: Int
+  inclusive: Boolean
+  minute: Int
+  month: Int
+  relation: RelationEnum
+  second: Int
+  week: Int
+  year: Int
+}
+
+input DeleteCategoryInput {
+  clientMutationId: String!
+  id: ID!
+}
+
+type DeleteCategoryPayload {
+  category: Category
+  clientMutationId: String!
+  deletedId: ID
+}
+
+input DeleteCommentInput {
+  clientMutationId: String!
+  forceDelete: Boolean
+  id: ID!
+}
+
+type DeleteCommentPayload {
+  clientMutationId: String!
+  comment: Comment
+  deletedId: ID
+}
+
+input DeleteIssueInput {
+  clientMutationId: String!
+  id: ID!
+}
+
+type DeleteIssuePayload {
+  issue: Issue
+  clientMutationId: String!
+  deletedId: ID
+}
+
+input DeleteMediaItemInput {
+  clientMutationId: String!
+  forceDelete: Boolean
+  id: ID!
+}
+
+type DeleteMediaItemPayload {
+  clientMutationId: String!
+  deletedId: ID
+  mediaItem: MediaItem
+}
+
+input DeletePageInput {
+  clientMutationId: String!
+  forceDelete: Boolean
+  id: ID!
+}
+
+type DeletePagePayload {
+  clientMutationId: String!
+  deletedId: ID
+  page: Page
+}
+
+input DeletePostInput {
+  clientMutationId: String!
+  forceDelete: Boolean
+  id: ID!
+}
+
+type DeletePostPayload {
+  clientMutationId: String!
+  deletedId: ID
+  post: Post
+}
+
+input DeleteRevisionInput {
+  clientMutationId: String!
+  forceDelete: Boolean
+  id: ID!
+}
+
+type DeleteRevisionPayload {
+  clientMutationId: String!
+  deletedId: ID
+  revision: Revision
+}
+
+input DeleteSeriesInput {
+  clientMutationId: String!
+  id: ID!
+}
+
+type DeleteSeriesPayload {
+  series: Series
+  clientMutationId: String!
+  deletedId: ID
+}
+
+input DeleteTagInput {
+  clientMutationId: String!
+  id: ID!
+}
+
+type DeleteTagPayload {
+  clientMutationId: String!
+  deletedId: ID
+  tag: Tag
+}
+
+input DeleteUserInput {
+  clientMutationId: String!
+  id: ID!
+  reassignId: ID
+}
+
+type DeleteUserPayload {
+  clientMutationId: String!
+  deletedId: ID
+  user: User
+}
+
+type DiscussionSettings {
+  defaultCommentStatus: String
+  defaultPingStatus: String
+}
+
+type EditLock {
+  editTime: String
+  user: User
+}
+
+type GeneralSettings {
+  dateFormat: String
+  description: String
+  email: String
+  language: String
+  startOfWeek: Int
+  timeFormat: String
+  timezone: String
+  title: String
+  url: String
+}
+
+type Issue implements Node {
+  issueId: Int
+  ancestors: [Issue]
+  children(first: Int, last: Int, after: String, before: String, where: IssueToIssueConnectionWhereArgs): IssueToIssueConnection
+  count: Int
+  description: String
+  id: ID!
+  isRestricted: Boolean
+  issuu: String
+  link: String
+  name: String
+  parent: Issue
+  posts(first: Int, last: Int, after: String, before: String, where: IssueToPostConnectionWhereArgs): IssueToPostConnection
+  slug: String
+  taxonomy: Taxonomy
+  termGroupId: Int
+  termTaxonomyId: Int
+}
+
+type IssueToIssueConnection {
+  edges: [IssueToIssueConnectionEdge]
+  nodes: [Issue]
+  pageInfo: WPPageInfo
+  taxonomyInfo: Taxonomy
+}
+
+type IssueToIssueConnectionEdge {
+  cursor: String
+  node: Issue
+}
+
+input IssueToIssueConnectionWhereArgs {
+  cacheDomain: String
+  childOf: Int
+  childless: Boolean
+  descriptionLike: String
+  exclude: [ID]
+  excludeTree: [ID]
+  hideEmpty: Boolean
+  hierarchical: Boolean
+  include: [ID]
+  name: [String]
+  nameLike: String
+  objectIds: [ID]
+  orderby: TermObjectsConnectionOrderbyEnum
+  padCounts: Boolean
+  parent: Int
+  search: String
+  shouldOnlyIncludeConnectedItems: Boolean
+  shouldOutputInFlatList: Boolean
+  slug: [String]
+  termTaxonomId: [ID]
+  updateTermMetaCache: Boolean
+}
+
+type IssueToPostConnection {
+  edges: [IssueToPostConnectionEdge]
+  nodes: [Post]
+  pageInfo: WPPageInfo
+  postTypeInfo: PostType
+}
+
+type IssueToPostConnectionEdge {
+  cursor: String
+  node: Post
+}
+
+input IssueToPostConnectionWhereArgs {
+  author: Int
+  authorIn: [ID]
+  authorName: String
+  authorNotIn: [ID]
+  categoryId: Int
+  categoryIn: [ID]
+  categoryName: String
+  categoryNotIn: [ID]
+  dateQuery: DateQueryInput
+  hasPassword: Boolean
+  id: Int
+  in: [ID]
+  mimeType: MimeTypeEnum
+  name: String
+  nameIn: [String]
+  notIn: [ID]
+  orderby: [PostObjectsConnectionOrderbyInput]
+  parent: String
+  parentIn: [ID]
+  parentNotIn: [ID]
+  password: String
+  search: String
+  stati: [PostStatusEnum]
+  status: PostStatusEnum
+  tag: String
+  tagId: String
+  tagIn: [ID]
+  tagNotIn: [ID]
+  tagSlugAnd: [String]
+  tagSlugIn: [String]
+  title: String
+}
+
+type MediaDetails {
+  file: String
+  height: Int
+  meta: MediaItemMeta
+  sizes: [MediaSize]
+  width: Int
+}
+
+type MediaItem implements Node & BlocksPost {
+  altText: String
+  ancestors(types: [PostTypeEnum]): [PostObjectUnion]
+  author: User
+  blocks(json: String): [Block]
+  blocksJSON: BlockJsonArray
+  caption(format: PostObjectFieldFormatEnum): String
+  commentCount: Int
+  commentStatus: String
+  comments(first: Int, last: Int, after: String, before: String, where: MediaItemToCommentConnectionWhereArgs): MediaItemToCommentConnection
+  content(format: PostObjectFieldFormatEnum): String @deprecated(reason: "Use the description field instead of content")
+  date: String
+  dateGmt: String
+  description(format: PostObjectFieldFormatEnum): String
+  desiredSlug: String
+  editLast: User
+  editLock: EditLock
+  enclosure: String
+  excerpt(format: PostObjectFieldFormatEnum): String @deprecated(reason: "Use the caption field instead of excerpt")
+  guid: String
+  id: ID!
+  isRestricted: Boolean
+  link: String
+  mediaDetails: MediaDetails
+  mediaItemId: Int!
+  mediaItemUrl: String
+  mediaType: String
+  menuOrder: Int
+  mimeType: String
+  modified: String
+  modifiedGmt: String
+  parent: PostObjectUnion
+  pingStatus: String
+  pinged: [String]
+  sizes(size: MediaItemSizeEnum): String
+  slug: String
+  sourceUrl(size: MediaItemSizeEnum): String
+  srcSet(size: MediaItemSizeEnum): String
+  status: String
+  termNames(taxonomies: [TaxonomyEnum]): [String]
+  termSlugs(taxonomies: [TaxonomyEnum]): [String]
+  terms(taxonomies: [TaxonomyEnum]): [TermObjectUnion]
+  title(format: PostObjectFieldFormatEnum): String
+  toPing: [String]
+  uri: String
+}
+
+type MediaItemMeta {
+  aperture: Float
+  camera: String
+  caption: String
+  copyright: String
+  createdTimestamp: Int
+  credit: String
+  focalLength: Int
+  iso: Int
+  keywords: [String]
+  orientation: String
+  shutterSpeed: Float
+  title: String
+}
+
+enum MediaItemSizeEnum {
+  LARGE
+  MEDIUM
+  MEDIUM_LARGE
+  THUMBNAIL
+  _1536X1536
+  _2048X2048
+}
+
+enum MediaItemStatusEnum {
+  AUTO_DRAFT
+  INHERIT
+  PRIVATE
+  TRASH
+}
+
+type MediaItemToCommentConnection {
+  edges: [MediaItemToCommentConnectionEdge]
+  nodes: [Comment]
+  pageInfo: WPPageInfo
+}
+
+type MediaItemToCommentConnectionEdge {
+  cursor: String
+  node: Comment
+}
+
+input MediaItemToCommentConnectionWhereArgs {
+  authorEmail: String
+  authorIn: [ID]
+  authorNotIn: [ID]
+  authorUrl: String
+  commentIn: [ID]
+  commentNotIn: [ID]
+  commentType: String
+  commentTypeIn: [String]
+  commentTypeNotIn: String
+  contentAuthor: [ID]
+  contentAuthorIn: [ID]
+  contentAuthorNotIn: [ID]
+  contentId: ID
+  contentIdIn: [ID]
+  contentIdNotIn: [ID]
+  contentName: String
+  contentParent: Int
+  contentStatus: [PostStatusEnum]
+  contentType: [PostTypeEnum]
+  includeUnapproved: [ID]
+  karma: Int
+  order: OrderEnum
+  orderby: CommentsConnectionOrderbyEnum
+  parent: Int
+  parentIn: [ID]
+  parentNotIn: [ID]
+  search: String
+  status: String
+  userId: ID
+}
+
+type MediaSize {
+  file: String
+  height: String
+  mimeType: String
+  name: String
+  sourceUrl: String
+  width: String
+}
+
+type Menu {
+  count: Int
+  id: ID!
+  isRestricted: Boolean
+  menuId: Int
+  menuItems(first: Int, last: Int, after: String, before: String, where: MenuToMenuItemConnectionWhereArgs): MenuToMenuItemConnection
+  name: String
+  slug: String
+}
+
+type MenuItem {
+  childItems(first: Int, last: Int, after: String, before: String, where: MenuItemToMenuItemConnectionWhereArgs): MenuItemToMenuItemConnection
+  connectedObject: MenuItemObjectUnion
+  cssClasses: [String]
+  description: String
+  id: ID!
+  isRestricted: Boolean
+  label: String
+  linkRelationship: String
+  menuItemId: Int
+  target: String
+  title: String
+  url: String
+}
+
+union MenuItemObjectUnion = Post | Page | Category | Tag | Series | Issue | MenuItem
+
+type MenuItemToMenuItemConnection {
+  edges: [MenuItemToMenuItemConnectionEdge]
+  nodes: [MenuItem]
+  pageInfo: WPPageInfo
+}
+
+type MenuItemToMenuItemConnectionEdge {
+  cursor: String
+  node: MenuItem
+}
+
+input MenuItemToMenuItemConnectionWhereArgs {
+  id: Int
+  location: MenuLocationEnum
+}
+
+enum MenuLocationEnum {
+  HEADER_MENU
+}
+
+type MenuToMenuItemConnection {
+  edges: [MenuToMenuItemConnectionEdge]
+  nodes: [MenuItem]
+  pageInfo: WPPageInfo
+}
+
+type MenuToMenuItemConnectionEdge {
+  cursor: String
+  node: MenuItem
+}
+
+input MenuToMenuItemConnectionWhereArgs {
+  id: Int
+  location: MenuLocationEnum
+}
+
+enum MimeTypeEnum {
+  APPLICATION_JAVA
+  APPLICATION_MSWORD
+  APPLICATION_OCTET_STREAM
+  APPLICATION_ONENOTE
+  APPLICATION_OXPS
+  APPLICATION_PDF
+  APPLICATION_RAR
+  APPLICATION_RTF
+  APPLICATION_TTAF_XML
+  APPLICATION_VND_APPLE_KEYNOTE
+  APPLICATION_VND_APPLE_NUMBERS
+  APPLICATION_VND_APPLE_PAGES
+  APPLICATION_VND_MS_ACCESS
+  APPLICATION_VND_MS_EXCEL
+  APPLICATION_VND_MS_EXCEL_ADDIN_MACROENABLED_12
+  APPLICATION_VND_MS_EXCEL_SHEET_BINARY_MACROENABLED_12
+  APPLICATION_VND_MS_EXCEL_SHEET_MACROENABLED_12
+  APPLICATION_VND_MS_EXCEL_TEMPLATE_MACROENABLED_12
+  APPLICATION_VND_MS_POWERPOINT
+  APPLICATION_VND_MS_POWERPOINT_ADDIN_MACROENABLED_12
+  APPLICATION_VND_MS_POWERPOINT_PRESENTATION_MACROENABLED_12
+  APPLICATION_VND_MS_POWERPOINT_SLIDESHOW_MACROENABLED_12
+  APPLICATION_VND_MS_POWERPOINT_SLIDE_MACROENABLED_12
+  APPLICATION_VND_MS_POWERPOINT_TEMPLATE_MACROENABLED_12
+  APPLICATION_VND_MS_PROJECT
+  APPLICATION_VND_MS_WORD_DOCUMENT_MACROENABLED_12
+  APPLICATION_VND_MS_WORD_TEMPLATE_MACROENABLED_12
+  APPLICATION_VND_MS_WRITE
+  APPLICATION_VND_MS_XPSDOCUMENT
+  APPLICATION_VND_OASIS_OPENDOCUMENT_CHART
+  APPLICATION_VND_OASIS_OPENDOCUMENT_DATABASE
+  APPLICATION_VND_OASIS_OPENDOCUMENT_FORMULA
+  APPLICATION_VND_OASIS_OPENDOCUMENT_GRAPHICS
+  APPLICATION_VND_OASIS_OPENDOCUMENT_PRESENTATION
+  APPLICATION_VND_OASIS_OPENDOCUMENT_SPREADSHEET
+  APPLICATION_VND_OASIS_OPENDOCUMENT_TEXT
+  APPLICATION_VND_OPENXMLFORMATS_OFFICEDOCUMENT_PRESENTATIONML_PRESENTATION
+  APPLICATION_VND_OPENXMLFORMATS_OFFICEDOCUMENT_PRESENTATIONML_SLIDE
+  APPLICATION_VND_OPENXMLFORMATS_OFFICEDOCUMENT_PRESENTATIONML_SLIDESHOW
+  APPLICATION_VND_OPENXMLFORMATS_OFFICEDOCUMENT_PRESENTATIONML_TEMPLATE
+  APPLICATION_VND_OPENXMLFORMATS_OFFICEDOCUMENT_SPREADSHEETML_SHEET
+  APPLICATION_VND_OPENXMLFORMATS_OFFICEDOCUMENT_SPREADSHEETML_TEMPLATE
+  APPLICATION_VND_OPENXMLFORMATS_OFFICEDOCUMENT_WORDPROCESSINGML_DOCUMENT
+  APPLICATION_VND_OPENXMLFORMATS_OFFICEDOCUMENT_WORDPROCESSINGML_TEMPLATE
+  APPLICATION_WORDPERFECT
+  APPLICATION_X_7Z_COMPRESSED
+  APPLICATION_X_GZIP
+  APPLICATION_X_TAR
+  APPLICATION_ZIP
+  AUDIO_AAC
+  AUDIO_FLAC
+  AUDIO_MIDI
+  AUDIO_MPEG
+  AUDIO_OGG
+  AUDIO_WAV
+  AUDIO_X_MATROSKA
+  AUDIO_X_MS_WAX
+  AUDIO_X_MS_WMA
+  AUDIO_X_REALAUDIO
+  IMAGE_BMP
+  IMAGE_GIF
+  IMAGE_JPEG
+  IMAGE_PNG
+  IMAGE_TIFF
+  IMAGE_X_ICON
+  TEXT_CALENDAR
+  TEXT_CSS
+  TEXT_CSV
+  TEXT_PLAIN
+  TEXT_RICHTEXT
+  TEXT_TAB_SEPARATED_VALUES
+  TEXT_VTT
+  VIDEO_3GPP
+  VIDEO_3GPP2
+  VIDEO_AVI
+  VIDEO_DIVX
+  VIDEO_MP4
+  VIDEO_MPEG
+  VIDEO_OGG
+  VIDEO_QUICKTIME
+  VIDEO_WEBM
+  VIDEO_X_FLV
+  VIDEO_X_MATROSKA
+  VIDEO_X_MS_ASF
+  VIDEO_X_MS_WM
+  VIDEO_X_MS_WMV
+  VIDEO_X_MS_WMX
+}
+
+interface Node {
+  id: ID!
+}
+
+enum OrderEnum {
+  ASC
+  DESC
+}
+
+type Page implements Node & BlocksPost {
+  ancestors(types: [PostTypeEnum]): [PostObjectUnion]
+  author: User
+  blocks(json: String): [Block]
+  blocksJSON: BlockJsonArray
+  childPages(first: Int, last: Int, after: String, before: String, where: PageToPageConnectionWhereArgs): PageToPageConnection
+  commentCount: Int
+  commentStatus: String
+  comments(first: Int, last: Int, after: String, before: String, where: PageToCommentConnectionWhereArgs): PageToCommentConnection
+  content(format: PostObjectFieldFormatEnum): String
+  date: String
+  dateGmt: String
+  desiredSlug: String
+  editLast: User
+  editLock: EditLock
+  enclosure: String
+  excerpt(format: PostObjectFieldFormatEnum): String
+  featuredImage: MediaItem
+  guid: String
+  id: ID!
+  isRestricted: Boolean
+  link: String
+  menuOrder: Int
+  modified: String
+  modifiedGmt: String
+  pageId: Int!
+  parent: PostObjectUnion
+  pingStatus: String
+  pinged: [String]
+  revisions(first: Int, last: Int, after: String, before: String, where: PageToRevisionConnectionWhereArgs): PageToRevisionConnection
+  slug: String
+  status: String
+  termNames(taxonomies: [TaxonomyEnum]): [String]
+  termSlugs(taxonomies: [TaxonomyEnum]): [String]
+  terms(taxonomies: [TaxonomyEnum]): [TermObjectUnion]
+  title(format: PostObjectFieldFormatEnum): String
+  toPing: [String]
+  uri: String
+}
+
+type PageToCommentConnection {
+  edges: [PageToCommentConnectionEdge]
+  nodes: [Comment]
+  pageInfo: WPPageInfo
+}
+
+type PageToCommentConnectionEdge {
+  cursor: String
+  node: Comment
+}
+
+input PageToCommentConnectionWhereArgs {
+  authorEmail: String
+  authorIn: [ID]
+  authorNotIn: [ID]
+  authorUrl: String
+  commentIn: [ID]
+  commentNotIn: [ID]
+  commentType: String
+  commentTypeIn: [String]
+  commentTypeNotIn: String
+  contentAuthor: [ID]
+  contentAuthorIn: [ID]
+  contentAuthorNotIn: [ID]
+  contentId: ID
+  contentIdIn: [ID]
+  contentIdNotIn: [ID]
+  contentName: String
+  contentParent: Int
+  contentStatus: [PostStatusEnum]
+  contentType: [PostTypeEnum]
+  includeUnapproved: [ID]
+  karma: Int
+  order: OrderEnum
+  orderby: CommentsConnectionOrderbyEnum
+  parent: Int
+  parentIn: [ID]
+  parentNotIn: [ID]
+  search: String
+  status: String
+  userId: ID
+}
+
+type PageToPageConnection {
+  edges: [PageToPageConnectionEdge]
+  nodes: [Page]
+  pageInfo: WPPageInfo
+  postTypeInfo: PostType
+}
+
+type PageToPageConnectionEdge {
+  cursor: String
+  node: Page
+}
+
+input PageToPageConnectionWhereArgs {
+  author: Int
+  authorIn: [ID]
+  authorName: String
+  authorNotIn: [ID]
+  categoryId: Int
+  categoryIn: [ID]
+  categoryName: String
+  categoryNotIn: [ID]
+  dateQuery: DateQueryInput
+  hasPassword: Boolean
+  id: Int
+  in: [ID]
+  mimeType: MimeTypeEnum
+  name: String
+  nameIn: [String]
+  notIn: [ID]
+  orderby: [PostObjectsConnectionOrderbyInput]
+  parent: String
+  parentIn: [ID]
+  parentNotIn: [ID]
+  password: String
+  search: String
+  stati: [PostStatusEnum]
+  status: PostStatusEnum
+  tag: String
+  tagId: String
+  tagIn: [ID]
+  tagNotIn: [ID]
+  tagSlugAnd: [String]
+  tagSlugIn: [String]
+  title: String
+}
+
+type PageToRevisionConnection {
+  edges: [PageToRevisionConnectionEdge]
+  nodes: [Revision]
+  pageInfo: WPPageInfo
+  postTypeInfo: PostType
+}
+
+type PageToRevisionConnectionEdge {
+  cursor: String
+  node: Revision
+}
+
+input PageToRevisionConnectionWhereArgs {
+  author: Int
+  authorIn: [ID]
+  authorName: String
+  authorNotIn: [ID]
+  categoryId: Int
+  categoryIn: [ID]
+  categoryName: String
+  categoryNotIn: [ID]
+  dateQuery: DateQueryInput
+  hasPassword: Boolean
+  id: Int
+  in: [ID]
+  mimeType: MimeTypeEnum
+  name: String
+  nameIn: [String]
+  notIn: [ID]
+  orderby: [PostObjectsConnectionOrderbyInput]
+  parent: String
+  parentIn: [ID]
+  parentNotIn: [ID]
+  password: String
+  search: String
+  stati: [PostStatusEnum]
+  status: PostStatusEnum
+  tag: String
+  tagId: String
+  tagIn: [ID]
+  tagNotIn: [ID]
+  tagSlugAnd: [String]
+  tagSlugIn: [String]
+  title: String
+}
+
+type Plugin implements Node {
+  author: String
+  authorUri: String
+  description: String
+  id: ID!
+  isRestricted: Boolean
+  name: String
+  pluginUri: String
+  version: String
+}
+
+type Post implements Node & BlocksPost {
+  coAuthors: [CoAuthor]
+  issues(first: Int, last: Int, after: String, before: String, where: PostToIssueConnectionWhereArgs): PostToIssueConnection
+  seriesN(first: Int, last: Int, after: String, before: String, where: PostToSeriesConnectionWhereArgs): PostToSeriesConnection
+  ancestors(types: [PostTypeEnum]): [PostObjectUnion]
+  author: User
+  blocks(json: String): [Block]
+  blocksJSON: BlockJsonArray
+  categories(first: Int, last: Int, after: String, before: String, where: PostToCategoryConnectionWhereArgs): PostToCategoryConnection
+  commentCount: Int
+  commentStatus: String
+  comments(first: Int, last: Int, after: String, before: String, where: PostToCommentConnectionWhereArgs): PostToCommentConnection
+  content(format: PostObjectFieldFormatEnum): String
+  date: String
+  dateGmt: String
+  desiredSlug: String
+  editLast: User
+  editLock: EditLock
+  enclosure: String
+  excerpt(format: PostObjectFieldFormatEnum): String
+  featuredImage: MediaItem
+  guid: String
+  id: ID!
+  isRestricted: Boolean
+  link: String
+  menuOrder: Int
+  modified: String
+  modifiedGmt: String
+  parent: PostObjectUnion
+  pingStatus: String
+  pinged: [String]
+  postId: Int!
+  revisions(first: Int, last: Int, after: String, before: String, where: PostToRevisionConnectionWhereArgs): PostToRevisionConnection
+  slug: String
+  status: String
+  tags(first: Int, last: Int, after: String, before: String, where: PostToTagConnectionWhereArgs): PostToTagConnection
+  termNames(taxonomies: [TaxonomyEnum]): [String]
+  termSlugs(taxonomies: [TaxonomyEnum]): [String]
+  terms(taxonomies: [TaxonomyEnum]): [TermObjectUnion]
+  title(format: PostObjectFieldFormatEnum): String
+  toPing: [String]
+  uri: String
+}
+
+input PostCategoriesInput {
+  append: Boolean
+  nodes: [PostCategoriesNodeInput]
+}
+
+input PostCategoriesNodeInput {
+  description: String
+  id: ID
+  name: String
+  slug: String
+}
+
+input PostIssuesInput {
+  append: Boolean
+  nodes: [PostIssuesNodeInput]
+}
+
+input PostIssuesNodeInput {
+  description: String
+  id: ID
+  name: String
+  slug: String
+}
+
+enum PostObjectFieldFormatEnum {
+  RAW
+  RENDERED
+}
+
+enum PostObjectsConnectionDateColumnEnum {
+  DATE
+  MODIFIED
+}
+
+enum PostObjectsConnectionOrderbyEnum {
+  AUTHOR
+  DATE
+  IN
+  MENU_ORDER
+  MODIFIED
+  NAME_IN
+  PARENT
+  SLUG
+  TITLE
+}
+
+input PostObjectsConnectionOrderbyInput {
+  field: PostObjectsConnectionOrderbyEnum!
+  order: OrderEnum
+}
+
+union PostObjectTypesWithBlocksUnion = Post | Page
+
+union PostObjectUnion = Post | Page | MediaItem | Revision
+
+input PostSeriesNInput {
+  append: Boolean
+  nodes: [PostSeriesNNodeInput]
+}
+
+input PostSeriesNNodeInput {
+  description: String
+  id: ID
+  name: String
+  slug: String
+}
+
+enum PostStatusEnum {
+  ACF_DISABLED
+  AUTO_DRAFT
+  DRAFT
+  FUTURE
+  INHERIT
+  PENDING
+  PRIVATE
+  PUBLISH
+  REQUEST_COMPLETED
+  REQUEST_CONFIRMED
+  REQUEST_FAILED
+  REQUEST_PENDING
+  TRASH
+}
+
+type PostsWithBlocksConnection {
+  edges: [PostsWithBlocksConnectionEdge]
+  nodes: [BlocksPost]
+  pageInfo: WPPageInfo
+}
+
+type PostsWithBlocksConnectionEdge {
+  cursor: String
+  node: BlocksPost
+}
+
+input PostTagsInput {
+  append: Boolean
+  nodes: [PostTagsNodeInput]
+}
+
+input PostTagsNodeInput {
+  description: String
+  id: ID
+  name: String
+  slug: String
+}
+
+type PostToCategoryConnection {
+  edges: [PostToCategoryConnectionEdge]
+  nodes: [Category]
+  pageInfo: WPPageInfo
+  taxonomyInfo: Taxonomy
+}
+
+type PostToCategoryConnectionEdge {
+  cursor: String
+  node: Category
+}
+
+input PostToCategoryConnectionWhereArgs {
+  cacheDomain: String
+  childOf: Int
+  childless: Boolean
+  descriptionLike: String
+  exclude: [ID]
+  excludeTree: [ID]
+  hideEmpty: Boolean
+  hierarchical: Boolean
+  include: [ID]
+  name: [String]
+  nameLike: String
+  objectIds: [ID]
+  orderby: TermObjectsConnectionOrderbyEnum
+  padCounts: Boolean
+  parent: Int
+  search: String
+  shouldOnlyIncludeConnectedItems: Boolean
+  shouldOutputInFlatList: Boolean
+  slug: [String]
+  termTaxonomId: [ID]
+  updateTermMetaCache: Boolean
+}
+
+type PostToCommentConnection {
+  edges: [PostToCommentConnectionEdge]
+  nodes: [Comment]
+  pageInfo: WPPageInfo
+}
+
+type PostToCommentConnectionEdge {
+  cursor: String
+  node: Comment
+}
+
+input PostToCommentConnectionWhereArgs {
+  authorEmail: String
+  authorIn: [ID]
+  authorNotIn: [ID]
+  authorUrl: String
+  commentIn: [ID]
+  commentNotIn: [ID]
+  commentType: String
+  commentTypeIn: [String]
+  commentTypeNotIn: String
+  contentAuthor: [ID]
+  contentAuthorIn: [ID]
+  contentAuthorNotIn: [ID]
+  contentId: ID
+  contentIdIn: [ID]
+  contentIdNotIn: [ID]
+  contentName: String
+  contentParent: Int
+  contentStatus: [PostStatusEnum]
+  contentType: [PostTypeEnum]
+  includeUnapproved: [ID]
+  karma: Int
+  order: OrderEnum
+  orderby: CommentsConnectionOrderbyEnum
+  parent: Int
+  parentIn: [ID]
+  parentNotIn: [ID]
+  search: String
+  status: String
+  userId: ID
+}
+
+type PostToIssueConnection {
+  edges: [PostToIssueConnectionEdge]
+  nodes: [Issue]
+  pageInfo: WPPageInfo
+  taxonomyInfo: Taxonomy
+}
+
+type PostToIssueConnectionEdge {
+  cursor: String
+  node: Issue
+}
+
+input PostToIssueConnectionWhereArgs {
+  cacheDomain: String
+  childOf: Int
+  childless: Boolean
+  descriptionLike: String
+  exclude: [ID]
+  excludeTree: [ID]
+  hideEmpty: Boolean
+  hierarchical: Boolean
+  include: [ID]
+  name: [String]
+  nameLike: String
+  objectIds: [ID]
+  orderby: TermObjectsConnectionOrderbyEnum
+  padCounts: Boolean
+  parent: Int
+  search: String
+  shouldOnlyIncludeConnectedItems: Boolean
+  shouldOutputInFlatList: Boolean
+  slug: [String]
+  termTaxonomId: [ID]
+  updateTermMetaCache: Boolean
+}
+
+type PostToRevisionConnection {
+  edges: [PostToRevisionConnectionEdge]
+  nodes: [Revision]
+  pageInfo: WPPageInfo
+  postTypeInfo: PostType
+}
+
+type PostToRevisionConnectionEdge {
+  cursor: String
+  node: Revision
+}
+
+input PostToRevisionConnectionWhereArgs {
+  author: Int
+  authorIn: [ID]
+  authorName: String
+  authorNotIn: [ID]
+  categoryId: Int
+  categoryIn: [ID]
+  categoryName: String
+  categoryNotIn: [ID]
+  dateQuery: DateQueryInput
+  hasPassword: Boolean
+  id: Int
+  in: [ID]
+  mimeType: MimeTypeEnum
+  name: String
+  nameIn: [String]
+  notIn: [ID]
+  orderby: [PostObjectsConnectionOrderbyInput]
+  parent: String
+  parentIn: [ID]
+  parentNotIn: [ID]
+  password: String
+  search: String
+  stati: [PostStatusEnum]
+  status: PostStatusEnum
+  tag: String
+  tagId: String
+  tagIn: [ID]
+  tagNotIn: [ID]
+  tagSlugAnd: [String]
+  tagSlugIn: [String]
+  title: String
+}
+
+type PostToSeriesConnection {
+  edges: [PostToSeriesConnectionEdge]
+  nodes: [Series]
+  pageInfo: WPPageInfo
+  taxonomyInfo: Taxonomy
+}
+
+type PostToSeriesConnectionEdge {
+  cursor: String
+  node: Series
+}
+
+input PostToSeriesConnectionWhereArgs {
+  cacheDomain: String
+  childOf: Int
+  childless: Boolean
+  descriptionLike: String
+  exclude: [ID]
+  excludeTree: [ID]
+  hideEmpty: Boolean
+  hierarchical: Boolean
+  include: [ID]
+  name: [String]
+  nameLike: String
+  objectIds: [ID]
+  orderby: TermObjectsConnectionOrderbyEnum
+  padCounts: Boolean
+  parent: Int
+  search: String
+  shouldOnlyIncludeConnectedItems: Boolean
+  shouldOutputInFlatList: Boolean
+  slug: [String]
+  termTaxonomId: [ID]
+  updateTermMetaCache: Boolean
+}
+
+type PostToTagConnection {
+  edges: [PostToTagConnectionEdge]
+  nodes: [Tag]
+  pageInfo: WPPageInfo
+  taxonomyInfo: Taxonomy
+}
+
+type PostToTagConnectionEdge {
+  cursor: String
+  node: Tag
+}
+
+input PostToTagConnectionWhereArgs {
+  cacheDomain: String
+  childOf: Int
+  childless: Boolean
+  descriptionLike: String
+  exclude: [ID]
+  excludeTree: [ID]
+  hideEmpty: Boolean
+  hierarchical: Boolean
+  include: [ID]
+  name: [String]
+  nameLike: String
+  objectIds: [ID]
+  orderby: TermObjectsConnectionOrderbyEnum
+  padCounts: Boolean
+  parent: Int
+  search: String
+  shouldOnlyIncludeConnectedItems: Boolean
+  shouldOutputInFlatList: Boolean
+  slug: [String]
+  termTaxonomId: [ID]
+  updateTermMetaCache: Boolean
+}
+
+type PostType implements Node {
+  canExport: Boolean
+  connectedTaxonomies(taxonomies: [TaxonomyEnum]): [Taxonomy]
+  connectedTaxonomyNames(taxonomies: [TaxonomyEnum]): [String]
+  deleteWithUser: Boolean
+  description: String
+  excludeFromSearch: Boolean
+  graphqlPluralName: String
+  graphqlSingleName: String
+  hasArchive: Boolean
+  hierarchical: Boolean
+  id: ID!
+  isRestricted: Boolean
+  label: String
+  labels: PostTypeLabelDetails
+  menuIcon: String
+  menuPosition: Int
+  name: String
+  public: Boolean
+  publiclyQueryable: Boolean
+  restBase: String
+  restControllerClass: String
+  showInAdminBar: Boolean
+  showInGraphql: Boolean
+  showInMenu: Boolean
+  showInNavMenus: Boolean
+  showInRest: Boolean
+  showUi: Boolean
+}
+
+enum PostTypeEnum {
+  ATTACHMENT
+  PAGE
+  POST
+  REVISION
+}
+
+type PostTypeLabelDetails {
+  addNew: String
+  addNewItem: String
+  allItems: String
+  archives: String
+  attributes: String
+  editItem: String
+  featuredImage: String
+  filterItemsList: String
+  insertIntoItem: String
+  itemsList: String
+  itemsListNavigation: String
+  menuName: String
+  name: String
+  newItem: String
+  notFound: String
+  notFoundInTrash: String
+  parentItemColon: String
+  removeFeaturedImage: String
+  searchItems: String
+  setFeaturedImage: String
+  singularName: String
+  uploadedToThisItem: String
+  useFeaturedImage: String
+  viewItem: String
+  viewItems: String
+}
+
+type ReadingSettings {
+  postsPerPage: Int
+}
+
+input RegisterUserInput {
+  aim: String
+  clientMutationId: String!
+  description: String
+  displayName: String
+  email: String
+  firstName: String
+  jabber: String
+  lastName: String
+  locale: String
+  nicename: String
+  nickname: String
+  password: String
+  registered: String
+  richEditing: String
+  username: String!
+  websiteUrl: String
+  yim: String
+}
+
+type RegisterUserPayload {
+  clientMutationId: String!
+  user: User
+}
+
+enum RelationEnum {
+  AND
+  OR
+}
+
+input ResetUserPasswordInput {
+  clientMutationId: String!
+  key: String
+  login: String
+  password: String
+}
+
+type ResetUserPasswordPayload {
+  clientMutationId: String!
+  user: User
+}
+
+input RestoreCommentInput {
+  clientMutationId: String!
+  id: ID!
+}
+
+type RestoreCommentPayload {
+  clientMutationId: String!
+  comment: Comment
+  restoredId: ID
+}
+
+type Revision implements Node & BlocksPost {
+  ancestors(types: [PostTypeEnum]): [PostObjectUnion]
+  author: User
+  blocks(json: String): [Block]
+  blocksJSON: BlockJsonArray
+  commentStatus: String
+  content(format: PostObjectFieldFormatEnum): String
+  date: String
+  dateGmt: String
+  desiredSlug: String
+  editLast: User
+  editLock: EditLock
+  enclosure: String
+  excerpt(format: PostObjectFieldFormatEnum): String
+  guid: String
+  id: ID!
+  isRestricted: Boolean
+  link: String
+  menuOrder: Int
+  modified: String
+  modifiedGmt: String
+  parent: PostObjectUnion
+  pingStatus: String
+  pinged: [String]
+  revisionId: Int!
+  slug: String
+  status: String
+  termNames(taxonomies: [TaxonomyEnum]): [String]
+  termSlugs(taxonomies: [TaxonomyEnum]): [String]
+  terms(taxonomies: [TaxonomyEnum]): [TermObjectUnion]
+  title(format: PostObjectFieldFormatEnum): String
+  toPing: [String]
+  uri: String
+}
+
+type RootMutation {
+  updateCategory(input: UpdateCategoryInput!): UpdateCategoryPayload
+  updateIssue(input: UpdateIssueInput!): UpdateIssuePayload
+  updateSeries(input: UpdateSeriesInput!): UpdateSeriesPayload
+  updateTag(input: UpdateTagInput!): UpdateTagPayload
+  createCategory(input: CreateCategoryInput!): CreateCategoryPayload
+  createComment(input: CreateCommentInput!): CreateCommentPayload
+  createIssue(input: CreateIssueInput!): CreateIssuePayload
+  createMediaItem(input: CreateMediaItemInput!): CreateMediaItemPayload
+  createPage(input: CreatePageInput!): CreatePagePayload
+  createPost(input: CreatePostInput!): CreatePostPayload
+  createSeries(input: CreateSeriesInput!): CreateSeriesPayload
+  createTag(input: CreateTagInput!): CreateTagPayload
+  createUser(input: CreateUserInput!): CreateUserPayload
+  deleteCategory(input: DeleteCategoryInput!): DeleteCategoryPayload
+  deleteComment(input: DeleteCommentInput!): DeleteCommentPayload
+  deleteIssue(input: DeleteIssueInput!): DeleteIssuePayload
+  deleteMediaItem(input: DeleteMediaItemInput!): DeleteMediaItemPayload
+  deletePage(input: DeletePageInput!): DeletePagePayload
+  deletePost(input: DeletePostInput!): DeletePostPayload
+  deleteRevision(input: DeleteRevisionInput!): DeleteRevisionPayload
+  deleteSeries(input: DeleteSeriesInput!): DeleteSeriesPayload
+  deleteTag(input: DeleteTagInput!): DeleteTagPayload
+  deleteUser(input: DeleteUserInput!): DeleteUserPayload
+  increaseCount(count: Int): Int
+  registerUser(input: RegisterUserInput!): RegisterUserPayload
+  resetUserPassword(input: ResetUserPasswordInput!): ResetUserPasswordPayload
+  restoreComment(input: RestoreCommentInput!): RestoreCommentPayload
+  sendPasswordResetEmail(input: SendPasswordResetEmailInput!): SendPasswordResetEmailPayload
+  updateComment(input: UpdateCommentInput!): UpdateCommentPayload
+  updateMediaItem(input: UpdateMediaItemInput!): UpdateMediaItemPayload
+  updatePage(input: UpdatePageInput!): UpdatePagePayload
+  updatePost(input: UpdatePostInput!): UpdatePostPayload
+  updateSettings(input: UpdateSettingsInput!): UpdateSettingsPayload
+  updateUser(input: UpdateUserInput!): UpdateUserPayload
+}
+
+type RootQuery {
+  issue(id: ID!): Issue
+  issues(first: Int, last: Int, after: String, before: String, where: RootQueryToIssueConnectionWhereArgs): RootQueryToIssueConnection
+  series(id: ID!): Series
+  seriesN(first: Int, last: Int, after: String, before: String, where: RootQueryToSeriesConnectionWhereArgs): RootQueryToSeriesConnection
+  allSettings: Settings
+  blocksBy(json: String): [Block]
+  categories(first: Int, last: Int, after: String, before: String, where: RootQueryToCategoryConnectionWhereArgs): RootQueryToCategoryConnection
+  category(id: ID!): Category
+  comment(id: ID!): Comment
+  comments(first: Int, last: Int, after: String, before: String, where: RootQueryToCommentConnectionWhereArgs): RootQueryToCommentConnection
+  discussionSettings: DiscussionSettings
+  generalSettings: GeneralSettings
+  mediaItem(id: ID!): MediaItem
+  mediaItemBy(id: ID, mediaItemId: Int, uri: String, slug: String): MediaItem
+  mediaItems(first: Int, last: Int, after: String, before: String, where: RootQueryToMediaItemConnectionWhereArgs): RootQueryToMediaItemConnection
+  menu(id: ID!): Menu
+  menuItem(id: ID!): MenuItem
+  menuItems(first: Int, last: Int, after: String, before: String, where: RootQueryToMenuItemConnectionWhereArgs): RootQueryToMenuItemConnection
+  menus(first: Int, last: Int, after: String, before: String, where: RootQueryToMenuConnectionWhereArgs): RootQueryToMenuConnection
+  node(id: ID): Node
+  page(id: ID!): Page
+  pageBy(id: ID, pageId: Int, uri: String): Page
+  pages(first: Int, last: Int, after: String, before: String, where: RootQueryToPageConnectionWhereArgs): RootQueryToPageConnection
+  plugin(id: ID!): Plugin
+  plugins(first: Int, last: Int, after: String, before: String): RootQueryToPluginConnection
+  post(id: ID!): Post
+  postBy(id: ID, postId: Int, uri: String, slug: String): Post
+  posts(first: Int, last: Int, after: String, before: String, where: RootQueryToPostConnectionWhereArgs): RootQueryToPostConnection
+  postsWithBlocks(first: Int, last: Int, after: String, before: String): PostsWithBlocksConnection
+  readingSettings: ReadingSettings
+  revision(id: ID!): Revision
+  revisionBy(id: ID, revisionId: Int, uri: String, slug: String): Revision
+  revisions(first: Int, last: Int, after: String, before: String, where: RootQueryToRevisionConnectionWhereArgs): RootQueryToRevisionConnection
+  tag(id: ID!): Tag
+  tags(first: Int, last: Int, after: String, before: String, where: RootQueryToTagConnectionWhereArgs): RootQueryToTagConnection
+  theme(id: ID!): Theme
+  themes(first: Int, last: Int, after: String, before: String): RootQueryToThemeConnection
+  user(id: ID!): User
+  userRole(id: ID!): UserRole
+  userRoles(first: Int, last: Int, after: String, before: String): RootQueryToUserRoleConnection
+  users(first: Int, last: Int, after: String, before: String, where: RootQueryToUserConnectionWhereArgs): RootQueryToUserConnection
+  viewer: User
+  writingSettings: WritingSettings
+}
+
+type RootQueryToCategoryConnection {
+  edges: [RootQueryToCategoryConnectionEdge]
+  nodes: [Category]
+  pageInfo: WPPageInfo
+  taxonomyInfo: Taxonomy
+}
+
+type RootQueryToCategoryConnectionEdge {
+  cursor: String
+  node: Category
+}
+
+input RootQueryToCategoryConnectionWhereArgs {
+  cacheDomain: String
+  childOf: Int
+  childless: Boolean
+  descriptionLike: String
+  exclude: [ID]
+  excludeTree: [ID]
+  hideEmpty: Boolean
+  hierarchical: Boolean
+  include: [ID]
+  name: [String]
+  nameLike: String
+  objectIds: [ID]
+  orderby: TermObjectsConnectionOrderbyEnum
+  padCounts: Boolean
+  parent: Int
+  search: String
+  shouldOnlyIncludeConnectedItems: Boolean
+  shouldOutputInFlatList: Boolean
+  slug: [String]
+  termTaxonomId: [ID]
+  updateTermMetaCache: Boolean
+}
+
+type RootQueryToCommentConnection {
+  edges: [RootQueryToCommentConnectionEdge]
+  nodes: [Comment]
+  pageInfo: WPPageInfo
+}
+
+type RootQueryToCommentConnectionEdge {
+  cursor: String
+  node: Comment
+}
+
+input RootQueryToCommentConnectionWhereArgs {
+  authorEmail: String
+  authorIn: [ID]
+  authorNotIn: [ID]
+  authorUrl: String
+  commentIn: [ID]
+  commentNotIn: [ID]
+  commentType: String
+  commentTypeIn: [String]
+  commentTypeNotIn: String
+  contentAuthor: [ID]
+  contentAuthorIn: [ID]
+  contentAuthorNotIn: [ID]
+  contentId: ID
+  contentIdIn: [ID]
+  contentIdNotIn: [ID]
+  contentName: String
+  contentParent: Int
+  contentStatus: [PostStatusEnum]
+  contentType: [PostTypeEnum]
+  includeUnapproved: [ID]
+  karma: Int
+  order: OrderEnum
+  orderby: CommentsConnectionOrderbyEnum
+  parent: Int
+  parentIn: [ID]
+  parentNotIn: [ID]
+  search: String
+  status: String
+  userId: ID
+}
+
+type RootQueryToIssueConnection {
+  edges: [RootQueryToIssueConnectionEdge]
+  nodes: [Issue]
+  pageInfo: WPPageInfo
+  taxonomyInfo: Taxonomy
+}
+
+type RootQueryToIssueConnectionEdge {
+  cursor: String
+  node: Issue
+}
+
+input RootQueryToIssueConnectionWhereArgs {
+  cacheDomain: String
+  childOf: Int
+  childless: Boolean
+  descriptionLike: String
+  exclude: [ID]
+  excludeTree: [ID]
+  hideEmpty: Boolean
+  hierarchical: Boolean
+  include: [ID]
+  name: [String]
+  nameLike: String
+  objectIds: [ID]
+  orderby: TermObjectsConnectionOrderbyEnum
+  padCounts: Boolean
+  parent: Int
+  search: String
+  shouldOnlyIncludeConnectedItems: Boolean
+  shouldOutputInFlatList: Boolean
+  slug: [String]
+  termTaxonomId: [ID]
+  updateTermMetaCache: Boolean
+}
+
+type RootQueryToMediaItemConnection {
+  edges: [RootQueryToMediaItemConnectionEdge]
+  nodes: [MediaItem]
+  pageInfo: WPPageInfo
+  postTypeInfo: PostType
+}
+
+type RootQueryToMediaItemConnectionEdge {
+  cursor: String
+  node: MediaItem
+}
+
+input RootQueryToMediaItemConnectionWhereArgs {
+  author: Int
+  authorIn: [ID]
+  authorName: String
+  authorNotIn: [ID]
+  categoryId: Int
+  categoryIn: [ID]
+  categoryName: String
+  categoryNotIn: [ID]
+  dateQuery: DateQueryInput
+  hasPassword: Boolean
+  id: Int
+  in: [ID]
+  mimeType: MimeTypeEnum
+  name: String
+  nameIn: [String]
+  notIn: [ID]
+  orderby: [PostObjectsConnectionOrderbyInput]
+  parent: String
+  parentIn: [ID]
+  parentNotIn: [ID]
+  password: String
+  search: String
+  stati: [PostStatusEnum]
+  status: PostStatusEnum
+  tag: String
+  tagId: String
+  tagIn: [ID]
+  tagNotIn: [ID]
+  tagSlugAnd: [String]
+  tagSlugIn: [String]
+  title: String
+}
+
+type RootQueryToMenuConnection {
+  edges: [RootQueryToMenuConnectionEdge]
+  nodes: [Menu]
+  pageInfo: WPPageInfo
+}
+
+type RootQueryToMenuConnectionEdge {
+  cursor: String
+  node: Menu
+}
+
+input RootQueryToMenuConnectionWhereArgs {
+  id: Int
+  location: MenuLocationEnum
+  slug: String
+}
+
+type RootQueryToMenuItemConnection {
+  edges: [RootQueryToMenuItemConnectionEdge]
+  nodes: [MenuItem]
+  pageInfo: WPPageInfo
+}
+
+type RootQueryToMenuItemConnectionEdge {
+  cursor: String
+  node: MenuItem
+}
+
+input RootQueryToMenuItemConnectionWhereArgs {
+  id: Int
+  location: MenuLocationEnum
+}
+
+type RootQueryToPageConnection {
+  edges: [RootQueryToPageConnectionEdge]
+  nodes: [Page]
+  pageInfo: WPPageInfo
+  postTypeInfo: PostType
+}
+
+type RootQueryToPageConnectionEdge {
+  cursor: String
+  node: Page
+}
+
+input RootQueryToPageConnectionWhereArgs {
+  author: Int
+  authorIn: [ID]
+  authorName: String
+  authorNotIn: [ID]
+  categoryId: Int
+  categoryIn: [ID]
+  categoryName: String
+  categoryNotIn: [ID]
+  dateQuery: DateQueryInput
+  hasPassword: Boolean
+  id: Int
+  in: [ID]
+  mimeType: MimeTypeEnum
+  name: String
+  nameIn: [String]
+  notIn: [ID]
+  orderby: [PostObjectsConnectionOrderbyInput]
+  parent: String
+  parentIn: [ID]
+  parentNotIn: [ID]
+  password: String
+  search: String
+  stati: [PostStatusEnum]
+  status: PostStatusEnum
+  tag: String
+  tagId: String
+  tagIn: [ID]
+  tagNotIn: [ID]
+  tagSlugAnd: [String]
+  tagSlugIn: [String]
+  title: String
+}
+
+type RootQueryToPluginConnection {
+  edges: [RootQueryToPluginConnectionEdge]
+  nodes: [Plugin]
+  pageInfo: WPPageInfo
+}
+
+type RootQueryToPluginConnectionEdge {
+  cursor: String
+  node: Plugin
+}
+
+type RootQueryToPostConnection {
+  edges: [RootQueryToPostConnectionEdge]
+  nodes: [Post]
+  pageInfo: WPPageInfo
+  postTypeInfo: PostType
+}
+
+type RootQueryToPostConnectionEdge {
+  cursor: String
+  node: Post
+}
+
+input RootQueryToPostConnectionWhereArgs {
+  author: Int
+  authorIn: [ID]
+  authorName: String
+  authorNotIn: [ID]
+  categoryId: Int
+  categoryIn: [ID]
+  categoryName: String
+  categoryNotIn: [ID]
+  dateQuery: DateQueryInput
+  hasPassword: Boolean
+  id: Int
+  in: [ID]
+  mimeType: MimeTypeEnum
+  name: String
+  nameIn: [String]
+  notIn: [ID]
+  orderby: [PostObjectsConnectionOrderbyInput]
+  parent: String
+  parentIn: [ID]
+  parentNotIn: [ID]
+  password: String
+  search: String
+  stati: [PostStatusEnum]
+  status: PostStatusEnum
+  tag: String
+  tagId: String
+  tagIn: [ID]
+  tagNotIn: [ID]
+  tagSlugAnd: [String]
+  tagSlugIn: [String]
+  title: String
+}
+
+type RootQueryToRevisionConnection {
+  edges: [RootQueryToRevisionConnectionEdge]
+  nodes: [Revision]
+  pageInfo: WPPageInfo
+  postTypeInfo: PostType
+}
+
+type RootQueryToRevisionConnectionEdge {
+  cursor: String
+  node: Revision
+}
+
+input RootQueryToRevisionConnectionWhereArgs {
+  author: Int
+  authorIn: [ID]
+  authorName: String
+  authorNotIn: [ID]
+  categoryId: Int
+  categoryIn: [ID]
+  categoryName: String
+  categoryNotIn: [ID]
+  dateQuery: DateQueryInput
+  hasPassword: Boolean
+  id: Int
+  in: [ID]
+  mimeType: MimeTypeEnum
+  name: String
+  nameIn: [String]
+  notIn: [ID]
+  orderby: [PostObjectsConnectionOrderbyInput]
+  parent: String
+  parentIn: [ID]
+  parentNotIn: [ID]
+  password: String
+  search: String
+  tag: String
+  tagId: String
+  tagIn: [ID]
+  tagNotIn: [ID]
+  tagSlugAnd: [String]
+  tagSlugIn: [String]
+  title: String
+}
+
+type RootQueryToSeriesConnection {
+  edges: [RootQueryToSeriesConnectionEdge]
+  nodes: [Series]
+  pageInfo: WPPageInfo
+  taxonomyInfo: Taxonomy
+}
+
+type RootQueryToSeriesConnectionEdge {
+  cursor: String
+  node: Series
+}
+
+input RootQueryToSeriesConnectionWhereArgs {
+  cacheDomain: String
+  childOf: Int
+  childless: Boolean
+  descriptionLike: String
+  exclude: [ID]
+  excludeTree: [ID]
+  hideEmpty: Boolean
+  hierarchical: Boolean
+  include: [ID]
+  name: [String]
+  nameLike: String
+  objectIds: [ID]
+  orderby: TermObjectsConnectionOrderbyEnum
+  padCounts: Boolean
+  parent: Int
+  search: String
+  shouldOnlyIncludeConnectedItems: Boolean
+  shouldOutputInFlatList: Boolean
+  slug: [String]
+  termTaxonomId: [ID]
+  updateTermMetaCache: Boolean
+}
+
+type RootQueryToTagConnection {
+  edges: [RootQueryToTagConnectionEdge]
+  nodes: [Tag]
+  pageInfo: WPPageInfo
+  taxonomyInfo: Taxonomy
+}
+
+type RootQueryToTagConnectionEdge {
+  cursor: String
+  node: Tag
+}
+
+input RootQueryToTagConnectionWhereArgs {
+  cacheDomain: String
+  childOf: Int
+  childless: Boolean
+  descriptionLike: String
+  exclude: [ID]
+  excludeTree: [ID]
+  hideEmpty: Boolean
+  hierarchical: Boolean
+  include: [ID]
+  name: [String]
+  nameLike: String
+  objectIds: [ID]
+  orderby: TermObjectsConnectionOrderbyEnum
+  padCounts: Boolean
+  parent: Int
+  search: String
+  shouldOnlyIncludeConnectedItems: Boolean
+  shouldOutputInFlatList: Boolean
+  slug: [String]
+  termTaxonomId: [ID]
+  updateTermMetaCache: Boolean
+}
+
+type RootQueryToThemeConnection {
+  edges: [RootQueryToThemeConnectionEdge]
+  nodes: [Theme]
+  pageInfo: WPPageInfo
+}
+
+type RootQueryToThemeConnectionEdge {
+  cursor: String
+  node: Theme
+}
+
+type RootQueryToUserConnection {
+  edges: [RootQueryToUserConnectionEdge]
+  nodes: [User]
+  pageInfo: WPPageInfo
+}
+
+type RootQueryToUserConnectionEdge {
+  cursor: String
+  node: User
+}
+
+input RootQueryToUserConnectionWhereArgs {
+  exclude: [Int]
+  hasPublishedPosts: [PostTypeEnum]
+  include: [Int]
+  login: String
+  loginIn: Int
+  loginNotIn: Int
+  nicename: String
+  nicenameIn: [String]
+  nicenameNotIn: [String]
+  orderby: [UsersConnectionOrderbyInput]
+  role: UserRoleEnum
+  roleIn: [UserRoleEnum]
+  roleNotIn: [UserRoleEnum]
+  search: String
+  searchColumns: [String]
+}
+
+type RootQueryToUserRoleConnection {
+  edges: [RootQueryToUserRoleConnectionEdge]
+  nodes: [UserRole]
+  pageInfo: WPPageInfo
+}
+
+type RootQueryToUserRoleConnectionEdge {
+  cursor: String
+  node: UserRole
+}
+
+input SendPasswordResetEmailInput {
+  clientMutationId: String!
+  username: String!
+}
+
+type SendPasswordResetEmailPayload {
+  clientMutationId: String!
+  user: User
+}
+
+type Series implements Node {
+  seriesId: Int
+  ancestors: [Series]
+  children(first: Int, last: Int, after: String, before: String, where: SeriesToSeriesConnectionWhereArgs): SeriesToSeriesConnection
+  count: Int
+  description: String
+  id: ID!
+  isRestricted: Boolean
+  link: String
+  name: String
+  parent: Series
+  posts(first: Int, last: Int, after: String, before: String, where: SeriesToPostConnectionWhereArgs): SeriesToPostConnection
+  slug: String
+  taxonomy: Taxonomy
+  termGroupId: Int
+  termTaxonomyId: Int
+}
+
+type SeriesToPostConnection {
+  edges: [SeriesToPostConnectionEdge]
+  nodes: [Post]
+  pageInfo: WPPageInfo
+  postTypeInfo: PostType
+}
+
+type SeriesToPostConnectionEdge {
+  cursor: String
+  node: Post
+}
+
+input SeriesToPostConnectionWhereArgs {
+  author: Int
+  authorIn: [ID]
+  authorName: String
+  authorNotIn: [ID]
+  categoryId: Int
+  categoryIn: [ID]
+  categoryName: String
+  categoryNotIn: [ID]
+  dateQuery: DateQueryInput
+  hasPassword: Boolean
+  id: Int
+  in: [ID]
+  mimeType: MimeTypeEnum
+  name: String
+  nameIn: [String]
+  notIn: [ID]
+  orderby: [PostObjectsConnectionOrderbyInput]
+  parent: String
+  parentIn: [ID]
+  parentNotIn: [ID]
+  password: String
+  search: String
+  stati: [PostStatusEnum]
+  status: PostStatusEnum
+  tag: String
+  tagId: String
+  tagIn: [ID]
+  tagNotIn: [ID]
+  tagSlugAnd: [String]
+  tagSlugIn: [String]
+  title: String
+}
+
+type SeriesToSeriesConnection {
+  edges: [SeriesToSeriesConnectionEdge]
+  nodes: [Series]
+  pageInfo: WPPageInfo
+  taxonomyInfo: Taxonomy
+}
+
+type SeriesToSeriesConnectionEdge {
+  cursor: String
+  node: Series
+}
+
+input SeriesToSeriesConnectionWhereArgs {
+  cacheDomain: String
+  childOf: Int
+  childless: Boolean
+  descriptionLike: String
+  exclude: [ID]
+  excludeTree: [ID]
+  hideEmpty: Boolean
+  hierarchical: Boolean
+  include: [ID]
+  name: [String]
+  nameLike: String
+  objectIds: [ID]
+  orderby: TermObjectsConnectionOrderbyEnum
+  padCounts: Boolean
+  parent: Int
+  search: String
+  shouldOnlyIncludeConnectedItems: Boolean
+  shouldOutputInFlatList: Boolean
+  slug: [String]
+  termTaxonomId: [ID]
+  updateTermMetaCache: Boolean
+}
+
+type Settings {
+  discussionSettingsDefaultCommentStatus: String
+  discussionSettingsDefaultPingStatus: String
+  generalSettingsDateFormat: String
+  generalSettingsDescription: String
+  generalSettingsEmail: String
+  generalSettingsLanguage: String
+  generalSettingsStartOfWeek: Int
+  generalSettingsTimeFormat: String
+  generalSettingsTimezone: String
+  generalSettingsTitle: String
+  generalSettingsUrl: String
+  readingSettingsPostsPerPage: Int
+  writingSettingsDefaultCategory: Int
+  writingSettingsDefaultPostFormat: String
+  writingSettingsUseSmilies: Boolean
+}
+
+type Tag implements Node {
+  count: Int
+  description: String
+  id: ID!
+  isRestricted: Boolean
+  link: String
+  name: String
+  posts(first: Int, last: Int, after: String, before: String, where: TagToPostConnectionWhereArgs): TagToPostConnection
+  slug: String
+  tagId: Int
+  taxonomy: Taxonomy
+  termGroupId: Int
+  termTaxonomyId: Int
+}
+
+type TagToPostConnection {
+  edges: [TagToPostConnectionEdge]
+  nodes: [Post]
+  pageInfo: WPPageInfo
+  postTypeInfo: PostType
+}
+
+type TagToPostConnectionEdge {
+  cursor: String
+  node: Post
+}
+
+input TagToPostConnectionWhereArgs {
+  author: Int
+  authorIn: [ID]
+  authorName: String
+  authorNotIn: [ID]
+  categoryId: Int
+  categoryIn: [ID]
+  categoryName: String
+  categoryNotIn: [ID]
+  dateQuery: DateQueryInput
+  hasPassword: Boolean
+  id: Int
+  in: [ID]
+  mimeType: MimeTypeEnum
+  name: String
+  nameIn: [String]
+  notIn: [ID]
+  orderby: [PostObjectsConnectionOrderbyInput]
+  parent: String
+  parentIn: [ID]
+  parentNotIn: [ID]
+  password: String
+  search: String
+  stati: [PostStatusEnum]
+  status: PostStatusEnum
+  tag: String
+  tagId: String
+  tagIn: [ID]
+  tagNotIn: [ID]
+  tagSlugAnd: [String]
+  tagSlugIn: [String]
+  title: String
+}
+
+type Taxonomy implements Node {
+  connectedPostTypeNames(types: [PostTypeEnum]): [String]
+  connectedPostTypes(types: [PostTypeEnum]): [PostType]
+  description: String
+  graphqlPluralName: String
+  graphqlSingleName: String
+  hierarchical: Boolean
+  id: ID!
+  isRestricted: Boolean
+  label: String
+  name: String
+  public: Boolean
+  restBase: String
+  restControllerClass: String
+  showCloud: Boolean
+  showInAdminColumn: Boolean
+  showInGraphql: Boolean
+  showInMenu: Boolean
+  showInNavMenus: Boolean
+  showInQuickEdit: Boolean
+  showInRest: Boolean
+  showUi: Boolean
+}
+
+enum TaxonomyEnum {
+  CATEGORY
+  ISSUE
+  SERIES
+  TAG
+}
+
+enum TermObjectsConnectionOrderbyEnum {
+  COUNT
+  DESCRIPTION
+  NAME
+  SLUG
+  TERM_GROUP
+  TERM_ID
+  TERM_ORDER
+}
+
+union TermObjectUnion = Category | Tag | Series | Issue
+
+type Theme implements Node {
+  author: String
+  authorUri: String
+  description: String
+  id: ID!
+  isRestricted: Boolean
+  name: String
+  screenshot: String
+  slug: String
+  tags: [String]
+  themeUri: String
+  version: Float
+}
+
+input UpdateCategoryInput {
+  aliasOf: String
+  clientMutationId: String!
+  description: String
+  id: ID!
+  name: String
+  parentId: ID
+  slug: String
+}
+
+type UpdateCategoryPayload {
+  category: Category
+  clientMutationId: String!
+}
+
+input UpdateCommentInput {
+  agent: String
+  approved: String
+  author: String
+  authorEmail: String
+  authorIp: String
+  authorUrl: String
+  clientMutationId: String!
+  commentOn: Int
+  content: String
+  date: String
+  id: ID!
+  parent: ID
+  type: String
+  userId: Int
+}
+
+type UpdateCommentPayload {
+  clientMutationId: String!
+  comment: Comment
+  success: Boolean
+}
+
+input UpdateIssueInput {
+  aliasOf: String
+  clientMutationId: String!
+  description: String
+  id: ID!
+  name: String
+  parentId: ID
+  slug: String
+}
+
+type UpdateIssuePayload {
+  issue: Issue
+  clientMutationId: String!
+}
+
+input UpdateMediaItemInput {
+  altText: String
+  authorId: ID
+  caption: String
+  clientMutationId: String!
+  commentStatus: String
+  date: String
+  dateGmt: String
+  description: String
+  filePath: String
+  fileType: MimeTypeEnum
+  id: ID!
+  parentId: ID
+  pingStatus: String
+  slug: String
+  status: MediaItemStatusEnum
+  title: String
+}
+
+type UpdateMediaItemPayload {
+  clientMutationId: String!
+  mediaItem: MediaItem
+}
+
+input UpdatePageInput {
+  authorId: ID
+  clientMutationId: String!
+  commentCount: Int
+  commentStatus: String
+  content: String
+  date: String
+  excerpt: String
+  id: ID!
+  menuOrder: Int
+  mimeType: MimeTypeEnum
+  parentId: ID
+  password: String
+  pingStatus: String
+  pinged: [String]
+  slug: String
+  status: PostStatusEnum
+  title: String
+  toPing: [String]
+}
+
+type UpdatePagePayload {
+  clientMutationId: String!
+  page: Page
+}
+
+input UpdatePostInput {
+  issues: PostIssuesInput
+  seriesN: PostSeriesNInput
+  authorId: ID
+  categories: PostCategoriesInput
+  clientMutationId: String!
+  commentCount: Int
+  commentStatus: String
+  content: String
+  date: String
+  excerpt: String
+  id: ID!
+  menuOrder: Int
+  mimeType: MimeTypeEnum
+  parentId: ID
+  password: String
+  pingStatus: String
+  pinged: [String]
+  slug: String
+  status: PostStatusEnum
+  tags: PostTagsInput
+  title: String
+  toPing: [String]
+}
+
+type UpdatePostPayload {
+  clientMutationId: String!
+  post: Post
+}
+
+input UpdateSeriesInput {
+  aliasOf: String
+  clientMutationId: String!
+  description: String
+  id: ID!
+  name: String
+  parentId: ID
+  slug: String
+}
+
+type UpdateSeriesPayload {
+  series: Series
+  clientMutationId: String!
+}
+
+input UpdateSettingsInput {
+  clientMutationId: String!
+  discussionSettingsDefaultCommentStatus: String
+  discussionSettingsDefaultPingStatus: String
+  generalSettingsDateFormat: String
+  generalSettingsDescription: String
+  generalSettingsEmail: String
+  generalSettingsLanguage: String
+  generalSettingsStartOfWeek: Int
+  generalSettingsTimeFormat: String
+  generalSettingsTimezone: String
+  generalSettingsTitle: String
+  generalSettingsUrl: String
+  readingSettingsPostsPerPage: Int
+  writingSettingsDefaultCategory: Int
+  writingSettingsDefaultPostFormat: String
+  writingSettingsUseSmilies: Boolean
+}
+
+type UpdateSettingsPayload {
+  allSettings: Settings
+  clientMutationId: String!
+  discussionSettings: DiscussionSettings
+  generalSettings: GeneralSettings
+  readingSettings: ReadingSettings
+  writingSettings: WritingSettings
+}
+
+input UpdateTagInput {
+  aliasOf: String
+  clientMutationId: String!
+  description: String
+  id: ID!
+  name: String
+  slug: String
+}
+
+type UpdateTagPayload {
+  clientMutationId: String!
+  tag: Tag
+}
+
+input UpdateUserInput {
+  aim: String
+  clientMutationId: String!
+  description: String
+  displayName: String
+  email: String
+  firstName: String
+  id: ID!
+  jabber: String
+  lastName: String
+  locale: String
+  nicename: String
+  nickname: String
+  password: String
+  registered: String
+  richEditing: String
+  roles: [String]
+  websiteUrl: String
+  yim: String
+}
+
+type UpdateUserPayload {
+  clientMutationId: String!
+  user: User
+}
+
+type User implements Node {
+  avatar(size: Int = 96, forceDefault: Boolean, rating: AvatarRatingEnum): Avatar
+  capKey: String
+  capabilities: [String]
+  comments(first: Int, last: Int, after: String, before: String, where: UserToCommentConnectionWhereArgs): UserToCommentConnection
+  description: String
+  email: String
+  extraCapabilities: [String]
+  firstName: String
+  id: ID!
+  isRestricted: Boolean
+  lastName: String
+  locale: String
+  mediaItems(first: Int, last: Int, after: String, before: String, where: UserToMediaItemConnectionWhereArgs): UserToMediaItemConnection
+  name: String
+  nicename: String
+  nickname: String
+  pages(first: Int, last: Int, after: String, before: String, where: UserToPageConnectionWhereArgs): UserToPageConnection
+  posts(first: Int, last: Int, after: String, before: String, where: UserToPostConnectionWhereArgs): UserToPostConnection
+  registeredDate: String
+  revisions(first: Int, last: Int, after: String, before: String, where: UserToRevisionConnectionWhereArgs): UserToRevisionConnection
+  roles(first: Int, last: Int, after: String, before: String): UserToUserRoleConnection
+  slug: String
+  url: String
+  userId: Int
+  username: String
+}
+
+type UserRole {
+  capabilities: [String]
+  id: ID!
+  isRestricted: Boolean
+  name: String
+}
+
+enum UserRoleEnum {
+  ADMINISTRATOR
+  AUTHOR
+  CONTRIBUTOR
+  EDITOR
+  SUBSCRIBER
+}
+
+enum UsersConnectionOrderbyEnum {
+  DISPLAY_NAME
+  EMAIL
+  LOGIN
+  LOGIN_IN
+  NICE_NAME
+  NICE_NAME_IN
+  REGISTERED
+  URL
+}
+
+input UsersConnectionOrderbyInput {
+  field: UsersConnectionOrderbyEnum!
+  order: OrderEnum
+}
+
+type UserToCommentConnection {
+  edges: [UserToCommentConnectionEdge]
+  nodes: [Comment]
+  pageInfo: WPPageInfo
+}
+
+type UserToCommentConnectionEdge {
+  cursor: String
+  node: Comment
+}
+
+input UserToCommentConnectionWhereArgs {
+  authorEmail: String
+  authorIn: [ID]
+  authorNotIn: [ID]
+  authorUrl: String
+  commentIn: [ID]
+  commentNotIn: [ID]
+  commentType: String
+  commentTypeIn: [String]
+  commentTypeNotIn: String
+  contentAuthor: [ID]
+  contentAuthorIn: [ID]
+  contentAuthorNotIn: [ID]
+  contentId: ID
+  contentIdIn: [ID]
+  contentIdNotIn: [ID]
+  contentName: String
+  contentParent: Int
+  contentStatus: [PostStatusEnum]
+  contentType: [PostTypeEnum]
+  includeUnapproved: [ID]
+  karma: Int
+  order: OrderEnum
+  orderby: CommentsConnectionOrderbyEnum
+  parent: Int
+  parentIn: [ID]
+  parentNotIn: [ID]
+  search: String
+  status: String
+  userId: ID
+}
+
+type UserToMediaItemConnection {
+  edges: [UserToMediaItemConnectionEdge]
+  nodes: [MediaItem]
+  pageInfo: WPPageInfo
+  postTypeInfo: PostType
+}
+
+type UserToMediaItemConnectionEdge {
+  cursor: String
+  node: MediaItem
+}
+
+input UserToMediaItemConnectionWhereArgs {
+  author: Int
+  authorIn: [ID]
+  authorName: String
+  authorNotIn: [ID]
+  categoryId: Int
+  categoryIn: [ID]
+  categoryName: String
+  categoryNotIn: [ID]
+  dateQuery: DateQueryInput
+  hasPassword: Boolean
+  id: Int
+  in: [ID]
+  mimeType: MimeTypeEnum
+  name: String
+  nameIn: [String]
+  notIn: [ID]
+  orderby: [PostObjectsConnectionOrderbyInput]
+  parent: String
+  parentIn: [ID]
+  parentNotIn: [ID]
+  password: String
+  search: String
+  stati: [PostStatusEnum]
+  status: PostStatusEnum
+  tag: String
+  tagId: String
+  tagIn: [ID]
+  tagNotIn: [ID]
+  tagSlugAnd: [String]
+  tagSlugIn: [String]
+  title: String
+}
+
+type UserToPageConnection {
+  edges: [UserToPageConnectionEdge]
+  nodes: [Page]
+  pageInfo: WPPageInfo
+  postTypeInfo: PostType
+}
+
+type UserToPageConnectionEdge {
+  cursor: String
+  node: Page
+}
+
+input UserToPageConnectionWhereArgs {
+  author: Int
+  authorIn: [ID]
+  authorName: String
+  authorNotIn: [ID]
+  categoryId: Int
+  categoryIn: [ID]
+  categoryName: String
+  categoryNotIn: [ID]
+  dateQuery: DateQueryInput
+  hasPassword: Boolean
+  id: Int
+  in: [ID]
+  mimeType: MimeTypeEnum
+  name: String
+  nameIn: [String]
+  notIn: [ID]
+  orderby: [PostObjectsConnectionOrderbyInput]
+  parent: String
+  parentIn: [ID]
+  parentNotIn: [ID]
+  password: String
+  search: String
+  stati: [PostStatusEnum]
+  status: PostStatusEnum
+  tag: String
+  tagId: String
+  tagIn: [ID]
+  tagNotIn: [ID]
+  tagSlugAnd: [String]
+  tagSlugIn: [String]
+  title: String
+}
+
+type UserToPostConnection {
+  edges: [UserToPostConnectionEdge]
+  nodes: [Post]
+  pageInfo: WPPageInfo
+  postTypeInfo: PostType
+}
+
+type UserToPostConnectionEdge {
+  cursor: String
+  node: Post
+}
+
+input UserToPostConnectionWhereArgs {
+  author: Int
+  authorIn: [ID]
+  authorName: String
+  authorNotIn: [ID]
+  categoryId: Int
+  categoryIn: [ID]
+  categoryName: String
+  categoryNotIn: [ID]
+  dateQuery: DateQueryInput
+  hasPassword: Boolean
+  id: Int
+  in: [ID]
+  mimeType: MimeTypeEnum
+  name: String
+  nameIn: [String]
+  notIn: [ID]
+  orderby: [PostObjectsConnectionOrderbyInput]
+  parent: String
+  parentIn: [ID]
+  parentNotIn: [ID]
+  password: String
+  search: String
+  stati: [PostStatusEnum]
+  status: PostStatusEnum
+  tag: String
+  tagId: String
+  tagIn: [ID]
+  tagNotIn: [ID]
+  tagSlugAnd: [String]
+  tagSlugIn: [String]
+  title: String
+}
+
+type UserToRevisionConnection {
+  edges: [UserToRevisionConnectionEdge]
+  nodes: [Revision]
+  pageInfo: WPPageInfo
+  postTypeInfo: PostType
+}
+
+type UserToRevisionConnectionEdge {
+  cursor: String
+  node: Revision
+}
+
+input UserToRevisionConnectionWhereArgs {
+  author: Int
+  authorIn: [ID]
+  authorName: String
+  authorNotIn: [ID]
+  categoryId: Int
+  categoryIn: [ID]
+  categoryName: String
+  categoryNotIn: [ID]
+  dateQuery: DateQueryInput
+  hasPassword: Boolean
+  id: Int
+  in: [ID]
+  mimeType: MimeTypeEnum
+  name: String
+  nameIn: [String]
+  notIn: [ID]
+  orderby: [PostObjectsConnectionOrderbyInput]
+  parent: String
+  parentIn: [ID]
+  parentNotIn: [ID]
+  password: String
+  search: String
+  tag: String
+  tagId: String
+  tagIn: [ID]
+  tagNotIn: [ID]
+  tagSlugAnd: [String]
+  tagSlugIn: [String]
+  title: String
+}
+
+type UserToUserRoleConnection {
+  edges: [UserToUserRoleConnectionEdge]
+  nodes: [UserRole]
+  pageInfo: WPPageInfo
+}
+
+type UserToUserRoleConnectionEdge {
+  cursor: String
+  node: UserRole
+}
+
+type WPPageInfo {
+  endCursor: String
+  hasNextPage: Boolean!
+  hasPreviousPage: Boolean!
+  startCursor: String
+}
+
+type WritingSettings {
+  defaultCategory: Int
+  defaultPostFormat: String
+  useSmilies: Boolean
+}
