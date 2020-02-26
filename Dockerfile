@@ -28,8 +28,6 @@ RUN sudo -u www-data composer global require \
 	phpcompatibility/phpcompatibility-wp \
 	automattic/vipwpcs
 
-RUN usermod -aG www-data $USER
-
 # ensure wordpress has write permission on linux host https://github.com/postlight/headless-wp-starter/issues/202
 RUN chown -R www-data:www-data /var/www/html 
 
