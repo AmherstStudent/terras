@@ -31,8 +31,6 @@ RUN sudo -u www-data composer global require \
 # ensure wordpress has write permission on linux host https://github.com/postlight/headless-wp-starter/issues/202
 RUN chown -R www-data:www-data /var/www/html 
 
-RUN chmod -R 774 /var/www
-
 # include composer-installed executables in $PATH
 ENV PATH="/var/www/.composer/vendor/bin:${PATH}"
 
@@ -40,7 +38,7 @@ EXPOSE 8080
 
 COPY /docker/install_wordpress.sh /install_wordpress.sh 
 
-ENTRYPOINT [ "/bin/bash", "install_wordpress" ]
+ENTRYPOINT [ "/bin/bash -c", "install_wordpress" ]
 
 
 
