@@ -31,6 +31,8 @@ RUN sudo -u www-data composer global require \
 USER www-data
 # ensure wordpress has write permission on linux host https://github.com/postlight/headless-wp-starter/issues/202
 RUN chown -R www-data:www-data /var/www/html 
+RUN chmod 766 -R /var/www/html
+
 
 # include composer-installed executables in $PATH
 ENV PATH="/var/www/.composer/vendor/bin:${PATH}"
