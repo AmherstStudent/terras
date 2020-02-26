@@ -12,13 +12,13 @@ services:
             - wp-headless
             - frontend-graphql
     db-headless:
+        image: mariadb
         container_name: db-headless
         environment:
             - MYSQL_RANDOM_ROOT_PASSWORD=yes
             - MYSQL_DATABASE=${WORDPRESS_DB_NAME}
             - MYSQL_PASSWORD=${WORDPRESS_DB_PASSWORD}
             - MYSQL_USER=${WORDPRESS_DB_USER}
-        image: mariadb
         ports:
             - '3307:3306'
     wp-headless:
