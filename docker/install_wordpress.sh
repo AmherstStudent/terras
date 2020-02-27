@@ -21,9 +21,8 @@ then
     exec "apache2-foreground"
     exit
 fi
-echo 'alias wp="sudo -u www-data wp"' >>~/.bashrc
 
-wp core download --force
+sudo wp core download --force
 
 [ -f wp-config.php ] || wp config create \
     --dbhost="$WORDPRESS_DB_HOST" \
