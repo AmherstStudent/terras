@@ -22,7 +22,7 @@ then
     exit
 fi
 
-wp core download --force
+wp core download --force --allow-root
 
 [ -f wp-config.php ] || wp config create \
     --dbhost="$WORDPRESS_DB_HOST" \
