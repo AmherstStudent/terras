@@ -4,7 +4,6 @@ set -e
 
 mysql_ready='nc -z db-headless 3306'
 
-
 if ! $mysql_ready
 then
     printf 'Waiting for MySQL.'
@@ -24,6 +23,7 @@ then
 fi
 
 wp core download --force
+echo 'alias wp="sudo -u www-data wp"' >>~/.bashrc
 
 [ -f wp-config.php ] || wp config create \
     --dbhost="$WORDPRESS_DB_HOST" \
