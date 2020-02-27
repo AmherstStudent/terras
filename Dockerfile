@@ -1,4 +1,4 @@
-FROM wordpress:php7.4-apache
+FROM wordpress
 
 RUN sed -i 's/80/8080/' /etc/apache2/ports.conf /etc/apache2/sites-enabled/000-default.conf
 
