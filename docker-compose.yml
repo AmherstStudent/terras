@@ -27,7 +27,7 @@ services:
         depends_on:
             - db-headless
         env_file: .env
-        user: 33:33
+        user: '33:33'
         volumes:
             - ./wordpress:/var/www/html
             - ./docker/install_wordpress.sh:/usr/local/bin/install_wordpress
