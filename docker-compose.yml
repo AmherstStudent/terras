@@ -15,20 +15,25 @@ services:
     db-headless:
         image: mariadb
         container_name: db-headless
+        restart: always
+        env_file: ./.env
         environment:
             - MYSQL_RANDOM_ROOT_PASSWORD=yes
             - MYSQL_DATABASE=${WORDPRESS_DB_NAME}
             - MYSQL_PASSWORD=${WORDPRESS_DB_PASSWORD}
             - MYSQL_USER=${WORDPRESS_DB_USER}
         ports:
-            - '3307:3306'
+            - '3306:3306'
+        expose: 
+            - '3306'
     wp-headless:
         build: .
         container_name: wp-headless
         depends_on:
             - db-headless
-        env_file: ./.env
         user: www-data
+        ports:
+            - '8080:8080'
         volumes:
             - ./wordpress:/var/www/html
             - ./docker/install_wordpress.sh:/usr/local/bin/install_wordpress
@@ -37,6 +42,17 @@ services:
             - ./docker/images:/var/www/images
             - ./docker/plugins:/var/www/plugins
             - ./nginx/www.conf:/etc/php7.4/fpm/pool.d/www.conf
+    wp-setup: 
+        build: ./docker/toolbox/
+        volumes:
+            - ./wordpress:/var/www/html
+            - ./docker/plugins:/var/www/plugins
+        working_dir: /var/www/html
+        depends_on:
+            - db-headless
+        env_file: ./.env
+        links:
+            - db-headless
     frontend-graphql:
         command: bash -c 'yarn && yarn build && yarn start'
         container_name: frontend-graphql

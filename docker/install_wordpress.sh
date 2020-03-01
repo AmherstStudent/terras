@@ -21,7 +21,7 @@ then
     exec "apache2-foreground"
     exit
 fi
-
+rm wp-config.php
 wp core download --force --allow-root
 
 [ -f wp-config.php ] || wp config create \
@@ -70,4 +70,3 @@ wp import /var/www/postlightheadlesswpstarter.wordpress.xml --authors=skip
 echo "Great. You can now log into WordPress at: $WORDPRESS_URL/wp-admin ($WORDPRESS_ADMIN_USER/$WORDPRESS_ADMIN_PASSWORD)"
 
 
-exec "apache2-foreground"
