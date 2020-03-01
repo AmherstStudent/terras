@@ -33,7 +33,7 @@ services:
             - db-headless
         user: www-data
         ports:
-            - '8080:8080'
+            - '9000:9000'
         volumes:
             - ./wordpress:/var/www/html
             - ./docker/install_wordpress.sh:/usr/local/bin/install_wordpress

@@ -18,7 +18,6 @@ RUN chown -R www-data:www-data /var/www/html
 ENV PATH="/var/www/.composer/vendor/bin:${PATH}"
 
 EXPOSE 9000
-CMD [ "php-fpm" ]
 
 
 
