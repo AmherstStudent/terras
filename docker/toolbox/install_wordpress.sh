@@ -58,6 +58,9 @@ wp plugin install --activate --force \
     /var/www/plugins/*.zip
 
 wp term update category 1 --name="News"
+wp term create category "Arts and Living"
+wp term create category "Sports"
+wp term create category "Opinion"
 wp menu create "Header Menu"
 wp menu item add-post header-menu 1
 wp menu item add-post header-menu 2
