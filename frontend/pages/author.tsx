@@ -1,5 +1,5 @@
-import Layout from '../../components/layout'
-import Navbar from "../../components/base/Navbar"
+import Layout from '../components/layout'
+import Navbar from "../components/base/Navbar"
 
 const Author = () => (
     <>
