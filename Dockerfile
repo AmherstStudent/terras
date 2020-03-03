@@ -13,7 +13,7 @@ RUN curl -sL https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cl
 
 # ensure wordpress has write permission on linux host https://github.com/postlight/headless-wp-starter/issues/202
 RUN chown -R www-data:www-data /var/www/html 
-RUN chmod -R 0755 /var/www/html/wp-content/uploads
+RUN chmod -R 0777 /var/www/html/
 
 # include composer-installed executables in $PATH
 ENV PATH="/var/www/.composer/vendor/bin:${PATH}"
