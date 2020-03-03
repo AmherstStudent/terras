@@ -1,4 +1,5 @@
 import styled from 'styled-components'
+import Link from 'next/link'
 
 const SidePanel = styled.div`
   width: 25vw;
@@ -51,10 +52,10 @@ const SideNav = () => (
   <SidePanel>
     <SidePanelWrapper>
       <NavSections>
-        <li>NEWS</li>
-        <li>OPINION</li>
-        <li>ARTS AND LIVING</li>
-        <li>SPORTS</li>
+        <Link href={{ pathname: '/section', query: { slug: "news" } }} as="/section/news"><li>NEWS</li></Link>
+        <Link href={{ pathname: '/section', query: { slug: "opinion" } }} as="/section/opinion"><li>OPINION</li></Link>
+        <Link href={{ pathname: '/section', query: { slug: "arts-and-living" } }} as="/section/arts-and-living"><li>ARTS AND LIVING</li></Link>
+        <Link href={{ pathname: '/section', query: { slug: "sports" } }} as="/section/sports"><li>SPORTS</li></Link>
       </NavSections>
       <NavPages>
         <li>About</li>

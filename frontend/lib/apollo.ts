@@ -10,7 +10,7 @@ const fragmentMatcher = new IntrospectionFragmentMatcher({
 export default withApollo(
   ({ initialState }) =>
     new ApolloClient({
-      uri: 'http://localhost:8080/graphql',
+      uri: 'http://admin.amherststudent.com/graphql',
       cache: new InMemoryCache({ fragmentMatcher } || {}),
     }),
 )
