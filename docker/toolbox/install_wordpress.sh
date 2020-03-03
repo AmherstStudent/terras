@@ -23,6 +23,7 @@ fi
 rm -f wp-config.php
 
 wp core download --force 
+echo "⚙️ Configuring Wordpress database..."
 
 wp config create \
     --dbhost="$WORDPRESS_DB_HOST" \
@@ -30,6 +31,7 @@ wp config create \
     --dbuser="$WORDPRESS_DB_USER" \
     --dbpass="$WORDPRESS_DB_PASSWORD" 
 
+echo "⚙️ Configuring Wordpress parameters..."
 wp core install \
     --url="$WORDPRESS_URL" \
     --title="$WORDPRESS_TITLE" \
@@ -49,7 +51,6 @@ wp plugin install --activate --force \
     acf-to-wp-api \
     advanced-custom-fields \
     wordpress-importer \
-    wp-rest-api-v2-menus \
     jwt-authentication-for-wp-rest-api \
     slate-admin-theme \
     co-authors-plus \
@@ -62,11 +63,6 @@ wp term create category "Arts and Living"
 wp term create category "Sports"
 wp term create category "Opinion"
 wp menu create "Header Menu"
-wp menu item add-post header-menu 1
-wp menu item add-post header-menu 2
-wp menu item add-term header-menu category 1
-wp menu item add-custom header-menu "Read about the Starter Kit" https://postlight.com/trackchanges/introducing-postlights-wordpress-react-starter-kit
-wp menu location assign header-menu header-menu
 wp post update 1 --post_title="Sample Post" --post_name=sample-post
 wp import /var/www/postlightheadlesswpstarter.wordpress.xml --authors=skip
 
