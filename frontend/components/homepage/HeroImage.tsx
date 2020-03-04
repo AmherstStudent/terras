@@ -72,7 +72,7 @@ const HeroImage = (attributes: { authors; featuredImageUrl; category; title; dat
       : authors[0].job_title
   return (
     <HeroImageWrapper>
-      {attributes.featuredImageUrl && <HeroImg src="http://localhost:8080/wp-content/uploads/2020/01/image1.jpg" />}
+      {attributes.featuredImageUrl && <HeroImg src={attributes.featuredImageUrl} />}
       <Card>
         <Category>{attributes.category}</Category>
         <CardTitle>{attributes.title}</CardTitle>
