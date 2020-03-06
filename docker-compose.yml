@@ -9,9 +9,12 @@ services:
         working_dir: /var/www/html
         ports:
           - '80:80'
+          - "443:443"
         depends_on: 
             - wp-headless
             - frontend-graphql
+    certbot:
+        image: certbot/certbot
     db-headless:
         image: mariadb
         container_name: db-headless
