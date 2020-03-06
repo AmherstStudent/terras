@@ -21,6 +21,7 @@ export const HomeDocument = gql`
                 ... on HomeHeroImageBlockAttributes {
                   title
                   authors
+                  slug
                   issue
                   category
                   featuredImageAlt
@@ -34,6 +35,7 @@ export const HomeDocument = gql`
               attributes {
                 ... on HomeSmallArticleBlockAttributes {
                   title
+                  slug
                   issue
                   authors
                   category
@@ -48,6 +50,7 @@ export const HomeDocument = gql`
               attributes {
                 ... on HomeLargeArticleBlockAttributes {
                   title
+                  slug
                   issue
                   authors
                   category
