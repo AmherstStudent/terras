@@ -36086,7 +36086,7 @@ Section.getInitialProps = function _callee(_ref2) {
 
 /***/ }),
 
-/***/ 3:
+/***/ 2:
 /*!***********************************************************************************************************************************************************************!*\
   !*** multi next-client-pages-loader?page=%2Fsection%2F%5Bslug%5D&absolutePagePath=%2FUsers%2Fdylan%2Fprojects%2Fterras%2Ffrontend%2Fpages%2Fsection%2F%5Bslug%5D.tsx ***!
   \***********************************************************************************************************************************************************************/
@@ -36109,5 +36109,5 @@ module.exports = dll_ef0ff7c60362f24a921f;
 
 /***/ })
 
-},[[3,"static/runtime/webpack.js"]]]);
+},[[2,"static/runtime/webpack.js"]]]);
 //# sourceMappingURL=[slug].js.map

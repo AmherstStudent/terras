@@ -1089,7 +1089,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var styled_components__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! styled-components */ "./node_modules/styled-components/dist/styled-components.browser.esm.js");
-/* harmony import */ var _util__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../util */ "./components/util.tsx");
+/* harmony import */ var next_link__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! next/link */ "./node_modules/next/link.js");
+/* harmony import */ var next_link__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(next_link__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var _util__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../util */ "./components/util.tsx");
 
 var _jsxFileName = "/Users/dylan/projects/terras/frontend/components/homepage/HeroImage.tsx";
 
@@ -1116,7 +1118,7 @@ function _templateObject6() {
 }
 
 function _templateObject5() {
-  var data = Object(_babel_runtime_corejs2_helpers_esm_taggedTemplateLiteral__WEBPACK_IMPORTED_MODULE_0__["default"])(["\n  font-family: Cormorant;\n  font-style: normal;\n  font-weight: bold;\n  font-size: 33px;\n  line-height: 40px;\n  color: #000000;\n  margin-top: 10px;\n  margin-bottom: 10px;\n"]);
+  var data = Object(_babel_runtime_corejs2_helpers_esm_taggedTemplateLiteral__WEBPACK_IMPORTED_MODULE_0__["default"])(["\n  font-family: Cormorant;\n  font-style: normal;\n  font-weight: bold;\n  font-size: 33px;\n  line-height: 40px;\n  color: #000000;\n  margin-top: 10px;\n  margin-bottom: 10px;\n  & > a {\n    text-decoration: none;\n    color: #000000;\n  }\n"]);
 
   _templateObject5 = function _templateObject5() {
     return data;
@@ -1167,6 +1169,7 @@ function _templateObject() {
 
 
 
+
 var HeroImageWrapper = styled_components__WEBPACK_IMPORTED_MODULE_2__["default"].div(_templateObject());
 var HeroImg = styled_components__WEBPACK_IMPORTED_MODULE_2__["default"].img(_templateObject2());
 var Card = styled_components__WEBPACK_IMPORTED_MODULE_2__["default"].div(_templateObject3());
@@ -1183,51 +1186,71 @@ var HeroImage = function HeroImage(attributes) {
   return __jsx(HeroImageWrapper, {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 74
-    },
-    __self: this
-  }, attributes.featuredImageUrl && __jsx(HeroImg, {
-    src: "http://localhost:8080/wp-content/uploads/2020/01/image1.jpg",
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 75
-    },
-    __self: this
-  }), __jsx(Card, {
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 76
-    },
-    __self: this
-  }, __jsx(Category, {
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 77
-    },
-    __self: this
-  }, attributes.category), __jsx(CardTitle, {
-    __source: {
-      fileName: _jsxFileName,
       lineNumber: 78
     },
     __self: this
-  }, attributes.title), __jsx(AuthorsTagline, {
+  }, attributes.featuredImageUrl && __jsx(HeroImg, {
+    src: attributes.featuredImageUrl,
     __source: {
       fileName: _jsxFileName,
       lineNumber: 79
     },
     __self: this
-  }, "by ", __jsx(_util__WEBPACK_IMPORTED_MODULE_3__["AuthorNames"], {
-    authors: authors,
+  }), __jsx(Card, {
     __source: {
       fileName: _jsxFileName,
       lineNumber: 80
     },
     __self: this
-  }), " ", titles, " || ", Object(_util__WEBPACK_IMPORTED_MODULE_3__["formatDate"])(attributes.date)), __jsx(AuthorUnderline, {
+  }, __jsx(Category, {
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 81
+    },
+    __self: this
+  }, attributes.category), __jsx(CardTitle, {
     __source: {
       fileName: _jsxFileName,
       lineNumber: 82
+    },
+    __self: this
+  }, __jsx(next_link__WEBPACK_IMPORTED_MODULE_3___default.a, {
+    href: {
+      pathname: '/article',
+      query: {
+        slug: attributes.slug
+      }
+    },
+    as: "/article/" + attributes.slug,
+    passHref: true,
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 82
+    },
+    __self: this
+  }, __jsx("a", {
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 82
+    },
+    __self: this
+  }, attributes.title))), __jsx(AuthorsTagline, {
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 83
+    },
+    __self: this
+  }, "by ", __jsx(_util__WEBPACK_IMPORTED_MODULE_4__["AuthorNames"], {
+    authors: authors,
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 84
+    },
+    __self: this
+  }), " ", titles, " || ", Object(_util__WEBPACK_IMPORTED_MODULE_4__["formatDate"])(attributes.date)), __jsx(AuthorUnderline, {
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 86
     },
     __self: this
   })));
@@ -1280,7 +1303,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var styled_components__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! styled-components */ "./node_modules/styled-components/dist/styled-components.browser.esm.js");
-/* harmony import */ var _util__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../util */ "./components/util.tsx");
+/* harmony import */ var next_link__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! next/link */ "./node_modules/next/link.js");
+/* harmony import */ var next_link__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(next_link__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var _util__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../util */ "./components/util.tsx");
 
 var _jsxFileName = "/Users/dylan/projects/terras/frontend/components/homepage/LargeArticleBlock.tsx";
 
@@ -1327,7 +1352,7 @@ function _templateObject5() {
 }
 
 function _templateObject4() {
-  var data = Object(_babel_runtime_corejs2_helpers_esm_taggedTemplateLiteral__WEBPACK_IMPORTED_MODULE_0__["default"])(["\n  font-family: Cormorant;\n  font-style: normal;\n  font-weight: bold;\n  font-size: 24px;\n  line-height: 29px;\n  color: #000000;\n  margin-top: 10px;\n  margin-bottom: 10px;\n"]);
+  var data = Object(_babel_runtime_corejs2_helpers_esm_taggedTemplateLiteral__WEBPACK_IMPORTED_MODULE_0__["default"])(["\n  font-family: Cormorant;\n  font-style: normal;\n  font-weight: bold;\n  font-size: 24px;\n  line-height: 29px;\n  color: #000000;\n  margin-top: 10px;\n  margin-bottom: 10px;\n  & > a {\n    text-decoration: none;\n    color: #000000;\n  }\n"]);
 
   _templateObject4 = function _templateObject4() {
     return data;
@@ -1368,6 +1393,7 @@ function _templateObject() {
 
 
 
+
 var ArticleBlockWrapper = styled_components__WEBPACK_IMPORTED_MODULE_2__["default"].div(_templateObject());
 var Category = styled_components__WEBPACK_IMPORTED_MODULE_2__["default"].a(_templateObject2());
 var ArticleTextContent = styled_components__WEBPACK_IMPORTED_MODULE_2__["default"].div(_templateObject3());
@@ -1385,59 +1411,82 @@ var LargeArticleBlock = function LargeArticleBlock(attributes) {
   return __jsx(ArticleBlockWrapper, {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 84
+      lineNumber: 88
     },
     __self: this
   }, __jsx(ArticleTextContent, {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 85
+      lineNumber: 89
     },
     __self: this
   }, __jsx(Category, {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 86
+      lineNumber: 90
     },
     __self: this
   }, attributes.category), __jsx(ArticleTitle, {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 87
+      lineNumber: 91
     },
     __self: this
-  }, attributes.title), __jsx(ArticleByline, {
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 88
+  }, __jsx(next_link__WEBPACK_IMPORTED_MODULE_3___default.a, {
+    href: {
+      pathname: '/article',
+      query: {
+        slug: attributes.slug
+      }
     },
-    __self: this
-  }, "by ", __jsx(_util__WEBPACK_IMPORTED_MODULE_3__["AuthorNames"], {
-    authors: authors,
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 89
-    },
-    __self: this
-  }), " ", titles), __jsx(ArticleByline, {
+    as: "/article/" + attributes.slug,
+    passHref: true,
     __source: {
       fileName: _jsxFileName,
       lineNumber: 91
     },
     __self: this
-  }, Object(_util__WEBPACK_IMPORTED_MODULE_3__["formatDate"])(attributes.date)), __jsx(AuthorUnderline, {
+  }, __jsx("a", {
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 91
+    },
+    __self: this
+  }, attributes.title))), __jsx(ArticleByline, {
     __source: {
       fileName: _jsxFileName,
       lineNumber: 92
     },
     __self: this
-  })), __jsx(ArticleBio, {
+  }, "by ", __jsx(_util__WEBPACK_IMPORTED_MODULE_4__["AuthorNames"], {
+    authors: authors,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 94
+      lineNumber: 93
     },
     __self: this
-  }, attributes.excerpt));
+  }), " ", titles), __jsx(ArticleByline, {
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 95
+    },
+    __self: this
+  }, Object(_util__WEBPACK_IMPORTED_MODULE_4__["formatDate"])(attributes.date)), __jsx(AuthorUnderline, {
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 96
+    },
+    __self: this
+  })), __jsx(ArticleBio, {
+    dangerouslySetInnerHTML: {
+      __html: attributes.excerpt
+    },
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 98
+    },
+    __self: this
+  }));
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (LargeArticleBlock);
@@ -1759,7 +1808,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var styled_components__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! styled-components */ "./node_modules/styled-components/dist/styled-components.browser.esm.js");
-/* harmony import */ var _util__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../util */ "./components/util.tsx");
+/* harmony import */ var next_link__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! next/link */ "./node_modules/next/link.js");
+/* harmony import */ var next_link__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(next_link__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var _util__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../util */ "./components/util.tsx");
 
 var _jsxFileName = "/Users/dylan/projects/terras/frontend/components/homepage/SmallArticleBlock.tsx";
 
@@ -1786,7 +1837,7 @@ function _templateObject6() {
 }
 
 function _templateObject5() {
-  var data = Object(_babel_runtime_corejs2_helpers_esm_taggedTemplateLiteral__WEBPACK_IMPORTED_MODULE_0__["default"])(["\n  font-family: Cormorant;\n  font-style: normal;\n  font-weight: bold;\n  font-size: 24px;\n  line-height: 29px;\n  color: #000000;\n  margin-top: 10px;\n  margin-bottom: 10px;\n"]);
+  var data = Object(_babel_runtime_corejs2_helpers_esm_taggedTemplateLiteral__WEBPACK_IMPORTED_MODULE_0__["default"])(["\n  font-family: Cormorant;\n  font-style: normal;\n  font-weight: bold;\n  font-size: 24px;\n  line-height: 29px;\n  color: #000000;\n  margin-top: 10px;\n  margin-bottom: 10px;\n  & > a {\n    text-decoration: none;\n    color: #000000;\n  }\n"]);
 
   _templateObject5 = function _templateObject5() {
     return data;
@@ -1837,6 +1888,7 @@ function _templateObject() {
 
 
 
+
 var ArticleBlockWrapper = styled_components__WEBPACK_IMPORTED_MODULE_2__["default"].div(_templateObject());
 var Category = styled_components__WEBPACK_IMPORTED_MODULE_2__["default"].span(_templateObject2());
 var ArticleImage = styled_components__WEBPACK_IMPORTED_MODULE_2__["default"].img(_templateObject3());
@@ -1854,54 +1906,97 @@ var SmallArticleBlock = function SmallArticleBlock(attributes) {
   return __jsx(ArticleBlockWrapper, {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 69
+      lineNumber: 73
     },
     __self: this
   }, attributes.featuredImage && __jsx(ArticleImage, {
     src: attributes.featuredImage.url,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 70
+      lineNumber: 74
     },
     __self: this
   }), __jsx(ArticleTextContent, {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 71
+      lineNumber: 75
     },
     __self: this
   }, __jsx(Category, {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 72
+      lineNumber: 76
     },
     __self: this
-  }, attributes.category), __jsx(ArticleTitle, {
+  }, __jsx(next_link__WEBPACK_IMPORTED_MODULE_3___default.a, {
+    href: {
+      pathname: '/section',
+      query: {
+        slug: attributes.category
+      }
+    },
+    as: "/section/" + attributes.category.replace(" ", "-").toLowerCase(),
+    passHref: true,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 73
+      lineNumber: 76
     },
     __self: this
-  }, attributes.title), __jsx(ArticleByline, {
+  }, __jsx("a", {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 74
+      lineNumber: 76
     },
     __self: this
-  }, "by ", __jsx(_util__WEBPACK_IMPORTED_MODULE_3__["AuthorNames"], {
-    authors: authors,
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 75
-    },
-    __self: this
-  }), " ", titles, " || ", Object(_util__WEBPACK_IMPORTED_MODULE_3__["formatDate"])(attributes.date)), __jsx(ArticleBio, {
+  }, attributes.category))), __jsx(ArticleTitle, {
     __source: {
       fileName: _jsxFileName,
       lineNumber: 77
     },
     __self: this
-  }, attributes.excerpt)));
+  }, __jsx(next_link__WEBPACK_IMPORTED_MODULE_3___default.a, {
+    href: {
+      pathname: '/article',
+      query: {
+        slug: attributes.slug
+      }
+    },
+    as: "/article/" + attributes.slug,
+    passHref: true,
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 77
+    },
+    __self: this
+  }, __jsx("a", {
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 77
+    },
+    __self: this
+  }, attributes.title))), __jsx(ArticleByline, {
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 78
+    },
+    __self: this
+  }, "by ", __jsx(_util__WEBPACK_IMPORTED_MODULE_4__["AuthorNames"], {
+    authors: authors,
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 79
+    },
+    __self: this
+  }), " ", titles, " || ", Object(_util__WEBPACK_IMPORTED_MODULE_4__["formatDate"])(attributes.date)), __jsx(ArticleBio, {
+    dangerouslySetInnerHTML: {
+      __html: attributes.excerpt
+    },
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 81
+    },
+    __self: this
+  })));
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (SmallArticleBlock);

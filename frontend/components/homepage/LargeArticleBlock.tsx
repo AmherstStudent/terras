@@ -28,6 +28,10 @@ const ArticleTitle = styled.h2`
   color: #000000;
   margin-top: 10px;
   margin-bottom: 10px;
+  & > a {
+    text-decoration: none;
+    color: #000000;
+  }
 `
 const ArticleByline = styled.p`
   font-family: Halyard Text;
@@ -68,7 +72,7 @@ const AuthorName = styled.a`
   text-transform: capitalize;
 `
 
-const LargeArticleBlock = (attributes: { article; date; category; authors; title; excerpt }) => {
+const LargeArticleBlock = (attributes: { article; date; category; authors; title; excerpt; slug; }) => {
   let authors = JSON.parse(attributes.authors)
 
   let titles =
@@ -84,14 +88,14 @@ const LargeArticleBlock = (attributes: { article; date; category; authors; title
     <ArticleBlockWrapper>
       <ArticleTextContent>
         <Category>{attributes.category}</Category>
-        <ArticleTitle>{attributes.title}</ArticleTitle>
+        <ArticleTitle><Link href={{ pathname: '/article', query: { slug: attributes.slug } }} as={"/article/" + attributes.slug } passHref><a>{attributes.title}</a></Link></ArticleTitle>
         <ArticleByline>
           by <AuthorNames authors={authors} /> {titles}
         </ArticleByline>
         <ArticleByline>{formatDate(attributes.date)}</ArticleByline>
         <AuthorUnderline />
       </ArticleTextContent>
-      <ArticleBio>{attributes.excerpt}</ArticleBio>
+      <ArticleBio dangerouslySetInnerHTML={{__html: attributes.excerpt}}/>
     </ArticleBlockWrapper>
   )
 }

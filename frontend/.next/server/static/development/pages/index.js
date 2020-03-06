@@ -1079,10 +1079,13 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var styled_components__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! styled-components */ "styled-components");
 /* harmony import */ var styled_components__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(styled_components__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var _util__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../util */ "./components/util.tsx");
+/* harmony import */ var next_link__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! next/link */ "./node_modules/next/link.js");
+/* harmony import */ var next_link__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(next_link__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _util__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../util */ "./components/util.tsx");
 var _jsxFileName = "/Users/dylan/projects/terras/frontend/components/homepage/HeroImage.tsx";
 
 var __jsx = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement;
+
 
 
 const HeroImageWrapper = styled_components__WEBPACK_IMPORTED_MODULE_1___default.a.div`
@@ -1123,6 +1126,10 @@ const CardTitle = styled_components__WEBPACK_IMPORTED_MODULE_1___default.a.h1`
   color: #000000;
   margin-top: 10px;
   margin-bottom: 10px;
+  & > a {
+    text-decoration: none;
+    color: #000000;
+  }
 `;
 const AuthorsTagline = styled_components__WEBPACK_IMPORTED_MODULE_1___default.a.span`
   font-family: Halyard Text;
@@ -1149,51 +1156,71 @@ const HeroImage = attributes => {
   return __jsx(HeroImageWrapper, {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 74
-    },
-    __self: undefined
-  }, attributes.featuredImageUrl && __jsx(HeroImg, {
-    src: "http://localhost:8080/wp-content/uploads/2020/01/image1.jpg",
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 75
-    },
-    __self: undefined
-  }), __jsx(Card, {
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 76
-    },
-    __self: undefined
-  }, __jsx(Category, {
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 77
-    },
-    __self: undefined
-  }, attributes.category), __jsx(CardTitle, {
-    __source: {
-      fileName: _jsxFileName,
       lineNumber: 78
     },
     __self: undefined
-  }, attributes.title), __jsx(AuthorsTagline, {
+  }, attributes.featuredImageUrl && __jsx(HeroImg, {
+    src: attributes.featuredImageUrl,
     __source: {
       fileName: _jsxFileName,
       lineNumber: 79
     },
     __self: undefined
-  }, "by ", __jsx(_util__WEBPACK_IMPORTED_MODULE_2__["AuthorNames"], {
-    authors: authors,
+  }), __jsx(Card, {
     __source: {
       fileName: _jsxFileName,
       lineNumber: 80
     },
     __self: undefined
-  }), " ", titles, " || ", Object(_util__WEBPACK_IMPORTED_MODULE_2__["formatDate"])(attributes.date)), __jsx(AuthorUnderline, {
+  }, __jsx(Category, {
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 81
+    },
+    __self: undefined
+  }, attributes.category), __jsx(CardTitle, {
     __source: {
       fileName: _jsxFileName,
       lineNumber: 82
+    },
+    __self: undefined
+  }, __jsx(next_link__WEBPACK_IMPORTED_MODULE_2___default.a, {
+    href: {
+      pathname: '/article',
+      query: {
+        slug: attributes.slug
+      }
+    },
+    as: "/article/" + attributes.slug,
+    passHref: true,
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 82
+    },
+    __self: undefined
+  }, __jsx("a", {
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 82
+    },
+    __self: undefined
+  }, attributes.title))), __jsx(AuthorsTagline, {
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 83
+    },
+    __self: undefined
+  }, "by ", __jsx(_util__WEBPACK_IMPORTED_MODULE_3__["AuthorNames"], {
+    authors: authors,
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 84
+    },
+    __self: undefined
+  }), " ", titles, " || ", Object(_util__WEBPACK_IMPORTED_MODULE_3__["formatDate"])(attributes.date)), __jsx(AuthorUnderline, {
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 86
     },
     __self: undefined
   })));
@@ -1307,10 +1334,13 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var styled_components__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! styled-components */ "styled-components");
 /* harmony import */ var styled_components__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(styled_components__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var _util__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../util */ "./components/util.tsx");
+/* harmony import */ var next_link__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! next/link */ "./node_modules/next/link.js");
+/* harmony import */ var next_link__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(next_link__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _util__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../util */ "./components/util.tsx");
 var _jsxFileName = "/Users/dylan/projects/terras/frontend/components/homepage/LargeArticleBlock.tsx";
 
 var __jsx = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement;
+
 
 
 const ArticleBlockWrapper = styled_components__WEBPACK_IMPORTED_MODULE_1___default.a.div`
@@ -1339,6 +1369,10 @@ const ArticleTitle = styled_components__WEBPACK_IMPORTED_MODULE_1___default.a.h2
   color: #000000;
   margin-top: 10px;
   margin-bottom: 10px;
+  & > a {
+    text-decoration: none;
+    color: #000000;
+  }
 `;
 const ArticleByline = styled_components__WEBPACK_IMPORTED_MODULE_1___default.a.p`
   font-family: Halyard Text;
@@ -1386,59 +1420,82 @@ const LargeArticleBlock = attributes => {
   return __jsx(ArticleBlockWrapper, {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 84
+      lineNumber: 88
     },
     __self: undefined
   }, __jsx(ArticleTextContent, {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 85
+      lineNumber: 89
     },
     __self: undefined
   }, __jsx(Category, {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 86
+      lineNumber: 90
     },
     __self: undefined
   }, attributes.category), __jsx(ArticleTitle, {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 87
+      lineNumber: 91
     },
     __self: undefined
-  }, attributes.title), __jsx(ArticleByline, {
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 88
+  }, __jsx(next_link__WEBPACK_IMPORTED_MODULE_2___default.a, {
+    href: {
+      pathname: '/article',
+      query: {
+        slug: attributes.slug
+      }
     },
-    __self: undefined
-  }, "by ", __jsx(_util__WEBPACK_IMPORTED_MODULE_2__["AuthorNames"], {
-    authors: authors,
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 89
-    },
-    __self: undefined
-  }), " ", titles), __jsx(ArticleByline, {
+    as: "/article/" + attributes.slug,
+    passHref: true,
     __source: {
       fileName: _jsxFileName,
       lineNumber: 91
     },
     __self: undefined
-  }, Object(_util__WEBPACK_IMPORTED_MODULE_2__["formatDate"])(attributes.date)), __jsx(AuthorUnderline, {
+  }, __jsx("a", {
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 91
+    },
+    __self: undefined
+  }, attributes.title))), __jsx(ArticleByline, {
     __source: {
       fileName: _jsxFileName,
       lineNumber: 92
     },
     __self: undefined
-  })), __jsx(ArticleBio, {
+  }, "by ", __jsx(_util__WEBPACK_IMPORTED_MODULE_3__["AuthorNames"], {
+    authors: authors,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 94
+      lineNumber: 93
     },
     __self: undefined
-  }, attributes.excerpt));
+  }), " ", titles), __jsx(ArticleByline, {
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 95
+    },
+    __self: undefined
+  }, Object(_util__WEBPACK_IMPORTED_MODULE_3__["formatDate"])(attributes.date)), __jsx(AuthorUnderline, {
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 96
+    },
+    __self: undefined
+  })), __jsx(ArticleBio, {
+    dangerouslySetInnerHTML: {
+      __html: attributes.excerpt
+    },
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 98
+    },
+    __self: undefined
+  }));
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (LargeArticleBlock);
@@ -1749,10 +1806,13 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var styled_components__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! styled-components */ "styled-components");
 /* harmony import */ var styled_components__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(styled_components__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var _util__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../util */ "./components/util.tsx");
+/* harmony import */ var next_link__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! next/link */ "./node_modules/next/link.js");
+/* harmony import */ var next_link__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(next_link__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _util__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../util */ "./components/util.tsx");
 var _jsxFileName = "/Users/dylan/projects/terras/frontend/components/homepage/SmallArticleBlock.tsx";
 
 var __jsx = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement;
+
 
 
 const ArticleBlockWrapper = styled_components__WEBPACK_IMPORTED_MODULE_1___default.a.div`
@@ -1785,6 +1845,10 @@ const ArticleTitle = styled_components__WEBPACK_IMPORTED_MODULE_1___default.a.h2
   color: #000000;
   margin-top: 10px;
   margin-bottom: 10px;
+  & > a {
+    text-decoration: none;
+    color: #000000;
+  }
 `;
 const ArticleByline = styled_components__WEBPACK_IMPORTED_MODULE_1___default.a.p`
   font-family: Halyard Text;
@@ -1815,54 +1879,97 @@ const SmallArticleBlock = attributes => {
   return __jsx(ArticleBlockWrapper, {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 69
+      lineNumber: 73
     },
     __self: undefined
   }, attributes.featuredImage && __jsx(ArticleImage, {
     src: attributes.featuredImage.url,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 70
+      lineNumber: 74
     },
     __self: undefined
   }), __jsx(ArticleTextContent, {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 71
+      lineNumber: 75
     },
     __self: undefined
   }, __jsx(Category, {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 72
+      lineNumber: 76
     },
     __self: undefined
-  }, attributes.category), __jsx(ArticleTitle, {
+  }, __jsx(next_link__WEBPACK_IMPORTED_MODULE_2___default.a, {
+    href: {
+      pathname: '/section',
+      query: {
+        slug: attributes.category
+      }
+    },
+    as: "/section/" + attributes.category.replace(" ", "-").toLowerCase(),
+    passHref: true,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 73
+      lineNumber: 76
     },
     __self: undefined
-  }, attributes.title), __jsx(ArticleByline, {
+  }, __jsx("a", {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 74
+      lineNumber: 76
     },
     __self: undefined
-  }, "by ", __jsx(_util__WEBPACK_IMPORTED_MODULE_2__["AuthorNames"], {
-    authors: authors,
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 75
-    },
-    __self: undefined
-  }), " ", titles, " || ", Object(_util__WEBPACK_IMPORTED_MODULE_2__["formatDate"])(attributes.date)), __jsx(ArticleBio, {
+  }, attributes.category))), __jsx(ArticleTitle, {
     __source: {
       fileName: _jsxFileName,
       lineNumber: 77
     },
     __self: undefined
-  }, attributes.excerpt)));
+  }, __jsx(next_link__WEBPACK_IMPORTED_MODULE_2___default.a, {
+    href: {
+      pathname: '/article',
+      query: {
+        slug: attributes.slug
+      }
+    },
+    as: "/article/" + attributes.slug,
+    passHref: true,
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 77
+    },
+    __self: undefined
+  }, __jsx("a", {
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 77
+    },
+    __self: undefined
+  }, attributes.title))), __jsx(ArticleByline, {
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 78
+    },
+    __self: undefined
+  }, "by ", __jsx(_util__WEBPACK_IMPORTED_MODULE_3__["AuthorNames"], {
+    authors: authors,
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 79
+    },
+    __self: undefined
+  }), " ", titles, " || ", Object(_util__WEBPACK_IMPORTED_MODULE_3__["formatDate"])(attributes.date)), __jsx(ArticleBio, {
+    dangerouslySetInnerHTML: {
+      __html: attributes.excerpt
+    },
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 81
+    },
+    __self: undefined
+  })));
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (SmallArticleBlock);
