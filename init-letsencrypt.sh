@@ -5,7 +5,7 @@ if ! [ -x "$(command -v docker-compose)" ]; then
   exit 1
 fi
 
-domains=(amherststudent.com www.amherststudent.com)
+domains=(amherststudent.com www.amherststudent.com admin.amherststudent.com www.admin.amherststudent.com)
 rsa_key_size=4096
 data_path="./docker/certbot"
 email="astudent@amherst.edu" # Adding a valid address is strongly recommended
@@ -27,15 +27,17 @@ if [ ! -e "$data_path/conf/options-ssl-nginx.conf" ] || [ ! -e "$data_path/conf/
   echo
 fi
 
-echo "### Creating dummy certificate for $domains ..."
-path="/etc/letsencrypt/live/$domains"
-mkdir -p "$data_path/conf/live/$domains"
-docker-compose run --rm --entrypoint "\
-  openssl req -x509 -nodes -newkey rsa:1024 -days 1\
-    -keyout '$path/privkey.pem' \
-    -out '$path/fullchain.pem' \
-    -subj '/CN=localhost'" certbot
-echo
+for domain in "${domains[@]}";
+do
+  echo "### Creating dummy certificate for $domain ..."
+  path="/etc/letsencrypt/live/$domain"
+  mkdir -p "$data_path/conf/live/$domain"
+  docker-compose run --rm --entrypoint "\
+    openssl req -x509 -nodes -newkey rsa:1024 -days 1\
+      -keyout '$path/privkey.pem' \
+      -out '$path/fullchain.pem' \
+      -subj '/CN=localhost'" certbot
+done
 
 
 echo "### Starting nginx ..."
@@ -43,12 +45,14 @@ docker-compose up --force-recreate -d nginx
 echo
 
 echo "### Deleting dummy certificate for $domains ..."
-docker-compose run --rm --entrypoint "\
-  rm -Rf /etc/letsencrypt/live/$domains && \
-  rm -Rf /etc/letsencrypt/archive/$domains && \
-  rm -Rf /etc/letsencrypt/renewal/$domains.conf" certbot
-echo
-
+for domain in "${domains[@]}";
+do
+  docker-compose run --rm --entrypoint "\
+    rm -Rf /etc/letsencrypt/live/$domain && \
+    rm -Rf /etc/letsencrypt/archive/$domain && \
+    rm -Rf /etc/letsencrypt/renewal/$domain.conf" certbot
+  echo
+done
 
 echo "### Requesting Let's Encrypt certificate for $domains ..."
 #Join $domains to -d args
