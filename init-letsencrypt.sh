@@ -5,7 +5,7 @@ if ! [ -x "$(command -v docker-compose)" ]; then
   exit 1
 fi
 
-domains=(amherststudent.com www.amherststudent.com www.admin.amherststudent.com admin.amherststudent.com)
+domains=(amherststudent.com www.amherststudent.com admin.amherststudent.com www.admin.amherststudent.com)
 rsa_key_size=4096
 data_path="./docker/certbot"
 email="astudent@amherst.edu" # Adding a valid address is strongly recommended
