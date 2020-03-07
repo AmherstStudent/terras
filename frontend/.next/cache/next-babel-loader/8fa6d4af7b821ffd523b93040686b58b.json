@@ -1,1 +1,0 @@
-{"ast":null,"code":"import React from \"react\";\nvar __jsx = React.createElement;\n\nvar Author = function Author() {\n  return __jsx(\"p\", null, \"Hello\");\n};\n\nexport default Author;","map":null,"metadata":{},"sourceType":"module"}

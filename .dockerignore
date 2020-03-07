@@ -6,3 +6,16 @@ frontend/node_modules
 .env
 frontend/.git
 
+# dependencies
+frontend/node_modules
+
+# testing
+frontend/coverage
+
+# production
+frontend/build
+frontend/dist
+frontend/.next
+
+# misc
+frontend/.DS_Store

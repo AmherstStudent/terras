@@ -2,3 +2,17 @@ node_modules
 npm-debug.log
 yarn-error.log
 data
+
+# dependencies
+frontend/node_modules
+
+# testing
+frontend/coverage
+
+# production
+frontend/build
+frontend/dist
+frontend/.next
+
+# misc
+frontend/.DS_Store
