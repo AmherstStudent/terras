@@ -27,6 +27,7 @@ services:
         container_name: db-headless
         restart: always
         env_file: ./.env
+        restart: on-failure
         environment:
             - MYSQL_RANDOM_ROOT_PASSWORD=yes
             - MYSQL_DATABASE=${WORDPRESS_DB_NAME}
@@ -36,6 +37,8 @@ services:
             - '3306:3306'
         expose: 
             - '3306'
+        volumes:
+            - maria-dbdata:/var/lib/mysql
     wp-headless:
         build: .
         container_name: wp-headless
@@ -75,3 +78,7 @@ services:
         volumes:
             - ./frontend:/home/node/app
         working_dir: /home/node/app
+
+
+volumes:
+    maria-dbdata:
