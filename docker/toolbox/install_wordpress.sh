@@ -58,7 +58,7 @@ wp plugin install --activate --force \
     https://github.com/pristas-peter/wp-graphql-gutenberg/archive/v0.1.4.zip \
     /var/www/plugins/*.zip
 
-wp term update category 1 --name="News"
+wp term update category 1 --name="News" --slug="news"
 wp term create category "Arts and Living"
 wp term create category "Sports"
 wp term create category "Opinion"

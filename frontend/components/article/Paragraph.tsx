@@ -15,6 +15,6 @@ interface ParagraphContent {
   className?: String
 }
 
-const Paragraph = (attributes: ParagraphContent) => <BodyText>{attributes.content}</BodyText>
+const Paragraph = (attributes: ParagraphContent) => <BodyText dangerouslySetInnerHTML={{ __html: attributes.content }}/>
 
 export default Paragraph
