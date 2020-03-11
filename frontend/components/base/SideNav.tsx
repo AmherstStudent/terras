@@ -49,17 +49,32 @@ const NavPages = styled.ul`
     line-height: var(--line-height);
     font-size: var(--base-font-size);
   }
-  
 `
 
 const SideNav = () => (
   <SidePanel>
     <SidePanelWrapper>
       <NavSections>
-        <Link href={{ pathname: '/section', query: { slug: "news" } }} as="/section/news"><a><li>NEWS</li></a></Link>
-        <Link href={{ pathname: '/section', query: { slug: "opinion" } }} as="/section/opinion"><a><li>OPINION</li></a></Link>
-        <Link href={{ pathname: '/section', query: { slug: "arts-and-living" } }} as="/section/arts-and-living"><a><li>ARTS AND LIVING</li></a></Link>
-        <Link href={{ pathname: '/section', query: { slug: "sports" } }} as="/section/sports"><a><li>SPORTS</li></a></Link>
+        <Link href={{ pathname: '/section', query: { slug: 'news' } }} as="/section/news">
+          <a>
+            <li>NEWS</li>
+          </a>
+        </Link>
+        <Link href={{ pathname: '/section', query: { slug: 'opinion' } }} as="/section/opinion">
+          <a>
+            <li>OPINION</li>
+          </a>
+        </Link>
+        <Link href={{ pathname: '/section', query: { slug: 'arts-and-living' } }} as="/section/arts-and-living">
+          <a>
+            <li>ARTS AND LIVING</li>
+          </a>
+        </Link>
+        <Link href={{ pathname: '/section', query: { slug: 'sports' } }} as="/section/sports">
+          <a>
+            <li>SPORTS</li>
+          </a>
+        </Link>
       </NavSections>
       <NavPages>
         <li>About</li>

@@ -63,7 +63,7 @@ const AuthorUnderline = styled.div`
   margin: 15px 0;
 `
 
-const HeroImage = (attributes: { authors; featuredImageUrl; category; title; date; slug; }) => {
+const HeroImage = (attributes: { authors; featuredImageUrl; category; title; date; slug }) => {
   let authors = JSON.parse(attributes.authors)
   let titles =
     authors.length > 1
@@ -78,7 +78,11 @@ const HeroImage = (attributes: { authors; featuredImageUrl; category; title; dat
       {attributes.featuredImageUrl && <HeroImg src={attributes.featuredImageUrl} />}
       <Card>
         <Category>{attributes.category}</Category>
-        <CardTitle><Link href={{ pathname: '/article', query: { slug: attributes.slug } }} as={"/article/" + attributes.slug } passHref><a>{attributes.title}</a></Link></CardTitle>
+        <CardTitle>
+          <Link href={{ pathname: '/article', query: { slug: attributes.slug } }} as={'/article/' + attributes.slug} passHref>
+            <a>{attributes.title}</a>
+          </Link>
+        </CardTitle>
         <AuthorsTagline>
           by <AuthorNames authors={authors} /> {titles} || {formatDate(attributes.date)}
         </AuthorsTagline>

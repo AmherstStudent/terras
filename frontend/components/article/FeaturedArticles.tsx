@@ -5,7 +5,7 @@ import Link from 'next/link'
 import AuthorInterface from './AuthorBio'
 const TagsQuery = gql`
   query Tags {
-    tag(id: "cG9zdF90YWc6NQ==") {
+    tag(id: "cG9zdF90YWc6MTcx") {
       name
       posts(where: { orderby: { field: DATE, order: DESC } }) {
         nodes {
@@ -55,8 +55,8 @@ const ArticleTitle = styled.h5`
   color: #000000;
   margin: 0;
   a {
-    text-decoration:none;
-    color:black;
+    text-decoration: none;
+    color: black;
   }
 `
 const ArticleByline = styled.span`
@@ -88,11 +88,10 @@ const Article = article => {
   return (
     <ArticleWrapper>
       <ArticleTitle>
-        <Link href={{ pathname: '/article', query: { slug: article.slug } }} as={"/article/" + article.slug } passHref>
-
-        <a>{article.title}</a>
+        <Link href={{ pathname: '/article', query: { slug: article.slug } }} as={'/article/' + article.slug} passHref>
+          <a>{article.title}</a>
         </Link>
-        </ArticleTitle>
+      </ArticleTitle>
       <ArticleByline>
         {' '}
         By{' '}
@@ -112,7 +111,6 @@ const Article = article => {
 const FeaturedArticles = () => {
   const { loading, error, data } = useQuery(TagsQuery)
   let articles: Array<Object> = data?.tag?.posts?.nodes
-  console.log(articles)
 
   // let authorNames = articles.coAuthors.map(function(author) {
   //   return <><Link key={author.id} href={{pathname:"/author", query: {id: author.id}}} passHref>

@@ -92,7 +92,7 @@ const ArticleHeader = (attributes: ArticleContent) => {
       <ArticleByline>
         By {authorNames} {roles} || <time dateTime={attributes.date}>{formatDate(attributes.date)}</time>
       </ArticleByline>
-      <ArticleDescription dangerouslySetInnerHTML={{__html: attributes.description}}/>
+      <ArticleDescription dangerouslySetInnerHTML={{ __html: attributes.description }} />
     </ArticleMeta>
   )
 }

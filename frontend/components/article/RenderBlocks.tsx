@@ -45,7 +45,6 @@ export const NewBlock = (block: BaseBlock) => {
   if (Component == null || undefined) {
     return <p>Couldn't find anything</p>
   }
-  console.log(block.attributes)
 
   return <Component {...block.attributes} />
 }

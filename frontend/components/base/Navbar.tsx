@@ -35,6 +35,9 @@ const Socials = styled.ul`
     padding-right: 10px;
     list-style-type: none;
   }
+  li a {
+    color: black;
+  }
 `
 
 function Navbar() {
@@ -47,20 +50,22 @@ function Navbar() {
       <NavBarWrapper>
         <NavBarContent>
           <HamburgerArrow buttonWidth={24} isActive={isActive} toggleButton={handleClick} />
+          <a href="https://amherststudent.com">
           <Logo src="/logo.svg" alt="the Amherst Student" />
+          </a>
           <Socials>
             <li>
-              <a>
+              <a href="https://www.facebook.com/AmherstStudent/">
                 <FaFacebookF />
               </a>
             </li>
             <li>
-              <a>
+              <a href="https://www.instagram.com/amherststudent/">
                 <FaInstagram />
               </a>
             </li>
             <li>
-              <a>
+              <a href="https://twitter.com/AmherstStudent">
                 <FaTwitter />
               </a>
             </li>

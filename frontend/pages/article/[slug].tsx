@@ -133,7 +133,6 @@ const Article = ({slug}) => {
   if (loading) return <p>Loading Post...</p>;
   if (error) return <p>Something wrong happened!</p>;
   let article = data.postBy
-  console.log(article)
   
   const elements = article.blocks.map(block => (
     <NewBlock {...block} />

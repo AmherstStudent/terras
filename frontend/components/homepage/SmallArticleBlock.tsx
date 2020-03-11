@@ -55,7 +55,7 @@ const ArticleBio = styled.p`
   color: #080808;
 `
 
-const SmallArticleBlock = (attributes: { authors; title; category; featuredImage; date; excerpt; slug; }) => {
+const SmallArticleBlock = (attributes: { authors; title; category; featuredImage; date; excerpt; slug }) => {
   let authors = JSON.parse(attributes.authors)
   let titles =
     authors.length > 1
@@ -65,20 +65,23 @@ const SmallArticleBlock = (attributes: { authors; title; category; featuredImage
           })
           .join(' & ')
       : attributes.authors[0].job_title
-  console.log(attributes.date)
 
   return (
     <ArticleBlockWrapper>
       {attributes.featuredImage && <ArticleImage src={attributes.featuredImage.url} />}
       <ArticleTextContent>
-      <Link href={{ pathname: '/section', query: { slug: attributes.category } }} as={"/section/" + attributes.category } passHref>
-        <Category>{attributes.category}</Category>
-      </Link>        
-      <ArticleTitle><Link href={{ pathname: '/article', query: { slug: attributes.slug } }} as={"/article/" + attributes.slug } passHref><a>{attributes.title}</a></Link></ArticleTitle>
+        <Link href={{ pathname: '/section', query: { slug: attributes.category } }} as={'/section/' + attributes.category} passHref>
+          <Category>{attributes.category}</Category>
+        </Link>
+        <ArticleTitle>
+          <Link href={{ pathname: '/article', query: { slug: attributes.slug } }} as={'/article/' + attributes.slug} passHref>
+            <a>{attributes.title}</a>
+          </Link>
+        </ArticleTitle>
         <ArticleByline>
           by <AuthorNames authors={authors} /> {titles} || {formatDate(attributes.date)}
         </ArticleByline>
-        <ArticleBio dangerouslySetInnerHTML={{__html: attributes.excerpt}}/>
+        <ArticleBio dangerouslySetInnerHTML={{ __html: attributes.excerpt }} />
       </ArticleTextContent>
     </ArticleBlockWrapper>
   )

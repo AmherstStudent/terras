@@ -29,7 +29,6 @@ const ThirdsSection = styled.div`
 /// ADDD ERROR MESSAGE!
 
 const InnerColumn = ({ size, block }) => {
-  console.log(block.__typename)
   switch (size) {
     case 66.66:
       return (
