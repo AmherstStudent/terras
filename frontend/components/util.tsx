@@ -19,9 +19,8 @@ text-decoration: none;
 text-transform: capitalize;
 `
 
-
 const AuthorNameLink = (author) => {
-    return (<Link key={author.id} href={{pathname:"/author", query: {id: author.id}}} passHref>
+    return (<Link key={author.id} href={{pathname:"/author", query: {id: author.id}}} as={"/author/" + author.id } passHref>
       <AuthorName>{author.display_name}{",  "}</AuthorName>
     </Link>)
 }

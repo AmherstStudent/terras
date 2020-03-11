@@ -87,7 +87,9 @@ const LargeArticleBlock = (attributes: { article; date; category; authors; title
   return (
     <ArticleBlockWrapper>
       <ArticleTextContent>
+      <Link href={{ pathname: '/section', query: { slug: attributes.category } }} as={"/section/" + attributes.category } passHref>
         <Category>{attributes.category}</Category>
+      </Link>
         <ArticleTitle><Link href={{ pathname: '/article', query: { slug: attributes.slug } }} as={"/article/" + attributes.slug } passHref><a>{attributes.title}</a></Link></ArticleTitle>
         <ArticleByline>
           by <AuthorNames authors={authors} /> {titles}

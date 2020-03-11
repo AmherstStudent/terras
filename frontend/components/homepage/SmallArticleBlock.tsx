@@ -73,8 +73,10 @@ const SmallArticleBlock = (attributes: { authors; title; category; featuredImage
     <ArticleBlockWrapper>
       {attributes.featuredImage && <ArticleImage src={attributes.featuredImage.url} />}
       <ArticleTextContent>
-        <Category><Link href={{ pathname: '/section', query: { slug: attributes.category } }} as={"/section/" + attributes.category.replace(" ","-").toLowerCase() } passHref><a>{attributes.category}</a></Link></Category>
-        <ArticleTitle><Link href={{ pathname: '/article', query: { slug: attributes.slug } }} as={"/article/" + attributes.slug } passHref><a>{attributes.title}</a></Link></ArticleTitle>
+      <Link href={{ pathname: '/section', query: { slug: attributes.category } }} as={"/section/" + attributes.category } passHref>
+        <Category>{attributes.category}</Category>
+      </Link>        
+      <ArticleTitle><Link href={{ pathname: '/article', query: { slug: attributes.slug } }} as={"/article/" + attributes.slug } passHref><a>{attributes.title}</a></Link></ArticleTitle>
         <ArticleByline>
           by <AuthorNames authors={authors} /> {titles} || {formatDate(attributes.date)}
         </ArticleByline>

@@ -5,8 +5,8 @@ import {useQuery} from "@apollo/react-hooks"
 import gql from 'graphql-tag';
 import CategoryHead from "../../components/section/CategoryHead"
 import styled from 'styled-components'
-import {AuthorNames} from "../../components/util"
-
+import {AuthorNames, formatDate} from "../../components/util"
+import Link from 'next/link'
 const Title = styled.h2`
 font-family: Cormorant;
 font-style: normal;
@@ -14,6 +14,10 @@ font-weight: bold;
 font-size: 28px;
 line-height: 34px;
 color: #000000;
+& > a {
+  text-decoration: none;
+  color: black;
+}
 `
 const SubText = styled.p`
 font-family: Halyard Text;
@@ -41,8 +45,8 @@ const Section = ({slug}) => {
       <CategoryHead category={categoryTitle} />
       <Wrapper>
       {articles.map((article) => (<>
-        <Title>{article.title}</Title>
-        <AuthorNames authors={article.coAuthors} />
+        <Title><Link href={{ pathname: '/article', query: { slug: article.slug } }} as={"/article/" + article.slug } passHref><a>{article.title}</a></Link></Title>
+        <AuthorNames authors={article.coAuthors} /> {formatDate(article.date)}
         <SubText dangerouslySetInnerHTML={{__html: article.excerpt}}/>
         <hr />
         
@@ -59,10 +63,12 @@ query CategoryPage($category: String) {
       title
       excerpt
       date
+      slug
       coAuthors{
         display_name
         slug
         job_title
+        id
       }
       issues{
         nodes{

@@ -28,6 +28,10 @@ const NavSections = styled.ul`
     list-style-type: none;
     font-size: 28px;
   }
+  a li {
+    text-decoration: none;
+    color: rgba(255, 255, 255, 0.85);
+  }
 `
 
 const NavPages = styled.ul`
@@ -46,16 +50,17 @@ const NavPages = styled.ul`
     line-height: var(--line-height);
     font-size: var(--base-font-size);
   }
+  
 `
 
 const SideNav = () => (
   <SidePanel>
     <SidePanelWrapper>
       <NavSections>
-        <Link href={{ pathname: '/section', query: { slug: "news" } }} as="/section/news"><li>NEWS</li></Link>
-        <Link href={{ pathname: '/section', query: { slug: "opinion" } }} as="/section/opinion"><li>OPINION</li></Link>
-        <Link href={{ pathname: '/section', query: { slug: "arts-and-living" } }} as="/section/arts-and-living"><li>ARTS AND LIVING</li></Link>
-        <Link href={{ pathname: '/section', query: { slug: "sports" } }} as="/section/sports"><li>SPORTS</li></Link>
+        <Link href={{ pathname: '/section', query: { slug: "news" } }} as="/section/news"><a><li>NEWS</li></a></Link>
+        <Link href={{ pathname: '/section', query: { slug: "opinion" } }} as="/section/opinion"><a><li>OPINION</li></a></Link>
+        <Link href={{ pathname: '/section', query: { slug: "arts-and-living" } }} as="/section/arts-and-living"><a><li>ARTS AND LIVING</li></a></Link>
+        <Link href={{ pathname: '/section', query: { slug: "sports" } }} as="/section/sports"><a><li>SPORTS</li></a></Link>
       </NavSections>
       <NavPages>
         <li>About</li>
