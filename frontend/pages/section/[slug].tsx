@@ -58,7 +58,7 @@ const Section = ({slug}) => {
 
 const CategoryDocument = gql`
 query CategoryPage($category: String) {
-  posts(where:{categoryName: $category}){
+  posts(where:{categoryName: $category}, first:150){
     nodes{
       title
       excerpt

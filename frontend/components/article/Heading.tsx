@@ -29,7 +29,7 @@ const H2 = styled.h2`
 `
 
 const H3 = styled.h3`
-  font-family: Halyard Text;
+  font-family: var(--span-font);
   font-style: normal;
   font-weight: bold;
   font-size: 24px;

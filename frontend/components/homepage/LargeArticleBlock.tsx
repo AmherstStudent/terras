@@ -7,7 +7,7 @@ const ArticleBlockWrapper = styled.div`
   width: 100%;
 `
 const Category = styled.a`
-  font-family: Halyard Text;
+  font-family: var(--span-font);
   font-style: normal;
   font-weight: bold;
   font-size: 12px;
@@ -34,8 +34,7 @@ const ArticleTitle = styled.h2`
   }
 `
 const ArticleByline = styled.p`
-  font-family: Halyard Text;
-  font-style: italic;
+  font-family: var(--span-font);
   font-weight: 300;
   font-size: 12px;
   line-height: 150%;
@@ -44,9 +43,8 @@ const ArticleByline = styled.p`
   color: #595959;
 `
 const ArticleBio = styled.p`
-  font-family: Halyard Text;
-  font-style: italic;
-  font-weight: 300;
+  font-family: halyard-display;
+  font-weight: 400;
   font-size: 16px;
   line-height: 172.1%;
   /* or 28px */
@@ -62,7 +60,7 @@ const AuthorUnderline = styled.div`
 `
 
 const AuthorName = styled.a`
-  font-family: Halyard Text;
+  font-family: var(--span-font);
   font-style: normal;
   font-weight: bold;
   font-size: 12px;

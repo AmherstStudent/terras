@@ -45,7 +45,7 @@ const AuthorImage = styled.img`
   border-radius: 50%;
 `
 const Bio = styled.p`
-  font-family: Halyard Text;
+  font-family: var(--span-font);
   font-style: italic;
   font-weight: 300;
   font-size: 14px;

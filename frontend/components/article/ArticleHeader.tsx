@@ -17,7 +17,7 @@ const ArticleMeta = styled.header`
   margin-bottom: 40px;
 `
 const Section = styled.span`
-  font-family: Halyard Text;
+  font-family: var(--span-font);
   font-style: normal;
   font-weight: bold;
   font-size: 16px;
@@ -45,9 +45,8 @@ const ArticleByline = styled.span`
   color: #595959;
 `
 const ArticleDescription = styled.h2`
-  font-family: Halyard Text;
-  font-style: italic;
-  font-weight: 300;
+  font-family: halyard-text;
+  font-weight: 400;
   font-size: 18px;
   line-height: 172.1%;
   color: #595959;
@@ -58,8 +57,8 @@ const ArticleDescription = styled.h2`
 `
 
 const Author = styled.a`
-  font-family: Halyard Text;
-  font-weight: 600;
+  font-family: var(--span-font);
+  font-weight: 400;
   font-style: normal;
   text-transform: capitalize !important;
   text-decoration: none;
@@ -93,7 +92,7 @@ const ArticleHeader = (attributes: ArticleContent) => {
       <ArticleByline>
         By {authorNames} {roles} || <time dateTime={attributes.date}>{formatDate(attributes.date)}</time>
       </ArticleByline>
-      <ArticleDescription>{attributes.description}</ArticleDescription>
+      <ArticleDescription dangerouslySetInnerHTML={{__html: attributes.description}}/>
     </ArticleMeta>
   )
 }

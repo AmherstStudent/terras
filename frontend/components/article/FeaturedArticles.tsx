@@ -54,9 +54,13 @@ const ArticleTitle = styled.h5`
   line-height: 147.7%;
   color: #000000;
   margin: 0;
+  a {
+    text-decoration:none;
+    color:black;
+  }
 `
 const ArticleByline = styled.span`
-  font-family: Halyard Text;
+  font-family: var(--span-font);
   font-style: italic;
   font-weight: 300;
   font-size: 11px;
@@ -83,7 +87,12 @@ const Article = article => {
 
   return (
     <ArticleWrapper>
-      <ArticleTitle>{article.title}</ArticleTitle>
+      <ArticleTitle>
+        <Link href={{ pathname: '/article', query: { slug: article.slug } }} as={"/article/" + article.slug } passHref>
+
+        <a>{article.title}</a>
+        </Link>
+        </ArticleTitle>
       <ArticleByline>
         {' '}
         By{' '}

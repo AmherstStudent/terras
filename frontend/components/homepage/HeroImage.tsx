@@ -22,7 +22,7 @@ const Card = styled.div`
   padding-right: 10px;
 `
 const Category = styled.span`
-  font-family: Halyard Text;
+  font-family: var(--span-font);
   font-style: normal;
   font-weight: bold;
   font-size: 16px;
@@ -47,8 +47,7 @@ const CardTitle = styled.h1`
   }
 `
 const AuthorsTagline = styled.span`
-  font-family: Halyard Text;
-  font-style: italic;
+  font-family: var(--span-font);
   font-weight: 300;
   font-size: 13px;
   line-height: 18px;

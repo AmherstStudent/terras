@@ -28,7 +28,7 @@ const NavSections = styled.ul`
     list-style-type: none;
     font-size: 28px;
   }
-  a li {
+  a {
     text-decoration: none;
     color: rgba(255, 255, 255, 0.85);
   }
@@ -45,7 +45,6 @@ const NavPages = styled.ul`
   li {
     list-style-type: none;
     font-family: Halyard Text;
-    font-style: italic;
     font-weight: 300;
     line-height: var(--line-height);
     font-size: var(--base-font-size);

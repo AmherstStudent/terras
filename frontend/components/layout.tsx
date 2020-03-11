@@ -2,6 +2,7 @@ import { FunctionComponent } from "react";
 import * as React from 'react'
 import Head from 'next/head'
 import Footer from './base/Footer'
+import ga from '../lib/ga'
 
 type LayoutProps = {
     title?: string
@@ -16,6 +17,8 @@ const Layout: React.FunctionComponent<LayoutProps> = ({children, title = 'The Am
         <meta name='viewport' content='initial-scale=1.0, width=device-width' />
         <link href="https://fonts.googleapis.com/css?family=Cormorant&display=swap" rel="stylesheet"/>
         <link href="https://necolas.github.io/normalize.css/latest/normalize.css" rel="stylesheet"/>
+        <link rel="stylesheet" href="https://use.typekit.net/khr7xsm.css"/>
+        <script dangerouslySetInnerHTML={{ __html: ga }} />
     </Head>
     <main>
         {children}
@@ -25,7 +28,7 @@ const Layout: React.FunctionComponent<LayoutProps> = ({children, title = 'The Am
         :root{
             --header-font: 'Cormorant';
             --body-text: 'URWBaskervilleW01-Regular';
-            --span-font: 'Halyard Text';
+            --span-font: 'halyard-text';
             --base-font-size: 18px;
             --line-height: 172%;
         }

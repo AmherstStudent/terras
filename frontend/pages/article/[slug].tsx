@@ -9,7 +9,7 @@ import {NewBlock} from "../../components/article/RenderBlocks"
 import AuthorBio from "../../components/article/AuthorBio"
 import FeaturedArticles from "../../components/article/FeaturedArticles"
 import styled from "styled-components"
-
+import {ArticleSEO} from "../../components/article/ArticleSEO"
 
 // TODO: We're going to have add multiple themes, will be a mini refactor.
 const ArticleDocument = gql`
@@ -108,6 +108,7 @@ query Article($slug: String) {
 const ArticleWrapper = styled.article`
   display: grid; 
   grid-template-columns: repeat(8, 1fr);
+  grid-column-gap: 20px;
 `
 
 const ArticleContent = styled.section`
@@ -144,6 +145,7 @@ const Article = ({slug}) => {
     {article.featuredImage ? <FeaturedImage src={article.featuredImage.sourceUrl} alt={article.featuredImage.altText}/> : ""}
     <Layout>
     <ArticleWrapper>
+      <ArticleSEO {...article} />
       <ArticleHeader 
         title={article.title}
         description={article.excerpt.replace(/<[^>]*>?/gm, '')}
