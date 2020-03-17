@@ -51,7 +51,7 @@ function Navbar() {
         <NavBarContent>
           <HamburgerArrow buttonWidth={24} isActive={isActive} toggleButton={handleClick} />
           <a href="https://amherststudent.com">
-          <Logo src="/logo.svg" alt="the Amherst Student" />
+            <Logo src="/logo.svg" alt="the Amherst Student" />
           </a>
           <Socials>
             <li>
