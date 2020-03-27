@@ -36,4 +36,4 @@ Home.getInitialProps = async ({ req }) => {
   return { userAgent };
 };
 
-export default Home;
+export default (Home);
