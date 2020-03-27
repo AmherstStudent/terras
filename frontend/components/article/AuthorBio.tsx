@@ -64,7 +64,7 @@ const AuthorBio = (props: { authors: Array<AuthorInterface> }) => {
 
         {props.authors.map((author, id) => (
           <AuthorBioWrapper key={id}>
-            <AuthorImageContainer >
+            <AuthorImageContainer>
               <Link href={author.slug}>
                 <AuthorImage src={author.avatar} />
               </Link>

@@ -82,7 +82,8 @@ const ArticleHeader = (attributes: ArticleContent) => {
   let roles = authors
     .map(function(author) {
       return author.job_title
-    }).join(' and ')
+    })
+    .join(' and ')
 
   return (
     <ArticleMeta>
