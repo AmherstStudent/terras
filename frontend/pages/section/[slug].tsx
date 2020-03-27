@@ -45,7 +45,7 @@ const Section = ({slug}) => {
       <CategoryHead category={categoryTitle} />
       <Wrapper>
       {articles.map((article) => (<>
-        <Title><Link href={{ pathname: '/article', query: { slug: article.slug } }} as={"/article/" + article.slug } passHref><a>{article.title}</a></Link></Title>
+        <Title key={article.id}><Link href={{ pathname: '/article', query: { slug: article.slug } }} as={"/article/" + article.slug } passHref><a>{article.title}</a></Link></Title>
         <AuthorNames authors={article.coAuthors} /> {formatDate(article.date)}
         <SubText dangerouslySetInnerHTML={{__html: article.excerpt}}/>
         <hr />

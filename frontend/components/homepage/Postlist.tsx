@@ -112,6 +112,7 @@ const Postlist = () => {
       {articles?.map(article => {
         return (
           <Post
+            key={article.id}
             date={article.date}
             title={article.title}
             authors={article.coAuthors}

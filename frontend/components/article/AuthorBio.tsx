@@ -63,8 +63,8 @@ const AuthorBio = (props: { authors: Array<AuthorInterface> }) => {
         <BioSectonTitle>{props.authors.length > 1 ? 'AUTHORS' : props.authors[0].display_name}</BioSectonTitle>
 
         {props.authors.map((author, id) => (
-          <AuthorBioWrapper>
-            <AuthorImageContainer key={id}>
+          <AuthorBioWrapper key={id}>
+            <AuthorImageContainer >
               <Link href={author.slug}>
                 <AuthorImage src={author.avatar} />
               </Link>

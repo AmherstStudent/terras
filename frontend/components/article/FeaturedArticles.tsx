@@ -96,7 +96,7 @@ const Article = article => {
         {' '}
         By{' '}
         {article.coAuthors?.map(author => {
-          return <Author {...author} />
+          return <Author key={author.id} {...author} />
         })}{' '}
         | <time>{new Date(article.date).toLocaleDateString('en-US', options)}</time>
       </ArticleByline>

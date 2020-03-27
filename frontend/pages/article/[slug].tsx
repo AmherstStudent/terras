@@ -9,7 +9,8 @@ import {NewBlock} from "../../components/article/RenderBlocks"
 import AuthorBio from "../../components/article/AuthorBio"
 import FeaturedArticles from "../../components/article/FeaturedArticles"
 import styled from "styled-components"
-import {ArticleSEO} from "../../components/article/ArticleSEO"
+import ArticleSEO from "../../components/article/ArticleSEO"
+import { dedentBlockStringValue } from 'graphql/language/blockString';
 
 // TODO: We're going to have add multiple themes, will be a mini refactor.
 const ArticleDocument = gql`
@@ -135,7 +136,7 @@ const Article = ({slug}) => {
   let article = data.postBy
   
   const elements = article.blocks.map(block => (
-    <NewBlock {...block} />
+    <NewBlock key={article.__typename} {...block} />
   ))
 
   return (

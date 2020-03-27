@@ -6,6 +6,11 @@ import { ApolloClient } from 'apollo-client'
 import { HttpLink } from 'apollo-link-http'
 import fetch from 'isomorphic-unfetch'
 
+// Polyfill fetch() on the server (used by apollo-client)
+if (!process.browser) {
+  global.fetch = fetch
+}
+
 const fragmentMatcher = new IntrospectionFragmentMatcher({
   introspectionQueryResultData,
 })
@@ -19,9 +24,8 @@ export default withApollo(
   ({ initialState, ctx }) =>
     new ApolloClient({
       link: link,
-      cache: new InMemoryCache({ fragmentMatcher } || {}).restore(initialState),
-      ssrMode: Boolean(ctx),
-      ssrForceFetchDelay: 100,
+      cache: new InMemoryCache({ fragmentMatcher }).restore(initialState),
+      ssrMode: !process.browser,
       defaultOptions: {
         watchQuery: {
           fetchPolicy: 'cache-first',
