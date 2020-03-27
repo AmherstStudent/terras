@@ -74,7 +74,7 @@ class Largo_Byline {
 		// Author-specific portion of byline
 		$this->avatar();
 		$this->author_link();
-		$this->job_title();
+		$this->reporter_title();
 		$this->twitter();
 
 		// The generic parts
@@ -137,11 +137,11 @@ class Largo_Byline {
 	/**
 	 * If job titles are enabled by Largo's theme option, display the one for this author
 	 */
-	function job_title() {
-		$show_job_titles = of_get_option( 'show_job_titles', false );
+	function reporter_title() {
+		$show_reporter_titles = of_get_option( 'show_reporter_titles', false );
 		$output = '';
 		// only do this if we're showing job titles and there is one to be shown
-		if ( $show_job_titles && $job = get_the_author_meta( 'job_title' , $this->author_id ) ) {
+		if ( $show_reporter_titles && $job = get_the_author_meta( 'reporter_title' , $this->author_id ) ) {
 			$output .= '<span class="job-title"><span class="comma">,</span> ' . $job . '</span>';
 		}
 		echo $output;
@@ -230,7 +230,7 @@ class Largo_CoAuthors_Byline extends Largo_Byline {
 	/**
 	 * Differs from Largo_Byline in following ways:
 	 *
-	 * - gets list of coauthors, runs avatar, author_link, job_title, organization, twitter for each of those
+	 * - gets list of coauthors, runs avatar, author_link, reporter_title, organization, twitter for each of those
 	 * - joins list of coauthors with commas and 'and' as appropriate
 	 *
 	 */
@@ -247,7 +247,7 @@ class Largo_CoAuthors_Byline extends Largo_Byline {
 
 			$this->avatar();
 			$this->author_link();
-			$this->job_title();
+			$this->reporter_title();
 			$this->organization();
 			$this->twitter();
 
@@ -304,11 +304,11 @@ class Largo_CoAuthors_Byline extends Largo_Byline {
 	/**
 	 * Job title from the coauthors object
 	 */
-	function job_title() {
-		$show_job_titles = of_get_option( 'show_job_titles', false );
+	function reporter_title() {
+		$show_reporter_titles = of_get_option( 'show_reporter_titles', false );
 		$output = '';
 		// only do this if we're showing job titles and there is one to be shown
-		if ( true && $job = $this->author->job_title ) {
+		if ( true && $job = $this->author->reporter_title ) {
 			$output .= '<span class="job-title"><span class="comma">,</span> ' . $job . '</span>';
 		}
 		$output .= '';

@@ -196,12 +196,12 @@ function set_reporter_title($user)
 ?>
     <h3>More profile information</h3>
       <tr>
-        <th><label for="job_title">Title, or role</label></th>
+        <th><label for="reporter_title">Title, or role</label></th>
         <td>
           <input 
           type="text" 
-          name="job_title" 
-          id="job_title" 
+          name="reporter_title" 
+          id="reporter_title" 
           value="<?php echo esc_attr(get_the_author_meta('reporter_title', $user->ID)); ?>" class="regular-text" 
           />
           <br />
@@ -249,7 +249,7 @@ function register_coauthors_gql()
                 'slug' => $author->user_nicename,
                 'bio' => $author->description,
                 'avatar' => get_avatar_url($author->ID) ,
-                'job_title' => get_the_author_meta('reporter_title', $author->ID)
+                'reporter_title' => get_the_author_meta('reporter_title', $author->ID)
             );
         };
         return !empty($authors) ? $authors : ' ';

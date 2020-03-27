@@ -61,10 +61,10 @@ const SmallArticleBlock = (attributes: { authors; title; category; featuredImage
     authors.length > 1
       ? authors
           ?.map(author => {
-            return author.job_title
+            return author.reporter_title
           })
           .join(' & ')
-      : attributes.authors[0].job_title
+      : attributes.authors[0].reporter_title
 
   return (
     <ArticleBlockWrapper>

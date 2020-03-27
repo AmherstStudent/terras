@@ -38,7 +38,7 @@ query Article($slug: String) {
       slug
       bio
       avatar
-      job_title
+      reporter_title
     }
     blocks {
       __typename

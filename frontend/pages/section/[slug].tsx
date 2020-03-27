@@ -67,7 +67,7 @@ query CategoryPage($category: String) {
       coAuthors{
         display_name
         slug
-        job_title
+        reporter_title
         id
       }
       issues{

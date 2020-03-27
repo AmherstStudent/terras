@@ -69,10 +69,10 @@ const HeroImage = (attributes: { authors; featuredImageUrl; category; title; dat
     authors.length > 1
       ? authors
           ?.map(author => {
-            return author.job_title
+            return author.reporter_title
           })
           .join(' & ')
-      : authors[0].job_title
+      : authors[0].reporter_title
   return (
     <HeroImageWrapper>
       {attributes.featuredImageUrl && <HeroImg src={attributes.featuredImageUrl} />}

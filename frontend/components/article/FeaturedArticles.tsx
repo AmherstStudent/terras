@@ -43,7 +43,7 @@ export type AuthorInt = {
   slug: string
   bio: string
   id: number
-  job_title: string
+  reporter_title: string
 }
 
 const ArticleTitle = styled.h5`

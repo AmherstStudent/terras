@@ -6,7 +6,7 @@ export interface AuthorInterface {
   slug: string
   bio: string
   id: number
-  job_title: string
+  reporter_title: string
 }
 // TODO: Abstract, and create a sidebar panel component, sharing wwith FeaturedArticles
 const BioSectonTitle = styled.h3`
