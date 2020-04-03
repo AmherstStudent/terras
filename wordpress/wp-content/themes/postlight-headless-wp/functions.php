@@ -55,7 +55,7 @@ function setup_theme()
     // TODO: Add support for post-formats, specifcally for comics, centered-content, and galleries
     
 }
-add_action('after_setup_theme', 'mytheme_setup');
+add_action('after_setup_theme', 'setup_theme');
 add_action('login_head', 'login_logo');
 
 /** 
