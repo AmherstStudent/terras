@@ -28,3 +28,4 @@ const AuthorNameLink = (author) => {
 export const AuthorNames = ({authors}) => (authors?.map((author) => {
     return (<AuthorNameLink {...author} />)}))
 
+

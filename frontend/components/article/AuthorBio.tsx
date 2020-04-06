@@ -1,5 +1,6 @@
 import styled from 'styled-components'
 import Link from 'next/link'
+
 export interface AuthorInterface {
   display_name: string
   avatar: string
@@ -8,6 +9,7 @@ export interface AuthorInterface {
   id: number
   reporter_title: string
 }
+
 // TODO: Abstract, and create a sidebar panel component, sharing wwith FeaturedArticles
 const BioSectonTitle = styled.h3`
   font-family: Halyard Micro;

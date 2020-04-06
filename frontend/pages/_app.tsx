@@ -2,10 +2,10 @@ import App from 'next/app';
 import { ApolloProvider } from 'react-apollo';
 import withApollo from '../lib/withApollo';
 
-interface IProps {
+interface ApolloProps {
   apolloClient: any;
 }
-class MyApp extends App<IProps> {
+class MyApp extends App<ApolloProps> {
   render() {
     const { Component, pageProps, apolloClient } = this.props;
 

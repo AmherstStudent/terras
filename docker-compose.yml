@@ -56,7 +56,7 @@ services:
             - ./docker/postlightheadlesswpstarter.wordpress.xml:/var/www/postlightheadlesswpstarter.wordpress.xml
             - ./docker/images:/var/www/images
             - ./docker/plugins:/var/www/plugins
-            - ./uploads.ini:/usr/local/etc/php/conf.d/uploads.ini
+            - ./docker/uploads.ini:/usr/local/etc/php/conf.d/uploads.ini
     wp-setup: 
         build: ./docker/toolbox/
         volumes:

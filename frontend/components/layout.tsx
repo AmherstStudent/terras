@@ -35,13 +35,12 @@ const Layout: React.FunctionComponent<LayoutProps> = ({children, title = 'The Am
         html{
             background: #E5E5E5;
         }
-        /* max-widht was 1100px*/
         main{
             max-width: 1180px; 
             margin: 0 auto;
             padding-bottom: 40px;
-        
         }
+
         @media screen and (max-width: 1200px) {
             main {
                 margin: 0 5%;
@@ -54,9 +53,6 @@ const Layout: React.FunctionComponent<LayoutProps> = ({children, title = 'The Am
         }
 
         p{
-            font-family: var(--body-text);
-            line-height: var(--line-height);
-            font-size: var(--base-font-size);
             color: #373A3C;
         }
         

@@ -8,35 +8,29 @@ const CategoryWrapper = styled.header`
   background-size: cover;
   background-position: center;
   position: relative;
+  margin-top: 20px;
 `
 
-const BottomLine = styled.div`
-  background: rgba(0, 0, 0, 0.7);
+const Box = styled.div`
+  top: 15px;
+  left: 10px;
   position: absolute;
-  width: 100%;
-  bottom: 0;
-  margin: 0;
-  padding-right: 20px;
-`
-const Title = styled.h1`
-  font-family: 'Karla', serif;
-  font-size: 2.5em;
-  font-style: normal;
-  color: #ffffff;
-  letter-spacing: 0.34px;
-  text-align: right;
-  padding: 0;
+  /* Rectangle 35 */
   margin: 0 auto;
-  bottom: 0;
-  padding-top: 10px;
-  padding-bottom: 10px;
+  
+  padding: 0;
+  text-align: center;
+  width: 177px;
+  padding: 10px 0;
+  background: #3F1F69;
+  font-family: Halyard Text;
+  text-transform: uppercase;
+  color: white;
 `
 
 const CategoryHead = ({ category }) => (
   <CategoryWrapper>
-    <BottomLine>
-      <Title>{category}</Title>{' '}
-    </BottomLine>
+    <Box>{category}</Box>
   </CategoryWrapper>
 )
 
