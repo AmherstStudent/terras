@@ -17,13 +17,13 @@ const Box = styled.div`
   position: absolute;
   /* Rectangle 35 */
   margin: 0 auto;
-  
+
   padding: 0;
   text-align: center;
   width: 177px;
   padding: 10px 0;
-  background: #3F1F69;
-  font-family: Halyard Text;
+  background: #3f1f69;
+  font-family: var(--span-font);
   text-transform: uppercase;
   color: white;
 `

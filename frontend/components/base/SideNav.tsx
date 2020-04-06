@@ -16,7 +16,7 @@ const SidePanelWrapper = styled.div`
   width: 90%;
 `
 const NavSections = styled.ul`
-  font-family: Halyard Text;
+  font-family: var(--span-font);
   text-decoration: none;
   color: rgba(255, 255, 255, 0.85);
   flex-grow: 1;
@@ -47,7 +47,7 @@ const NavPages = styled.ul`
   padding: 0;
   li {
     list-style-type: none;
-    font-family: Halyard Text;
+    font-family: var(--span-font);
     font-weight: 300;
     line-height: var(--line-height);
     font-size: var(--base-font-size);

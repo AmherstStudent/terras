@@ -43,7 +43,7 @@ const ArticleByline = styled.p`
   color: #595959;
 `
 const ArticleBio = styled.p`
-  font-family: halyard-display;
+  font-family: var(--span-font);
   font-weight: 400;
   font-size: 16px;
   line-height: 172.1%;

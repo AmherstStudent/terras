@@ -45,7 +45,7 @@ const ArticleByline = styled.span`
   color: #595959;
 `
 const ArticleDescription = styled.h2`
-  font-family: halyard-text;
+  font-family: var(--span-font);
   font-weight: 400;
   font-size: 18px;
   line-height: 172.1%;

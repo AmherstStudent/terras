@@ -12,7 +12,7 @@ export interface AuthorInterface {
 
 // TODO: Abstract, and create a sidebar panel component, sharing wwith FeaturedArticles
 const BioSectonTitle = styled.h3`
-  font-family: Halyard Micro;
+  font-family: Halyard-Micro;
   font-style: normal;
   font-weight: normal;
   font-size: 18px;

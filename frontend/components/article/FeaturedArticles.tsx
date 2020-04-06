@@ -25,7 +25,7 @@ const FeaturedWrapper = styled.div`
   width: 100%;
 `
 const FeaturedArticlesTitle = styled.h3`
-  font-family: 'Halyard Micro';
+  font-family: 'Halyard-Micro';
   font-style: normal;
   font-weight: normal;
   text-transform: uppercase;

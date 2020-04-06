@@ -8,7 +8,7 @@ const FooterWrapper = styled.footer`
 `
 
 const FooterContent = styled.div`
-  font-family: Halyard Text;
+  font-family: var(--span-font);
   font-style: italic;
   font-weight: 300;
   font-size: 14px;

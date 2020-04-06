@@ -36,7 +36,7 @@ const PostWrapper = styled.div`
   padding: 10px 0;
 `
 const Category = styled.a`
-  font-family: Halyard Text;
+  font-family: var(--span-font);
   font-style: normal;
   font-weight: bold;
   font-size: 12px;
@@ -62,7 +62,7 @@ const Title = styled.h3`
   }
 `
 const Tagline = styled.p`
-  font-family: Halyard Text;
+  font-family: var(--span-font);
   font-style: italic;
   font-weight: 300;
   font-size: 12px;
