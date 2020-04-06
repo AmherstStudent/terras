@@ -4,9 +4,12 @@ import Link from 'next/link'
 const SidePanel = styled.div`
   width: 25vw;
   min-height: calc(100vw - 32px);
+  min-width: 250px;
+  height: 100vh;
   background: #3f1f69;
   z-index: 400;
   position: fixed;
+  padding: 0 10px;
 `
 const SidePanelWrapper = styled.div`
   margin: 0 auto;
