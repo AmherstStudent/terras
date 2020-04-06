@@ -2,6 +2,8 @@ import styled from 'styled-components'
 import { AuthorInterface } from './AuthorBio'
 import Link from 'next/link'
 import { formatDate } from '../util'
+import {Authors} from "../Pagination"
+
 
 interface ArticleContent {
   section: any
@@ -40,7 +42,7 @@ const ArticleByline = styled.span`
   font-size: 12px;
   font-weight: 600;
   line-height: 150%;
-  font-style: italic;
+  font-style: normal;
   font-weight: 300;
   color: #595959;
 `
@@ -90,7 +92,7 @@ const ArticleHeader = (attributes: ArticleContent) => {
       <Section>{attributes.section.name}</Section>
       <ArticleTitle>{attributes.title}</ArticleTitle>
       <ArticleByline>
-        By {authorNames} {roles} || <time dateTime={attributes.date}>{formatDate(attributes.date)}</time>
+        by <Authors authors={attributes.coAuthors} /> | <time>{formatDate(attributes.date)}</time>
       </ArticleByline>
       <ArticleDescription dangerouslySetInnerHTML={{ __html: attributes.description }} />
     </ArticleMeta>

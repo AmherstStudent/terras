@@ -3,12 +3,13 @@ import gql from 'graphql-tag'
 import { useQuery } from '@apollo/react-hooks'
 import Link from 'next/link'
 import AuthorInterface from './AuthorBio'
+import { formatDate } from '../util'
 import {Authors} from "../Pagination"
 const TagsQuery = gql`
   query Tags {
     tag(id: "cG9zdF90YWc6MTcx") {
       name
-      posts(where: { orderby: { field: DATE, order: DESC } }) {
+      posts(first: 5, where: { orderby: { field: DATE, order: DESC } }) {
         nodes {
           title
           slug
@@ -93,8 +94,9 @@ const Article = article => {
           <a>{article.title}</a>
         </Link>
       </ArticleTitle>
+    
       <ArticleByline>
-        by <Authors authors={article.coAuthors} /> | <time>{new Date(article.date).toLocaleDateString('en-US', options)}</time>
+        by <Authors authors={article.coAuthors} /> | <time>{formatDate(article.date)}</time>
       </ArticleByline>
     </ArticleWrapper>
   )
