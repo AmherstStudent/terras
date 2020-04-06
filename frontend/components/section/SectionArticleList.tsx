@@ -46,7 +46,6 @@ const SectionArticleList = ({ categoryID }) => {
   })
   if (loading) return <p>Loading Post...</p>
   if (error) return <p>Something wrong happened! {variables} </p>
-  console.log(data)
   // const {posts: articles, pageInfo} = category
   let {
     category: {

@@ -76,7 +76,7 @@ const BioWrapper = styled.div`
   }
 `
 
-const Authors = ({ authors }) => {
+export const Authors = ({ authors }) => {
   return (
     <Byline>
       {authors
@@ -121,13 +121,13 @@ const PostBlock = (post: PostBlock) => {
   return (
     <React.Fragment key={post.id}>
       <Wrapper>
-        <Link href={{ pathname: '/article', query: { slug: post.slug } }} as={'/issue/' + post.slug} passHref>
+        <Link href={{ pathname: '/article', query: { slug: post.slug } }} as={'/article/' + post.slug} passHref>
           <StyleLink>
             <PostTitle dangerouslySetInnerHTML={{ __html: post.title }} />
           </StyleLink>
         </Link>
         <div>
-          <Authors authors={authors} />
+          by <Authors authors={authors} />
         </div>
         <Byline>
           {formatDate(post.date)} || Issue <IssueLink {...issue} />

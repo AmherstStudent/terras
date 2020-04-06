@@ -3,6 +3,7 @@ import gql from 'graphql-tag'
 import { useQuery } from '@apollo/react-hooks'
 import Link from 'next/link'
 import AuthorInterface from './AuthorBio'
+import {Authors} from "../Pagination"
 const TagsQuery = gql`
   query Tags {
     tag(id: "cG9zdF90YWc6MTcx") {
@@ -13,6 +14,7 @@ const TagsQuery = gql`
           slug
           date
           coAuthors {
+            reporter_title
             display_name
             id
           }
@@ -61,23 +63,22 @@ const ArticleTitle = styled.h5`
 `
 const ArticleByline = styled.span`
   font-family: var(--span-font);
-  font-style: italic;
   font-weight: 300;
   font-size: 11px;
   line-height: 133.2%;
   /* or 15px */
 `
 
-const Author: React.FunctionComponent<AuthorInt> = author => {
-  return (
-    <Link key={author.id} href={{ pathname: '/author', query: { id: author.id } }} passHref>
-      <span>
-        {author.display_name}
-        {', '}
-      </span>
-    </Link>
-  )
-}
+// const Author: React.FunctionComponent<AuthorInt> = author => {
+//   return (
+//     <Link key={author.id} href={{ pathname: '/author', query: { id: author.id } }} passHref>
+//       <span>
+//         {author.display_name}
+//         {', '}
+//       </span>
+//     </Link>
+//   )
+// }
 const ArticleWrapper = styled.div`
   padding: 20px 0;
   border-bottom: solid black 1px;
@@ -93,12 +94,7 @@ const Article = article => {
         </Link>
       </ArticleTitle>
       <ArticleByline>
-        {' '}
-        By{' '}
-        {article.coAuthors?.map(author => {
-          return <Author key={author.id} {...author} />
-        })}{' '}
-        | <time>{new Date(article.date).toLocaleDateString('en-US', options)}</time>
+        by <Authors authors={article.coAuthors} /> | <time>{new Date(article.date).toLocaleDateString('en-US', options)}</time>
       </ArticleByline>
     </ArticleWrapper>
   )
