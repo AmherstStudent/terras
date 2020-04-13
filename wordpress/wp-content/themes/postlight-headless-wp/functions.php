@@ -281,7 +281,7 @@ function find_coauthors($value, $field_name, $request){
 function post_coauthors($value, $object, $request){
     // we're gonna have whole ass objects
     $postId = object[$id];
-    $updateStatus = add_coauthors($postId, $value, $query_type='id');
+    $updateStatus = $coauthors_plus->add_coauthors($postId, $value, $query_type='id');
     return $updateStatus;
 }
 
