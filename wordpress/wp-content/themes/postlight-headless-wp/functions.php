@@ -261,7 +261,7 @@ add_action('graphql_register_types', 'register_coauthors_gql');
 
 
 
-function get_coauthors($value, $field_name, $request){
+function find_coauthors($value, $field_name, $request){
     $coauthors = get_coauthors(object[$id]);
     $author = array();
     foreach ($coauthors as $author) {
@@ -289,7 +289,7 @@ function post_coauthors($value, $object, $request){
 
 add_action( 'rest_api_init', function(){
     register_rest_field('post', 'coauthors', array(
-        'get_callback' => 'get_coauthors',
+        'get_callback' => 'find_coauthors',
         'update_callback' => 'post_coauthors',
         'schema' => null,
     ));
