@@ -50,7 +50,7 @@ export type AuthorInt = {
 }
 
 const ArticleTitle = styled.h5`
-  font-family: Cormorant;
+  font-family: 'Cormorant';
   font-style: normal;
   font-weight: bold;
   font-size: 18px;

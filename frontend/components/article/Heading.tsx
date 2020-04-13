@@ -14,7 +14,7 @@ interface HeadingContent {
 }
 
 const HeadingLevel1 = styled.h1`
-  font-family: Cormorant;
+  font-family: 'Cormorant';
   font-style: normal;
   font-weight: bold;
   font-size: 33px;
@@ -22,7 +22,7 @@ const HeadingLevel1 = styled.h1`
 `
 
 const H2 = styled.h2`
-  font-family: Cormorant;
+  font-family: 'Cormorant';
   font-style: normal;
   font-weight: bold;
   font-size: 24px;

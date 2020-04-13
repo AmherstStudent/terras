@@ -33,7 +33,7 @@ const Category = styled.span`
   color: #3f1f69;
 `
 const CardTitle = styled.h1`
-  font-family: Cormorant;
+  font-family: 'Cormorant';
   font-style: normal;
   font-weight: bold;
   font-size: 33px;

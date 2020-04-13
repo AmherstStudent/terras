@@ -258,38 +258,39 @@ function register_coauthors_gql()
 }
 add_action('graphql_register_types', 'register_coauthors_gql');
 
-function add_authors_rest() {
-	register_rest_field('post', 'authors', array(
-		'get_callback' => 'get_authors',
-		'update_callback' => 'post_authors',
-		'schema' => null,
-	));
 
-	function get_authors($value, $field_name, $request){
-		$coauthors = get_coauthors(object[$id]);
-		$author = array();
-		foreach ($coauthors as $author) {
-			$authors[] = array(
-				'id' => $author->id,
-				'name' => $author->display_name,
-				'slug' => $author->user_nicename,
-				'reporter_title' => get_the_author_meta('reporter_title', $author->ID),
-				'description' => $author->description,
-				'email' => $author->user_email,
-				'avatar_urls' => rest_get_avatar_urls($author->user_email)
-			);
-		}
-		return $authors;
-	}
-	// Wait we are creating new users or are we leaving it to anote
-	function set_authors($authors, $field_name, $request){
-		// we're gonna have whole ass objects
-		$postId = object[$id];
-		$updateStatus = add_coauthors($postId, $authors, $query_type='id');
-		return $updateStatus;
-	}
+
+
+function get_coauthors($value, $field_name, $request){
+    $coauthors = get_coauthors(object[$id]);
+    $author = array();
+    foreach ($coauthors as $author) {
+        $authors[] = array(
+            'id' => $author->id,
+            'name' => $author->display_name,
+            'slug' => $author->user_nicename,
+            'reporter_title' => get_the_author_meta('reporter_title', $author->ID),
+            'description' => $author->description,
+            'email' => $author->user_email,
+            'avatar_urls' => rest_get_avatar_urls($author->user_email)
+        );
+    }
+    return $authors;
+}
+// Wait we are creating new users or are we leaving it to anote
+function post_coauthors($value, $object, $request){
+    // we're gonna have whole ass objects
+    $postId = object[$id];
+    $updateStatus = add_coauthors($postId, $value, $query_type='id');
+    return $updateStatus;
 }
 
-if ( function_exists('get_coauthors') ) {
-	add_action( 'rest_api_init', 'custom_register_coauthors' );
-}
+
+
+add_action( 'rest_api_init', function(){
+    register_rest_field('post', 'coauthors', array(
+        'get_callback' => 'get_coauthors',
+        'update_callback' => 'post_coauthors',
+        'schema' => null,
+    ));
+} );

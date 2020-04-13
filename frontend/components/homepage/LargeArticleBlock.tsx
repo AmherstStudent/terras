@@ -20,7 +20,7 @@ const ArticleTextContent = styled.div`
   margin-top: 20px;
 `
 const ArticleTitle = styled.h2`
-  font-family: Cormorant;
+  font-family: 'Cormorant';
   font-style: normal;
   font-weight: bold;
   font-size: 24px;

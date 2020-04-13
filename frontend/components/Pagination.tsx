@@ -34,7 +34,7 @@ const Wrapper = styled.article`
 
 const PostTitle = styled.h2`
   font-size: 28px;
-  font-family: Cormorant;
+  font-family: 'Cormorant';
   font-weight: bold;
   font-size: 28px;
   line-height: 34px;
