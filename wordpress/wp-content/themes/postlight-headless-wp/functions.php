@@ -279,6 +279,8 @@ function find_coauthors($value, $field_name, $request){
 }
 // Wait we are creating new users or are we leaving it to anote
 function post_coauthors($value, $object, $request){
+    global $coauthors_plus;
+
     // we're gonna have whole ass objects
     $postId = object[$id];
     $updateStatus = $coauthors_plus->add_coauthors($postId, $value, $query_type='id');
