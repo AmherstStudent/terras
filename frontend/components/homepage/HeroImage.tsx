@@ -1,7 +1,7 @@
 import styled from 'styled-components'
 import Link from 'next/link'
 import { formatDate, AuthorNames } from '../util'
-import {Authors} from "../Pagination"
+import { Authors } from '../Pagination'
 
 const HeroImageWrapper = styled.div`
   width: 100%;
@@ -21,20 +21,17 @@ const Card = styled.div`
   left: 30%;
   padding: 20px 30px;
   padding-right: 10px;
-  @media ( max-width: 680px ) {
+  @media (max-width: 680px) {
     position: static;
     bottom: 0;
     background-color: transparent;
-    left:0;
+    left: 0;
     padding: 0px;
     margin: 0;
     padding-top: 20px;
     max-width: 85%;
     width: 97%;
-
-
   }
-
 `
 const Category = styled.span`
   font-family: var(--span-font);

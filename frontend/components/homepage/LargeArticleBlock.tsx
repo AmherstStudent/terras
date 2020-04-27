@@ -1,7 +1,7 @@
 import styled from 'styled-components'
 import Link from 'next/link'
 import { formatDate } from '../util'
-import {Authors} from "../Pagination"
+import { Authors } from '../Pagination'
 
 const ArticleBlockWrapper = styled.div`
   margin-bottom: 20px;
@@ -95,7 +95,7 @@ const LargeArticleBlock = (attributes: { article; date; category; authors; title
           </Link>
         </ArticleTitle>
         <ArticleByline>
-          by <Authors authors={authors} /> 
+          by <Authors authors={authors} />
         </ArticleByline>
         <ArticleByline>{formatDate(attributes.date)}</ArticleByline>
         <AuthorUnderline />

@@ -1,8 +1,7 @@
 import styled from 'styled-components'
 import { AuthorInterface } from './AuthorBio'
 import { formatDate } from '../util'
-import {Authors} from "../Pagination"
-
+import { Authors } from '../Pagination'
 
 interface ArticleContent {
   section: any
@@ -56,8 +55,6 @@ const ArticleDescription = styled.h2`
   margin-top: 15px;
   width: 95%;
 `
-
-
 
 const ArticleHeader = (attributes: ArticleContent) => {
   console.log(attributes.description)

@@ -1,7 +1,7 @@
 import styled from 'styled-components'
 import Link from 'next/link'
 import { formatDate, AuthorNames } from '../util'
-import { Authors } from "../Pagination"
+import { Authors } from '../Pagination'
 
 const ArticleBlockWrapper = styled.div`
   display: flex;

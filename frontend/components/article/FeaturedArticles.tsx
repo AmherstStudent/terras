@@ -4,7 +4,7 @@ import { useQuery } from '@apollo/react-hooks'
 import Link from 'next/link'
 import AuthorInterface from './AuthorBio'
 import { formatDate } from '../util'
-import {Authors} from "../Pagination"
+import { Authors } from '../Pagination'
 const TagsQuery = gql`
   query Tags {
     tag(id: "cG9zdF90YWc6MTcx") {
@@ -94,7 +94,7 @@ const Article = article => {
           <a>{article.title}</a>
         </Link>
       </ArticleTitle>
-    
+
       <ArticleByline>
         by <Authors authors={article.coAuthors} /> | <time>{formatDate(article.date)}</time>
       </ArticleByline>
