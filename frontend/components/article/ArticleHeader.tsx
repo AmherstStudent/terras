@@ -34,6 +34,10 @@ const ArticleTitle = styled.h1`
   line-height: 65px;
   margin: 0;
   margin-bottom: 10px;
+  @media screen and (max-width: 768px) {
+    font-size: 42px;
+    line-height: 125%;
+  }
 `
 const ArticleByline = styled.p`
   font-family: var(--span-font);

@@ -8,14 +8,16 @@ const FooterWrapper = styled.footer`
 `
 
 const FooterContent = styled.div`
+  max-width: 1180px;
+  margin: 0 auto;
   font-family: var(--span-font);
-  font-style: italic;
   font-weight: 300;
   font-size: 14px;
   color: #595959;
-  max-width: 1100px;
-  margin: 0 auto;
   color: white;
+  @media screen and (max-width: 1200px) {
+    margin: 0 5%;
+  }
 `
 
 const Footer = () => (

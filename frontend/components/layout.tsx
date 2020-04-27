@@ -1,5 +1,4 @@
 import { FunctionComponent } from 'react'
-import * as React from 'react'
 import Head from 'next/head'
 import Footer from './base/Footer'
 import ga from '../lib/ga'

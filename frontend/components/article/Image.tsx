@@ -11,10 +11,8 @@ const Picture = styled.img`
 `
 const Caption = styled.figcaption`
   font-family: var(--header-font);
-  font-style: italic;
   font-weight: normal;
   font-size: 16px;
-  line-height: 16px;
   color: #000000;
 `
 
