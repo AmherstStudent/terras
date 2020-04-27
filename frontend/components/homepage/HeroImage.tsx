@@ -1,6 +1,7 @@
 import styled from 'styled-components'
 import Link from 'next/link'
 import { formatDate, AuthorNames } from '../util'
+import {Authors} from "../Pagination"
 
 const HeroImageWrapper = styled.div`
   width: 100%;
@@ -15,11 +16,25 @@ const HeroImg = styled.img`
 const Card = styled.div`
   background-color: white;
   width: 65%;
+  position: absolute;
   bottom: -2.5%;
   left: 30%;
-  position: absolute;
   padding: 20px 30px;
   padding-right: 10px;
+  @media ( max-width: 680px ) {
+    position: static;
+    bottom: 0;
+    background-color: transparent;
+    left:0;
+    padding: 0px;
+    margin: 0;
+    padding-top: 20px;
+    max-width: 85%;
+    width: 97%;
+
+
+  }
+
 `
 const Category = styled.span`
   font-family: var(--span-font);
@@ -84,7 +99,7 @@ const HeroImage = (attributes: { authors; featuredImageUrl; category; title; dat
           </Link>
         </CardTitle>
         <AuthorsTagline>
-          by <AuthorNames authors={authors} /> {titles} || {formatDate(attributes.date)}
+          by <Authors authors={authors} /> || <time>{formatDate(attributes.date)}</time>
         </AuthorsTagline>
         <AuthorUnderline />
       </Card>

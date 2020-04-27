@@ -34,3 +34,6 @@ export interface ImageContent {
   align?: string
 }
 export default Image
+
+
+// https://github.com/danielmilner/wp-block-components/blob/5d77bc5aa6e5a6121e4c065c366b983baf5428b4/src/components/CoreImageBlock/CoreImageBlock.js

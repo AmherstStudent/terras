@@ -1,116 +1,63 @@
 import React from 'react'
 import { NextSeo, ArticleJsonLd } from 'next-seo'
+import Head from 'next/head'
 
-const ArticleSEO = article => {
-  // for loop authors to put it into []
-  let images = []
+{
+  /* <meta property="og:title" content="<?php the_title(); ?>" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="<?php the_permalink(); ?>"/>
+<meta property="og:description" content="<?php echo esc_attr( wp_strip_all_tags( esc_html( get_the_excerpt() ) ) ); ?>" />
+<meta name="description" content="<?php echo esc_attr( wp_strip_all_tags( esc_html( get_the_excerpt() ) ) ); ?>" /> */
+}
+
+export default article => {
+  let data = {
+    '@context': 'http://schema.org/',
+    '@type': 'NewsArticle',
+    mainEntityOfPage: {
+      '@type': 'WebPage',
+      '@id': `https://amherststudent.com/article/${article.slug}`,
+    },
+    articleSection: `${article.categories.nodes[0].name}`,
+    headline: `${article.title}`,
+    datePublished: `${article.date}`,
+    dateModified: `${article.date}`,
+    description: `${article.excerpt.replace(/(<([^>]+)>)/gi, '').trim()}`,
+    publisher: {
+      '@type': 'Organization',
+      name: 'The Amherst Student',
+      url: 'https://amherststudent.com',
+      logo: {
+        '@type': 'ImageObject',
+        url: 'https://amherststudent.com/logo.jpg',
+      },
+    },
+  }
+
   if (article.featuredImage) {
-    images = [article.featuredImage.sourceUrl]
+    data['image'] = {
+      '@type': 'ImageObject',
+      url: article.featuredImage.sourceUrl,
+    }
+  } else {
+    data['image'] = {}
   }
-  let authors = []
-  for (let authori of article.coAuthors) {
-    authors.push(authori.display_name)
-  }
-  return (
-    <>
-      <ArticleJsonLd
-        url={'amherststudent.com/article/' + article.slug}
-        title={article.title}
-        images={images}
-        datePublished={article.date}
-        // dateModified="2015-02-05T09:00:00+08:00"
-        authorName={authors.join('and')}
-        publisherName="The Amherst Student"
-        publisherLogo="https://www.amherststudent.com//logo.svg"
-        description={article.excerpt}
-      />
 
-      <NextSeo
-        title={article.title}
-        description={article.excerpt}
-        site_name="The Amherst Student"
-        openGraph={{
-          title: article.title,
-          description: article.excerpt,
-          type: 'article',
-          article: {
-            publishedTime: article.date,
-            section: article.section,
-            authors: { authors },
-          },
-          images: images,
-        }}
-      />
-    </>
+  let authors = []
+  article.coAuthors.forEach(function(coAuthor) {
+    let author = {
+      '@type': 'Person',
+      name: `${coAuthor.display_name}`,
+      url: `amherststudent.com/author/${coAuthor.slug}`,
+    }
+    authors.push(author)
+  })
+
+  data['author'] = authors
+  return (
+    <Head>
+      <title dangerouslySetInnerHTML={{ __html: article.title + '| Amherst Student' }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(data) }}></script>
+    </Head>
   )
 }
-export default ArticleSEO
-// const ArticleSEO = (article) => {
-//   return <NextSeo
-//           title={article.title}
-//           description={article.excerpt}
-//           locale="en_US"
-//           site_name="The Amherst Student"
-//           openGraph={{
-//             title: article.title,
-//             description: article.excerpt,
-//             type: 'article',
-//             article: {
-//               publishedTime: article.createdAt,
-//               section: article.category
-//             },
-//             images: [{url: article.featuredImage ? article.featuredImage.url : '',}],
-//           }}
-//           twitter={{
-//             site: '@amherststudent',
-//             cardType: 'summary_large_image',
-//           }} />
-// }
-
-// // // TODO: A yikes.
-// // const ArticleSEO = ({ article }) => (
-// //     <>
-// //       <NextSeo
-// //         title={article.title}
-// //         description={article.excerpt}
-// //         locale="en_US"
-// //         site_name="The Amherst Student"
-// //         openGraph={{
-// //           title: article.title,
-// //           description: article.excerpt,
-// //           url: urlLink(article.slug),
-// //           type: 'article',
-// //           article: {
-// //             publishedTime: article.createdAt,
-// //             modifiedTime: article.updatedAt,
-// //             section: article.category.name,
-// //             authors: [article.author.username],
-// //           },
-// //           images: [
-// //             {
-// //               url: article.featuredImage ? article.featuredImage.url : '',
-// //             },
-// //           ],
-// //         }}
-//         // twitter={{
-//         //   site: '@amherststudent',
-//         //   cardType: 'summary_large_image',
-//         // }}
-// //       />
-
-//       <ArticleJsonLd
-//         url={`https://amherststudent.com/article/${article.slug}`}
-//         title={article.title}
-//         images={[
-//           article.featuredImage
-//             ? article.featuredImage.url
-//             : 'https://amherststudent.com/static/logo.jpg',
-//         ]}
-//         datePublished={article.createdAt}
-//         dateModified={article.updatedAt}
-//         authorName={article.author.username}
-//         publisherName="The Amherst Student"
-//         publisherLogo="https://amherststudent.com/static/logo.jpg"
-//         description={article.excerpt}
-//       />
-// //     </>

@@ -1,7 +1,7 @@
-import { NextPage } from 'next';
+import {ArticleDocument} from '../../components/article/ArticleQuery'
+
 import Layout from "../../components/layout"
 import {useQuery} from "@apollo/react-hooks"
-import gql from 'graphql-tag';
 import FeaturedImage from '../../components/article/FeaturedImage';
 import ArticleHeader from '../../components/article/ArticleHeader'
 import Navbar from '../../components/base/Navbar'
@@ -12,98 +12,6 @@ import styled from "styled-components"
 import ArticleSEO from "../../components/article/ArticleSEO"
 
 // TODO: We're going to have add multiple themes, will be a mini refactor.
-const ArticleDocument = gql`
-query Article($slug: String) {
-  postBy(slug: $slug) {
-    __typename
-    title
-    id
-    date
-    desiredSlug
-    excerpt
-    featuredImage {
-      sourceUrl
-      altText
-    }
-    categories {
-      nodes {
-        name
-        slug
-      }
-    }
-    coAuthors {
-      id
-      display_name
-      slug
-      bio
-      avatar
-      reporter_title
-    }
-    blocks {
-      __typename
-      ... on CoreHeadingBlock {
-        __typename
-        attributes {
-          __typename
-          ... on CoreHeadingBlockAttributes {
-            __typename
-            content
-            level
-          }
-        }
-      }
-      ... on CoreImageBlock {
-        attributes {
-          __typename
-          ... on CoreImageBlockAttributes {
-            __typename
-            url
-            caption
-          }
-        }
-      }
-      ... on CoreQuoteBlock {
-        __typename
-        attributes {
-          ... on CoreQuoteBlockAttributes {
-            __typename
-            quote: value
-            source: citation
-          }
-        }
-      }
-      ... on CoreListBlock {
-        __typename
-        attributes {
-          values
-        }
-      }
-      ... on CoreParagraphBlock {
-        __typename
-        name
-        attributes {
-          ... on CoreParagraphBlockAttributesV3 {
-            __typename
-            content
-            dropCap
-            align
-          }
-        }
-      }
-      ... on CoreGalleryBlock {
-        __typename
-        attributes {
-          ... on CoreGalleryBlockAttributes {
-            __typename
-            ids
-            images
-            linkTo
-          }
-        }
-      }
-    }
-  }
-}`; 
 
 const ArticleWrapper = styled.article`
   display: grid; 
@@ -141,9 +49,10 @@ const Article = ({slug}) => {
   return (
     <>
     <Navbar />
-    {article.featuredImage ? <FeaturedImage src={article.featuredImage.sourceUrl} alt={article.featuredImage.altText}/> : ""}
+    {article.featuredImage && (<FeaturedImage src={article.featuredImage.sourceUrl} alt={article.featuredImage.altText}/>)}
     <Layout>
-    <ArticleWrapper>
+      <ArticleSEO {...article} />
+    <ArticleWrapper itemscope itemtype="http://schema.org/Article">
       <ArticleSEO {...article} />
       <ArticleHeader 
         title={article.title}

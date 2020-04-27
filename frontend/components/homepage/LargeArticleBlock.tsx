@@ -1,6 +1,8 @@
 import styled from 'styled-components'
 import Link from 'next/link'
-import { formatDate, AuthorNames } from '../util'
+import { formatDate } from '../util'
+import {Authors} from "../Pagination"
+
 const ArticleBlockWrapper = styled.div`
   margin-bottom: 20px;
   height: 100%;
@@ -72,7 +74,6 @@ const AuthorName = styled.a`
 
 const LargeArticleBlock = (attributes: { article; date; category; authors; title; excerpt; slug }) => {
   let authors = JSON.parse(attributes.authors)
-
   let titles =
     authors.length > 1
       ? authors
@@ -94,7 +95,7 @@ const LargeArticleBlock = (attributes: { article; date; category; authors; title
           </Link>
         </ArticleTitle>
         <ArticleByline>
-          by <AuthorNames authors={authors} /> {titles}
+          by <Authors authors={authors} /> 
         </ArticleByline>
         <ArticleByline>{formatDate(attributes.date)}</ArticleByline>
         <AuthorUnderline />

@@ -1,7 +1,6 @@
 import { AuthorInterface } from './article/AuthorBio'
 import styled from 'styled-components'
-import { formatDate, AuthorNames } from './util'
-import { FunctionComponent } from 'react'
+import { formatDate } from './util'
 import Link from 'next/link'
 import React from 'react'
 // TODO: Register article issue
@@ -81,9 +80,9 @@ export const Authors = ({ authors }) => {
     <Byline>
       {authors
         .map(author => (
-          <Byline key={author.slug}>
+          <Byline itemprop="author" itemscope itemtype="http://schema.org/Person" key={author.slug}>
             <Link key={author.slug} href={{ pathname: '/author', query: { id: author.slug } }} as={'/author/' + author.slug} passHref>
-              <LinkText>{author.display_name + ','}</LinkText>
+              <LinkText itemprop="url" >{author.display_name + ','}</LinkText>
             </Link>{' '}
             {author.reporter_title}
           </Byline>

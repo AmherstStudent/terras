@@ -1,6 +1,5 @@
 import styled from 'styled-components'
 import { AuthorInterface } from './AuthorBio'
-import Link from 'next/link'
 import { formatDate } from '../util'
 import {Authors} from "../Pagination"
 
@@ -37,7 +36,7 @@ const ArticleTitle = styled.h1`
   margin: 0;
   margin-bottom: 10px;
 `
-const ArticleByline = styled.span`
+const ArticleByline = styled.p`
   font-family: var(--span-font);
   font-size: 12px;
   font-weight: 600;
@@ -48,7 +47,7 @@ const ArticleByline = styled.span`
 `
 const ArticleDescription = styled.h2`
   font-family: var(--span-font);
-  font-weight: 400;
+  font-weight: 300;
   font-size: 18px;
   line-height: 172.1%;
   color: #595959;
@@ -58,43 +57,18 @@ const ArticleDescription = styled.h2`
   width: 95%;
 `
 
-const Author = styled.a`
-  font-family: var(--span-font);
-  font-weight: 400;
-  font-style: normal;
-  text-transform: capitalize !important;
-  text-decoration: none;
-  color: #595959;
-`
+
 
 const ArticleHeader = (attributes: ArticleContent) => {
-  let authors = attributes.coAuthors
-  // Add link to the authors, and titles
-  let authorNames = authors.map(function(author) {
-    return (
-      <>
-        <Link key={author.id} href={{ pathname: '/author', query: { id: author.id } }} passHref>
-          <Author>{author.display_name}</Author>
-        </Link>
-        {','}{' '}
-      </>
-    )
-  })
-
-  let roles = authors
-    .map(function(author) {
-      return author.reporter_title
-    })
-    .join(' and ')
-
+  console.log(attributes.description)
   return (
     <ArticleMeta>
       <Section>{attributes.section.name}</Section>
-      <ArticleTitle>{attributes.title}</ArticleTitle>
+      <ArticleTitle itemprop="name">{attributes.title}</ArticleTitle>
       <ArticleByline>
         by <Authors authors={attributes.coAuthors} /> | <time>{formatDate(attributes.date)}</time>
       </ArticleByline>
-      <ArticleDescription dangerouslySetInnerHTML={{ __html: attributes.description }} />
+      <ArticleDescription> {attributes.description}</ArticleDescription>
     </ArticleMeta>
   )
 }

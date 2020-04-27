@@ -15,9 +15,7 @@ const Box = styled.div`
   top: 15px;
   left: 10px;
   position: absolute;
-  /* Rectangle 35 */
   margin: 0 auto;
-
   padding: 0;
   text-align: center;
   width: 177px;

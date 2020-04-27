@@ -13,7 +13,8 @@ const Layout: React.FunctionComponent<LayoutProps> = ({ children, title = 'The A
   <>
     <Head>
       <title>{title}</title>
-      <meta charSet="utf-8" />
+      <link rel="icon" href="/favicon.ico" />
+
       <meta name="viewport" content="initial-scale=1.0, width=device-width" />
       <link href="https://fonts.googleapis.com/css?family=Cormorant&display=swap" rel="stylesheet" />
       <link href="https://necolas.github.io/normalize.css/latest/normalize.css" rel="stylesheet" />

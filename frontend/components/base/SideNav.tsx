@@ -11,7 +11,7 @@ const SidePanel = styled.div`
   position: fixed;
   padding: 0 10px;
 `
-const SidePanelWrapper = styled.div`
+const SidePanelWrapper = styled.nav`
   margin: 0 auto;
   width: 90%;
 `

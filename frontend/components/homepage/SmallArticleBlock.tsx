@@ -1,6 +1,7 @@
 import styled from 'styled-components'
 import Link from 'next/link'
 import { formatDate, AuthorNames } from '../util'
+import { Authors } from "../Pagination"
 
 const ArticleBlockWrapper = styled.div`
   display: flex;
@@ -48,7 +49,7 @@ const ArticleByline = styled.p`
 `
 const ArticleBio = styled.p`
   font-family: var(--span-font);
-  font-weight: 400;
+  font-weight: 300;
   font-size: 16px;
   line-height: 172.1%;
   /* or 28px */
@@ -57,14 +58,6 @@ const ArticleBio = styled.p`
 
 const SmallArticleBlock = (attributes: { authors; title; category; featuredImage; date; excerpt; slug }) => {
   let authors = JSON.parse(attributes.authors)
-  let titles =
-    authors.length > 1
-      ? authors
-          ?.map(author => {
-            return author.reporter_title
-          })
-          .join(' & ')
-      : attributes.authors[0].reporter_title
 
   return (
     <ArticleBlockWrapper>
@@ -79,7 +72,7 @@ const SmallArticleBlock = (attributes: { authors; title; category; featuredImage
           </Link>
         </ArticleTitle>
         <ArticleByline>
-          by <AuthorNames authors={authors} /> {titles} || {formatDate(attributes.date)}
+          by <Authors authors={authors} /> || {formatDate(attributes.date)}
         </ArticleByline>
         <ArticleBio dangerouslySetInnerHTML={{ __html: attributes.excerpt }} />
       </ArticleTextContent>
