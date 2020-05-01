@@ -16,7 +16,6 @@ const Author = ({slug}) => {
       })
       if (loading) return <p>Loading Post...</p>
       if (error) return <p>Something wrong happened! {variables} </p>
-      // const {posts: articles, pageInfo} = category
        
       let { users: {nodes } } = data
       let {name, description, posts: { nodes: articles, pageInfo }}  = nodes[0]

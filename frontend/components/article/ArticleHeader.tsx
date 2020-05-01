@@ -61,7 +61,6 @@ const ArticleDescription = styled.h2`
 `
 
 const ArticleHeader = (attributes: ArticleContent) => {
-  console.log(attributes.description)
   return (
     <ArticleMeta>
       <Section>{attributes.section.name}</Section>

@@ -13,6 +13,8 @@ export const ArticleDocument = gql`
       featuredImage {
         sourceUrl
         altText
+        srcSet
+        sizes
       }
       categories {
         nodes {
@@ -87,6 +89,15 @@ export const ArticleDocument = gql`
               ids
               images
               linkTo
+            }
+          }
+        }
+        ... on CoreHtmlBlock {
+          __typename
+          attributes {
+            ... on CoreHtmlBlockAttributes {
+              __typename
+              html: content
             }
           }
         }

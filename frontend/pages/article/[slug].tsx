@@ -11,6 +11,7 @@ import FeaturedArticles from "../../components/article/FeaturedArticles"
 import styled from "styled-components"
 import ArticleSEO from "../../components/article/ArticleSEO"
 
+
 // TODO: We're going to have add multiple themes, will be a mini refactor.
 
 const ArticleWrapper = styled.article`
@@ -34,6 +35,7 @@ const ArticleAside = styled.aside`
     grid-column: 1/ -1;
   }
 `
+
 const Article = ({slug}) => {
   const { loading, error, data } = useQuery(ArticleDocument, {
     variables: {slug: slug}
@@ -49,7 +51,7 @@ const Article = ({slug}) => {
   return (
     <>
     <Navbar />
-    {article.featuredImage && (<FeaturedImage src={article.featuredImage.sourceUrl} alt={article.featuredImage.altText}/>)}
+    {article.featuredImage && (<FeaturedImage {...article.featuredImage} />)}
     <Layout>
       <ArticleSEO {...article} />
     <ArticleWrapper itemscope itemtype="http://schema.org/Article">
