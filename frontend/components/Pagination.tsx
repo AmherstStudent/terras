@@ -82,7 +82,7 @@ export const Authors = ({ authors }) => {
         .map(author => (
           <Byline itemprop="author" itemscope itemtype="http://schema.org/Person" key={author.slug}>
             <Link key={author.slug} href={{ pathname: '/author', query: { id: author.slug } }} as={'/author/' + author.slug} passHref>
-              <LinkText itemprop="url" >{author.display_name + ','}</LinkText>
+              <LinkText itemprop="url">{author.display_name + ','}</LinkText>
             </Link>{' '}
             {author.reporter_title}
           </Byline>
@@ -177,5 +177,3 @@ interface PaginationProps {
   cursor: number
   getMore: Function
 }
-
-// const Pagination =

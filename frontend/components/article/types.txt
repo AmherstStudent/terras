@@ -1,4 +1,12 @@
 
+// type FeaturedImage = {
+    sourceUrl
+    altText
+    srcSet
+    sizes
+}
+
+
 // export interface AuthorInterface {
 //     display_name: string
 //     avatar: string

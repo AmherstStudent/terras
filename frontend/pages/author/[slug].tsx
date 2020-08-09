@@ -42,17 +42,25 @@ const Author = ({slug}) => {
               updateQuery: (previousResult: any, { fetchMoreResult }) => {
                 const newNodes = fetchMoreResult.users.nodes[0].posts.nodes
                 const pageInfo = fetchMoreResult.users.nodes[0].posts.pageInfo
+                debugger;
                 return newNodes.length
                   ? {
-                      category: {
-                        name: previousResult.users.nodes[0].name,
+                      users: {
+                        
+                        nodes: [
+                        {name: fetchMoreResult.users.nodes[0].name,
+                          id: fetchMoreResult.users.nodes[0].id,
                         posts: {
-                          nodes: [...previousResult.users.nodes[0].posts.nodes, ...newNodes],
+                          nodes: [...fetchMoreResult.users.nodes[0].posts.nodes, ...newNodes],
                           pageInfo,
-                          __typename: previousResult.users.nodes[0].posts.__typename,
+                          __typename: fetchMoreResult.users.nodes[0].posts.__typename,
                         },
-                        __typename: previousResult.users.nodes[0].__typename,
+                        __typename: fetchMoreResult.users.nodes[0].__typename}
+                      ],
+                        __typename: fetchMoreResult.users.__typename
+
                       },
+                      
                     }
                   : previousResult
               },

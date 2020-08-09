@@ -57,7 +57,7 @@ export default article => {
   return (
     <Head>
       <title dangerouslySetInnerHTML={{ __html: article.title + '| Amherst Student' }} />
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(data) }}></script>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({ data }) }}></script>
     </Head>
   )
 }

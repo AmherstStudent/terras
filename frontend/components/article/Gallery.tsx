@@ -7,7 +7,7 @@ interface GalleryContent {
   caption: String
   className?: string
   ids: string
-  images: Array<ImageContent>
+  images: string //
 }
 
 const Gallery = (attributes: GalleryContent) => {
