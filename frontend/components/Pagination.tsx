@@ -92,6 +92,14 @@ export const Authors = ({ authors }) => {
   )
 }
 
+const NextButton = styled.button`
+  background: black;
+  height: 20px;
+  text-align: right;
+  font-size: 14px;
+  color: white;
+  font-family: var(--span-font);
+`
 const MiniImage = styled.img`
   width: 200px;
   flex: 25%;
@@ -160,20 +168,4 @@ export const PostList = ({ articles, getMore, pageInfo }: PostListProps) => {
       {pageInfo.hasNextPage && <NextButton onClick={getMore}>Next Articles</NextButton>}
     </>
   )
-}
-
-const NextButton = styled.button`
-  background: black;
-  height: 20px;
-  text-align: right;
-  font-size: 14px;
-  color: white;
-  font-family: var(--span-font);
-`
-
-interface PaginationProps {
-  pageInfo: PageInfo
-  entries: Array<PostBlock>
-  cursor: number
-  getMore: Function
 }
