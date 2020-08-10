@@ -1,0 +1,429 @@
+{
+  "__schema": {
+    "types": [
+      {
+        "kind": "INTERFACE",
+        "name": "Node",
+        "possibleTypes": [
+          {
+            "name": "Issue"
+          },
+          {
+            "name": "Taxonomy"
+          },
+          {
+            "name": "PostType"
+          },
+          {
+            "name": "Post"
+          },
+          {
+            "name": "Page"
+          },
+          {
+            "name": "MediaItem"
+          },
+          {
+            "name": "User"
+          },
+          {
+            "name": "Comment"
+          },
+          {
+            "name": "CommentAuthor"
+          },
+          {
+            "name": "Revision"
+          },
+          {
+            "name": "Category"
+          },
+          {
+            "name": "Tag"
+          },
+          {
+            "name": "Series"
+          },
+          {
+            "name": "Plugin"
+          },
+          {
+            "name": "Theme"
+          }
+        ]
+      },
+      {
+        "kind": "INTERFACE",
+        "name": "BlocksPost",
+        "possibleTypes": [
+          {
+            "name": "Post"
+          },
+          {
+            "name": "Page"
+          },
+          {
+            "name": "MediaItem"
+          },
+          {
+            "name": "Revision"
+          }
+        ]
+      },
+      {
+        "kind": "INTERFACE",
+        "name": "Block",
+        "possibleTypes": [
+          {
+            "name": "HomeSmallArticleBlock"
+          },
+          {
+            "name": "HomeLargeArticleBlock"
+          },
+          {
+            "name": "HomeHomepageQuoteBlock"
+          },
+          {
+            "name": "HomeHeroImageBlock"
+          },
+          {
+            "name": "HomeFeaturedPostlistBlock"
+          },
+          {
+            "name": "CoreParagraphBlock"
+          },
+          {
+            "name": "CoreImageBlock"
+          },
+          {
+            "name": "CoreHeadingBlock"
+          },
+          {
+            "name": "CoreGalleryBlock"
+          },
+          {
+            "name": "CoreListBlock"
+          },
+          {
+            "name": "CoreQuoteBlock"
+          },
+          {
+            "name": "CoreShortcodeBlock"
+          },
+          {
+            "name": "CoreArchivesBlock"
+          },
+          {
+            "name": "CoreAudioBlock"
+          },
+          {
+            "name": "CoreButtonBlock"
+          },
+          {
+            "name": "CoreCalendarBlock"
+          },
+          {
+            "name": "CoreCategoriesBlock"
+          },
+          {
+            "name": "CoreCodeBlock"
+          },
+          {
+            "name": "CoreColumnsBlock"
+          },
+          {
+            "name": "CoreColumnBlock"
+          },
+          {
+            "name": "CoreCoverBlock"
+          },
+          {
+            "name": "CoreEmbedBlock"
+          },
+          {
+            "name": "CoreEmbedTwitterBlock"
+          },
+          {
+            "name": "CoreEmbedYoutubeBlock"
+          },
+          {
+            "name": "CoreEmbedFacebookBlock"
+          },
+          {
+            "name": "CoreEmbedInstagramBlock"
+          },
+          {
+            "name": "CoreEmbedWordpressBlock"
+          },
+          {
+            "name": "CoreEmbedSoundcloudBlock"
+          },
+          {
+            "name": "CoreEmbedSpotifyBlock"
+          },
+          {
+            "name": "CoreEmbedFlickrBlock"
+          },
+          {
+            "name": "CoreEmbedVimeoBlock"
+          },
+          {
+            "name": "CoreEmbedAnimotoBlock"
+          },
+          {
+            "name": "CoreEmbedCloudupBlock"
+          },
+          {
+            "name": "CoreEmbedCollegehumorBlock"
+          },
+          {
+            "name": "CoreEmbedCrowdsignalBlock"
+          },
+          {
+            "name": "CoreEmbedDailymotionBlock"
+          },
+          {
+            "name": "CoreEmbedHuluBlock"
+          },
+          {
+            "name": "CoreEmbedImgurBlock"
+          },
+          {
+            "name": "CoreEmbedIssuuBlock"
+          },
+          {
+            "name": "CoreEmbedKickstarterBlock"
+          },
+          {
+            "name": "CoreEmbedMeetupComBlock"
+          },
+          {
+            "name": "CoreEmbedMixcloudBlock"
+          },
+          {
+            "name": "CoreEmbedPolldaddyBlock"
+          },
+          {
+            "name": "CoreEmbedRedditBlock"
+          },
+          {
+            "name": "CoreEmbedReverbnationBlock"
+          },
+          {
+            "name": "CoreEmbedScreencastBlock"
+          },
+          {
+            "name": "CoreEmbedScribdBlock"
+          },
+          {
+            "name": "CoreEmbedSlideshareBlock"
+          },
+          {
+            "name": "CoreEmbedSmugmugBlock"
+          },
+          {
+            "name": "CoreEmbedSpeakerBlock"
+          },
+          {
+            "name": "CoreEmbedSpeakerDeckBlock"
+          },
+          {
+            "name": "CoreEmbedTedBlock"
+          },
+          {
+            "name": "CoreEmbedTumblrBlock"
+          },
+          {
+            "name": "CoreEmbedVideopressBlock"
+          },
+          {
+            "name": "CoreEmbedWordpressTvBlock"
+          },
+          {
+            "name": "CoreEmbedAmazonKindleBlock"
+          },
+          {
+            "name": "CoreFileBlock"
+          },
+          {
+            "name": "CoreGroupBlock"
+          },
+          {
+            "name": "CoreFreeformBlock"
+          },
+          {
+            "name": "CoreHtmlBlock"
+          },
+          {
+            "name": "CoreMediaTextBlock"
+          },
+          {
+            "name": "CoreLatestCommentsBlock"
+          },
+          {
+            "name": "CoreLatestPostsBlock"
+          },
+          {
+            "name": "CoreMissingBlock"
+          },
+          {
+            "name": "CoreMoreBlock"
+          },
+          {
+            "name": "CoreNextpageBlock"
+          },
+          {
+            "name": "CorePreformattedBlock"
+          },
+          {
+            "name": "CorePullquoteBlock"
+          },
+          {
+            "name": "CoreRssBlock"
+          },
+          {
+            "name": "CoreSearchBlock"
+          },
+          {
+            "name": "CoreSeparatorBlock"
+          },
+          {
+            "name": "CoreSpacerBlock"
+          },
+          {
+            "name": "CoreSubheadBlock"
+          },
+          {
+            "name": "CoreTableBlock"
+          },
+          {
+            "name": "CoreTagCloudBlock"
+          },
+          {
+            "name": "CoreTextColumnsBlock"
+          },
+          {
+            "name": "CoreVerseBlock"
+          },
+          {
+            "name": "CoreVideoBlock"
+          }
+        ]
+      },
+      {
+        "kind": "UNION",
+        "name": "PostObjectTypesWithBlocksUnion",
+        "possibleTypes": [
+          {
+            "name": "Post"
+          },
+          {
+            "name": "Page"
+          }
+        ]
+      },
+      {
+        "kind": "UNION",
+        "name": "PostObjectUnion",
+        "possibleTypes": [
+          {
+            "name": "Post"
+          },
+          {
+            "name": "Page"
+          },
+          {
+            "name": "MediaItem"
+          },
+          {
+            "name": "Revision"
+          }
+        ]
+      },
+      {
+        "kind": "UNION",
+        "name": "CommentAuthorUnion",
+        "possibleTypes": [
+          {
+            "name": "User"
+          },
+          {
+            "name": "CommentAuthor"
+          }
+        ]
+      },
+      {
+        "kind": "UNION",
+        "name": "TermObjectUnion",
+        "possibleTypes": [
+          {
+            "name": "Category"
+          },
+          {
+            "name": "Tag"
+          },
+          {
+            "name": "Series"
+          },
+          {
+            "name": "Issue"
+          }
+        ]
+      },
+      {
+        "kind": "UNION",
+        "name": "MenuItemObjectUnion",
+        "possibleTypes": [
+          {
+            "name": "Post"
+          },
+          {
+            "name": "Page"
+          },
+          {
+            "name": "Category"
+          },
+          {
+            "name": "Tag"
+          },
+          {
+            "name": "Series"
+          },
+          {
+            "name": "Issue"
+          },
+          {
+            "name": "MenuItem"
+          }
+        ]
+      },
+      {
+        "kind": "UNION",
+        "name": "CoreParagraphBlockAttributesUnion",
+        "possibleTypes": [
+          {
+            "name": "CoreParagraphBlockAttributes"
+          },
+          {
+            "name": "CoreParagraphBlockAttributesV2"
+          },
+          {
+            "name": "CoreParagraphBlockAttributesV3"
+          }
+        ]
+      },
+      {
+        "kind": "UNION",
+        "name": "CorePullquoteBlockAttributesUnion",
+        "possibleTypes": [
+          {
+            "name": "CorePullquoteBlockAttributes"
+          },
+          {
+            "name": "CorePullquoteBlockAttributesV2"
+          }
+        ]
+      }
+    ]
+  }
+}
