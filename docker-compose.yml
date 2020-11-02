@@ -71,6 +71,7 @@ services:
     frontend-graphql:
         command: bash -c 'yarn && yarn build && yarn start'
         container_name: frontend-graphql
+        user: root
         expose:
             - '3000'
         image: node:13
