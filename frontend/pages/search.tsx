@@ -5,7 +5,7 @@ import { useQuery } from '@apollo/react-hooks'
 import { HomeDocument } from '../components/homepage/HomeQuery'
 import Columns from '../components/homepage/Columns'
 import styled from 'styled-components'
-
+import { useEffect, useState } from 'react'
 const HomePageWrapper = styled.div`
   display: grid;
   grid-column-gap: 20px;
@@ -14,7 +14,16 @@ const HomePageWrapper = styled.div`
   margin-top: 20px;
 `
 
-const Home: NextPage = () => {
+const SearchTool = () => {
+  const [searchTerm, setSearchTerm] = useState('')
+  const [searchResults, setSearchResults] = useState([])
+
+  const handleChange = event => {
+    setSearchTerm(event.target.value)
+  }
+}
+
+const Search: NextPage = () => {
   const { loading, error, data } = useQuery(HomeDocument)
   let page = data && data.pageBy.blocks
   if (loading) return <p>Loading ...</p>
@@ -31,9 +40,4 @@ const Home: NextPage = () => {
   )
 }
 
-Home.getInitialProps = async ({ req }) => {
-  const userAgent = req ? req.headers['user-agent'] || '' : navigator.userAgent
-  return { userAgent }
-}
-
-export default Home
+export default Search

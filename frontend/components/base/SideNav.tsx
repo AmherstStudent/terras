@@ -4,12 +4,20 @@ import Link from 'next/link'
 const SidePanel = styled.div`
   width: 25vw;
   min-height: calc(100vw - 32px);
-  min-width: 250px;
+  width: 25vw;
   height: 100vh;
   background: #3f1f69;
-  z-index: 400;
   position: fixed;
   padding: 0 10px;
+  top: 67px; /* Stay at the top */
+  z-index: 2;
+  @media (max-width: 1024px) {
+    width: 45vw;
+  }
+  @media (max-width: 768px) {
+    width: 100vw;
+  }
+  transition: 0.5s; /* 0.5 second transition effect to slide in the sidenav */
 `
 const SidePanelWrapper = styled.nav`
   margin: 0 auto;
@@ -25,13 +33,13 @@ const NavSections = styled.ul`
   padding: 0;
   padding-bottom: 15px;
   border-bottom: 5px solid white;
-  li {
+  & li {
     padding-bottom: 10px;
     padding-top: 10px;
     list-style-type: none;
     font-size: 28px;
   }
-  a {
+  & a {
     text-decoration: none;
     color: rgba(255, 255, 255, 0.85);
   }
@@ -48,9 +56,15 @@ const NavPages = styled.ul`
   li {
     list-style-type: none;
     font-family: var(--span-font);
+    text-decoration: none;
+
     font-weight: 300;
     line-height: var(--line-height);
     font-size: var(--base-font-size);
+  }
+  a {
+    text-decoration: none;
+    color: white;
   }
 `
 
@@ -80,10 +94,26 @@ const SideNav = () => (
         </Link>
       </NavSections>
       <NavPages>
-        <li>About</li>
-        <li>Subscribe</li>
-        <li>Advertisers</li>
-        <li>Contact</li>
+        <Link href={{ pathname: '/about' }} as="/about">
+          <a>
+            <li>About</li>
+          </a>
+        </Link>
+        <Link href={{ pathname: '/subscribe' }} as="/subscribe">
+          <a>
+            <li>Subscribe</li>
+          </a>
+        </Link>
+        <Link href={{ pathname: '/advertising' }} as="/advertising">
+          <a>
+            <li>Advertising</li>
+          </a>
+        </Link>
+        <Link href={{ pathname: '/contactus' }} as="/contactus">
+          <a>
+            <li>Contact Us</li>
+          </a>
+        </Link>
       </NavPages>
     </SidePanelWrapper>
   </SidePanel>

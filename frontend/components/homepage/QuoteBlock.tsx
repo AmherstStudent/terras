@@ -17,13 +17,11 @@ const Quote = styled.h2`
   font-size: 48px;
   margin: 0;
   color: rgba(255, 255, 255, 0.85);
-  flex-grow: 1;
 `
 
 const Citation = styled.span`
   font-family: var(--header-font);
   color: rgba(255, 255, 255, 1);
-  align-self: end;
 `
 
 // add corresponding story

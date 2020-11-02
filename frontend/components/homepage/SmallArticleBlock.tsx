@@ -28,7 +28,7 @@ const ArticleTitle = styled.h2`
   font-family: Cormorant;
   font-style: normal;
   font-weight: bold;
-  font-size: 24px;
+  font-size: 1.5em;
   line-height: 29px;
   color: #000000;
   margin-top: 10px;
@@ -68,7 +68,7 @@ const SmallArticleBlock = (attributes: { authors; title; category; featuredImage
         </Link>
         <ArticleTitle>
           <Link href={{ pathname: '/article', query: { slug: attributes.slug } }} as={'/article/' + attributes.slug} passHref>
-            <a>{attributes.title}</a>
+            <a dangerouslySetInnerHTML={{ __html: attributes.title }} />
           </Link>
         </ArticleTitle>
         <ArticleByline>
