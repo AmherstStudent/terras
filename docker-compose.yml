@@ -69,9 +69,8 @@ services:
         links:
             - db-headless
     frontend-graphql:
-        command: bash -c 'npm install && npm run build && npm run start'
+        command: bash -c 'yarn && yarn build && yarn start'
         container_name: frontend-graphql
-        user: node
         expose:
             - '3000'
         image: node:latest
