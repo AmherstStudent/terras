@@ -23,6 +23,13 @@ const Layout: React.FunctionComponent<LayoutProps> = ({ children, title = 'The A
     <Footer />
     <style jsx global>
       {`
+        body {
+          width: 100vw;
+          margin-top: 6em;
+        }
+        * {
+          box-sizing: border-box;
+        }
         /* Text */
         @font-face {
           font-family: 'Halyard-Text';
@@ -94,9 +101,7 @@ const Layout: React.FunctionComponent<LayoutProps> = ({ children, title = 'The A
           --base-font-size: 18px;
           --line-height: 172%;
         }
-        html {
-          background: #e5e5e5;
-        }
+
         main {
           max-width: 1180px;
           margin: 0 auto;

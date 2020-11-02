@@ -35,6 +35,8 @@ const Card = styled.div`
 `
 const Category = styled.span`
   font-family: var(--span-font);
+  text-tranform: uppercase;
+
   font-style: normal;
   font-weight: bold;
   font-size: 16px;
@@ -92,7 +94,7 @@ const HeroImage = (attributes: { authors; featuredImageUrl; category; title; dat
         <Category>{attributes.category}</Category>
         <CardTitle>
           <Link href={{ pathname: '/article', query: { slug: attributes.slug } }} as={'/article/' + attributes.slug} passHref>
-            <a>{attributes.title}</a>
+            <a dangerouslySetInnerHTML={{ __html: attributes.title }} />
           </Link>
         </CardTitle>
         <AuthorsTagline>

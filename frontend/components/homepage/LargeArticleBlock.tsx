@@ -16,6 +16,7 @@ const Category = styled.a`
   line-height: 17px;
   letter-spacing: 0.05em;
   color: #3f1f69;
+  text-tranform: capitalize;
 `
 
 const ArticleTextContent = styled.div`
@@ -91,7 +92,7 @@ const LargeArticleBlock = (attributes: { article; date; category; authors; title
         </Link>
         <ArticleTitle>
           <Link href={{ pathname: '/article', query: { slug: attributes.slug } }} as={'/article/' + attributes.slug} passHref>
-            <a>{attributes.title}</a>
+            <a dangerouslySetInnerHTML={{ __html: attributes.title }} />
           </Link>
         </ArticleTitle>
         <ArticleByline>

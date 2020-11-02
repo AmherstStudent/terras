@@ -63,8 +63,8 @@ const ArticleDescription = styled.h2`
 const ArticleHeader = (attributes: ArticleContent) => {
   return (
     <ArticleMeta>
-      <Section>{attributes.section.name}</Section>
-      <ArticleTitle itemprop="name">{attributes.title}</ArticleTitle>
+      <Section>{attributes.section.slug}</Section>
+      <ArticleTitle itemprop="name" dangerouslySetInnerHTML={{ __html: attributes.title }} />
       <ArticleByline>
         by <Authors authors={attributes.coAuthors} /> | <time>{formatDate(attributes.date)}</time>
       </ArticleByline>
