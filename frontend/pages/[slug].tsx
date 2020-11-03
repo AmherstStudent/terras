@@ -1,4 +1,3 @@
-import { NextPage } from 'next';
 import Layout from '../components/layout'
 import Navbar from "../components/base/Navbar"
 import {useQuery} from "@apollo/react-hooks"
@@ -38,16 +37,14 @@ const Page = ({slug}) => {
   if (loading) return <p>Loading Post...</p>;
   if (error) return <p>Something wrong happened!</p>;
   // TODO: Add a 404 page
-  const {pageBy: page} = data;
-
-  const elements = page.blocks.map(block => (
+  const elements = data.pageBy.blocks.map(block => (
     <NewBlock {...block} />
   ))
   return (<>
     <Navbar /> 
     <Layout>
       <Wrapper>
-      <HeaderText>{page.title}</HeaderText>
+      <HeaderText>{data.pageBy.title}</HeaderText>
       {elements}
       </Wrapper>
       

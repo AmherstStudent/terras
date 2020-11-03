@@ -72,22 +72,22 @@ const SideNav = () => (
   <SidePanel>
     <SidePanelWrapper>
       <NavSections>
-        <Link href={{ pathname: '/section/[slug]', query: { slug: 'news' } }}>
+        <Link href={{ pathname: '/section/news' }}>
           <a>
             <li>NEWS</li>
           </a>
         </Link>
-        <Link href={{ pathname: '/section/[slug]', query: { slug: 'opinion' } }}>
+        <Link href={{ pathname: '/section/opinion' }}>
           <a>
             <li>OPINION</li>
           </a>
         </Link>
-        <Link href={{ pathname: '/section/[slug]', query: { slug: 'arts-and-living' } }}>
+        <Link href={{ pathname: '/section/arts-and-living' }}>
           <a>
             <li>ARTS AND LIVING</li>
           </a>
         </Link>
-        <Link href={{ pathname: '/section/[slug]', query: { slug: 'sports' } }}>
+        <Link href={{ pathname: '/section/sports' }}>
           <a>
             <li>SPORTS</li>
           </a>

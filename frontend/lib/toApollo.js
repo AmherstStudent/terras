@@ -24,6 +24,7 @@ function create(initialState) {
   return new ApolloClient({
     link: link,
     cache: new InMemoryCache({ fragmentMatcher }).restore(initialState || {}),
+    connectToDevTools: process.browser,
     ssrMode: !process.browser,
     defaultOptions: {
       watchQuery: {
