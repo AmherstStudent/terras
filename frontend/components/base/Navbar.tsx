@@ -98,7 +98,7 @@ function Navbar() {
             <Logo src="/logo.svg" alt="the Amherst Student" />
           </a>
           <NewsyLinks>
-            <Link href={{ pathname: '/section', query: { slug: 'news' } }} as="/section/news">
+            <Link href={{ pathname: 'section', query: { slug: 'news' } }} as="/section/news">
               <a>
                 <li>NEWS</li>
               </a>

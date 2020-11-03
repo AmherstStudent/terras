@@ -28,7 +28,6 @@ grid-template-columns:
   1fr;
 & > * {
   grid-column: 2;
-
 }
 `
 
