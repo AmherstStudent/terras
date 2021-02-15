@@ -1,7 +1,6 @@
 import Layout from '../components/layout'
 import Navbar from "../components/base/Navbar"
-import {useQuery} from "@apollo/react-hooks"
-import gql from 'graphql-tag';
+import { gql, useQuery } from "@apollo/client";
 import {NewBlock} from "../components/article/RenderBlocks"
 import styled from "styled-components"
 

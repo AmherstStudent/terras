@@ -23,6 +23,7 @@ export default article => {
     datePublished: `${article.date}`,
     dateModified: `${article.date}`,
     description: `${article.excerpt.replace(/(<([^>]+)>)/gi, '').trim()}`,
+    inLanguage: 'en',
     publisher: {
       '@type': 'Organization',
       name: 'The Amherst Student',
@@ -47,6 +48,7 @@ export default article => {
   article.coAuthors.forEach(function(coAuthor) {
     let author = {
       '@type': 'Person',
+      '@context': 'http://schema.org',
       name: `${coAuthor.display_name}`,
       url: `amherststudent.com/author/${coAuthor.slug}`,
     }

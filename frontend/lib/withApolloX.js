@@ -26,6 +26,6 @@ export default withApollo(
       link: link,
       cache: new InMemoryCache({ fragmentMatcher }).restore(initialState || {}),
       connectToDevTools: process.browser,
-      ssrMode: !process.browser,
+      ssrMode: typeof window === 'undefined',
     }),
 )

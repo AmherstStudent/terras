@@ -12,7 +12,7 @@ export interface AuthorInterface {
 
 // TODO: Abstract, and create a sidebar panel component, sharing wwith FeaturedArticles
 const BioSectonTitle = styled.h3`
-  font-family: Halyard-Micro;
+  font-family: var(--span-text2);
   font-style: normal;
   font-weight: normal;
   font-size: 18px;
@@ -48,10 +48,9 @@ const AuthorImage = styled.img`
 `
 const Bio = styled.p`
   font-family: var(--span-font);
-  font-style: italic;
   font-weight: 300;
-  font-size: 14px;
-  line-height: 141.2%;
+  font-size: 1em;
+  line-height: 1.25em;
   color: #000000;
   flex-shrink: 1;
   overflow-wrap: anywhere;
@@ -68,7 +67,7 @@ const AuthorBio = (props: { authors: Array<AuthorInterface> }) => {
           <AuthorBioWrapper key={id}>
             <AuthorImageContainer>
               <Link href={author.slug}>
-                <AuthorImage src={author.avatar} />
+                <AuthorImage src={author.avatar || 'https://secure.gravatar.com/avatar/74cfdcd474dce8adf60dfd12baff4e9a?s=96&d=mm&r=g'} />
               </Link>
             </AuthorImageContainer>
             <Bio>{author.bio}</Bio>

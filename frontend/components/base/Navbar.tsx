@@ -136,9 +136,11 @@ function Navbar() {
               </a>
             </li>
             <li>
-              <a>
-                <FaSearch />
-              </a>
+              <Link href={{ pathname: '/search' }}>
+                <a>
+                  <FaSearch />
+                </a>
+              </Link>
             </li>
           </Socials>
         </NavBarContent>

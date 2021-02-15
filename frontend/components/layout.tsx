@@ -13,8 +13,12 @@ const Layout: React.FunctionComponent<LayoutProps> = ({ children, title = 'The A
     <Head>
       <title>{title}</title>
       <link rel="icon" href="/favicon.ico" />
-
       <meta name="viewport" content="initial-scale=1.0, width=device-width" />
+      <meta
+        name="description"
+        content="The Amherst Student covers news, politics, culture, opinion, photos, and video for the Amherst community by Amherst College student journalists."
+      />
+      <meta property="og:type" content="website" />
       <link href="https://fonts.googleapis.com/css?family=Cormorant&display=swap" rel="stylesheet" />
       <link href="https://necolas.github.io/normalize.css/latest/normalize.css" rel="stylesheet" />
       <script dangerouslySetInnerHTML={{ __html: ga }} />
@@ -30,74 +34,11 @@ const Layout: React.FunctionComponent<LayoutProps> = ({ children, title = 'The A
         * {
           box-sizing: border-box;
         }
-        /* Text */
-        @font-face {
-          font-family: 'Halyard-Text';
-          src: url('../fonts/HalyardTextLt.otf');
-          font-style: normal;
-          font-weight: 300;
-        }
-
-        @font-face {
-          font-family: 'Halyard-Text';
-          src: url('../fonts/HalyardTextLt-It.otf');
-          font-style: italic;
-          font-weight: 300;
-        }
-
-        @font-face {
-          font-family: 'Halyard-Text';
-          src: url('../fonts/HalyardText-Bd.otf');
-          font-style: normal;
-          font-weight: 700;
-        }
-
-        @font-face {
-          font-family: 'Halyard-Text';
-          src: url('../fonts/HalyardTextMedium.otf');
-          font-style: normal;
-          font-weight: 500;
-        }
-
-        @font-face {
-          font-family: 'Halyard-Text';
-          src: url('../fonts/HalyardTextBd-It.otf');
-          font-style: italic;
-          font-weight: 700;
-        }
-
-        /* Micro */
-        @font-face {
-          font-family: 'Halyard-Micro';
-          src: url('../fonts/HalyardMic-Regular.otf');
-          font-style: normal;
-          font-weight: 400;
-        }
-
-        @font-face {
-          font-family: 'Halyard-Micro';
-          src: url('../fonts/HalyardMic-It.otf');
-          font-style: italic;
-          font-weight: 400;
-        }
-        @font-face {
-          font-family: 'Halyard-Micro';
-          src: url('../fonts/HalyardMicBd.otf');
-          font-style: normal;
-          font-weight: 700;
-        }
-
-        @font-face {
-          font-family: 'Halyard-Micro';
-          src: url('../fonts/HalyardMicBd-It.otf');
-          font-style: italic;
-          font-weight: 700;
-        }
-
         :root {
           --header-font: 'Cormorant';
           --body-text: 'URWBaskervilleW01-Regular';
           --span-font: 'Halyard-Text';
+          --span-text2: 'Halyard-Micro';
           --base-font-size: 18px;
           --line-height: 172%;
         }

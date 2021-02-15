@@ -5,6 +5,8 @@ import Image from './Image'
 import List from './List'
 import Paragraph from './Paragraph'
 import Quote from './Quote'
+import Pullquote from './PullquoteBlock'
+
 import React from 'react'
 import HeroImage from '../homepage/HeroImage'
 import SmallArticleBlock from '../homepage/SmallArticleBlock'
@@ -57,7 +59,7 @@ const Blocks = {
   HomeHomepageQuoteBlock: QuoteBlock,
   HomeFeaturedPostlistBlock: Postlist,
   CoreHtmlBlock: HTMLBlock,
-  // 'core/pullquote': Pullquote,
+  CorePullquoteBlock: Pullquote,
   // TODO: 'core-embed/spotify': SpotifyEmbed,
   // TODO: Recursively do columns
   // TODO: Add Group Columns
@@ -80,45 +82,3 @@ export const NewBlock = (block: BaseBlock) => {
 
   return <Component {...block.attributes} />
 }
-//Address later
-// const InnerColumn = ({ size, block }) => {
-//   switch (size) {
-//     case 66.66:
-//       return (
-//         <MainRightSection>
-//           <NewBlock {...block} />
-//         </MainRightSection>
-//       )
-//       break
-//     case 33.33:
-//       return (
-//         <SideLeftSection>
-//           <NewBlock {...block} />
-//         </SideLeftSection>
-//       )
-//       break
-//     default:
-//       return (
-//         <ThirdsSection>
-//           <NewBlock {...block} />
-//         </ThirdsSection>
-//       )
-//   }
-// }
-// const Row = ({ column }) => {
-//   return column?.innerBlocks.map((row, i) => {
-//     return <InnerColumn key={i} size={row.attributes.width} block={row.innerBlocks && row.innerBlocks[0]} />
-//   })
-// }
-
-// const ComponentParser = (blocks: BaseBlock[]) => {
-//   blocks.forEach ((block) => {
-//     <NewBlock {...block} />
-
-//     if (block.__typename == "CoreColumnsBlock"){
-
-//     }
-//   })
-// }
-
-// TODO: Create a function for renderPage which would render a lists

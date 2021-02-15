@@ -3,10 +3,11 @@ import styled from 'styled-components'
 // TODO: Set styling for alignment, and dropCap
 
 const BodyText = styled.p`
-  font-family: var(--body-text);
-  line-height: var(--line-height);
-  font-size: var(--base-font-size);
-  color: #373a3c;
+  font-family: Baskerville;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 1.15em;
+  line-height: 172%;
 `
 interface ParagraphContent {
   content: String

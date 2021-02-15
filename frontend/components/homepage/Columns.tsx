@@ -28,6 +28,11 @@ const ThirdsSection = styled.div`
 
 /// ADDD ERROR MESSAGE!
 
+// const Columns = ({innerBlocks}) => {
+//   innerBlocks.map((innerBlock, i) => {
+//     <InnerColumn key={i} size={innerBlocks.attributes.width} block={row.innerBlocks && row.innerBlocks[0]} />
+//   })
+// }
 const InnerColumn = ({ size, block }) => {
   switch (size) {
     case 66.66:

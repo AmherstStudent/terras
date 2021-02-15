@@ -63,6 +63,17 @@ export const ArticleDocument = gql`
             }
           }
         }
+        ... on CorePullquoteBlock {
+          __typename
+
+          attributes {
+            ... on CorePullquoteBlockAttributesV2 {
+              __typename
+              value
+              citation
+            }
+          }
+        }
         ... on CoreListBlock {
           __typename
           attributes {

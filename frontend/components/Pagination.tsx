@@ -1,6 +1,6 @@
 import { AuthorInterface } from './article/AuthorBio'
 import styled from 'styled-components'
-import { formatDate } from './util'
+import { formatDate, TimeDate } from './util'
 import Link from 'next/link'
 import React from 'react'
 // TODO: Register article issue
@@ -28,15 +28,15 @@ type PostBlock = {
 }
 
 const Wrapper = styled.article`
-  padding: 10px 0;
+  padding: 1.25em 0;
+  border-bottom: 0.8px solid #a39b9b;
 `
 
 const PostTitle = styled.h2`
-  font-size: 28px;
+  font-size: 1.75em;
   font-family: 'Cormorant';
   font-weight: bold;
-  font-size: 28px;
-  line-height: 34px;
+  line-height: 1.25em;
   color: #000000;
   margin-block-start: 0em;
   margin-block-end: 0em;
@@ -45,7 +45,7 @@ const PostTitle = styled.h2`
 const Byline = styled.span`
   font-family: var(--span-font);
   font-weight: 300;
-  font-size: 12px;
+  font-size: 0.85em;
   line-height: 150%;
   color: #595959;
   text-decoration: none;
@@ -54,9 +54,9 @@ const Excerpt = styled.div`
   font-family: var(--span-font);
   font-weight: 300;
   font-style: normal;
-  font-size: 16px;
+  font-size: 1em;
+  line-height: 1.5em;
   color: #000000;
-  line-height: 23px;
   margin: 0;
   flex: 75%;
   margin-top: 1em;
@@ -81,8 +81,8 @@ export const Authors = ({ authors }) => {
       {authors
         .map(author => (
           <Byline itemprop="author" itemscope itemtype="http://schema.org/Person" key={author.slug}>
-            <Link key={author.slug} href={{ pathname: '/author', query: { id: author.slug } }} as={'/author/' + author.slug} passHref>
-              <LinkText itemprop="url">{author.display_name + ','}</LinkText>
+            <Link key={author.slug} href={{ pathname: `/article/${author.slug}` }} passHref>
+              <LinkText itemprop="url">{author.display_name + ', '}</LinkText>
             </Link>{' '}
             {author.reporter_title}
           </Byline>
@@ -93,12 +93,17 @@ export const Authors = ({ authors }) => {
 }
 
 const NextButton = styled.button`
-  background: black;
   height: 20px;
-  text-align: right;
-  font-size: 14px;
-  color: white;
+  margin: 2em 0;
+  text-align: center;
+  font-size: 2em;
+  margin: 0 auto;
+  color: purple;
   font-family: var(--span-font);
+  font-weight: 400;
+  font-style: normal;
+  font-size: 1em;
+  width: 100%;
 `
 const MiniImage = styled.img`
   width: 200px;
@@ -108,7 +113,7 @@ const MiniImage = styled.img`
   }
 `
 const IssueLink = (issue: Issue) => (
-  <Link href={{ pathname: '/issue', query: { slug: issue.slug } }} as={'/issue/' + issue.slug} passHref>
+  <Link href={{ pathname: `/issue/${issue.slug}` }} passHref>
     <LinkText>{issue.name}</LinkText>
   </Link>
 )
@@ -126,26 +131,23 @@ const PostBlock = (post: PostBlock) => {
   let series = post?.seriesN?.nodes[0]
   let authors: AuthorInterface[] = post.coAuthors
   return (
-    <React.Fragment key={post.id}>
-      <Wrapper>
-        <Link href={{ pathname: '/article', query: { slug: post.slug } }} as={'/article/' + post.slug} passHref>
-          <StyleLink>
-            <PostTitle dangerouslySetInnerHTML={{ __html: post.title }} />
-          </StyleLink>
-        </Link>
-        <div>
-          by <Authors authors={authors} />
-        </div>
-        <Byline>
-          {formatDate(post.date)} || Issue <IssueLink {...issue} />
-        </Byline>
-        <BioWrapper>
-          <Excerpt> {htmlDecode(post.excerpt)}</Excerpt>
-          {post.featuredImage ? <MiniImage src={post.featuredImage.sourceUrl} /> : ''}
-        </BioWrapper>
-      </Wrapper>
-      <hr />
-    </React.Fragment>
+    <Wrapper key={post.id}>
+      <Link href={{ pathname: `/article/${post.slug}` }} passHref>
+        <StyleLink>
+          <PostTitle dangerouslySetInnerHTML={{ __html: post.title }} />
+        </StyleLink>
+      </Link>
+      <div>
+        <Authors authors={authors} />
+      </div>
+      <Byline>
+        <TimeDate unformattedDate={post.date} /> || Issue <IssueLink {...issue} />
+      </Byline>
+      <BioWrapper>
+        <Excerpt> {htmlDecode(post.excerpt)}</Excerpt>
+        {post.featuredImage ? <MiniImage src={post.featuredImage.sourceUrl} /> : ''}
+      </BioWrapper>
+    </Wrapper>
   )
 }
 
@@ -165,7 +167,7 @@ export const PostList = ({ articles, getMore, pageInfo }: PostListProps) => {
       {articles.map(article => (
         <PostBlock key={article.id} {...article} />
       ))}
-      {pageInfo.hasNextPage && <NextButton onClick={getMore}>Next Articles</NextButton>}
+      {pageInfo.hasNextPage && <NextButton onClick={getMore}>See More</NextButton>}
     </>
   )
 }

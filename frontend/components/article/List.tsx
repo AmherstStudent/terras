@@ -15,9 +15,12 @@ const UnorderedList = styled.ul`
   margin-bottom: 15px;
 
   li {
-    font-family: var(--body-text);
-    line-height: var(--line-height);
-    font-size: var(--base-font-size);
+    font-family: Baskerville;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 1.1em;
+    line-height: 172%;
+
     color: #373a3c;
   }
 `

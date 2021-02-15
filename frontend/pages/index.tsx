@@ -1,11 +1,11 @@
 import { NextPage } from 'next'
 import Layout from '../components/layout'
 import Navbar from '../components/base/Navbar'
-import { useQuery } from '@apollo/react-hooks'
+import { gql, useQuery } from '@apollo/client'
 import { HomeDocument } from '../components/homepage/HomeQuery'
 import Columns from '../components/homepage/Columns'
 import styled from 'styled-components'
-
+import Theme from '../components/Theme'
 const HomePageWrapper = styled.div`
   display: grid;
   grid-column-gap: 20px;
@@ -20,13 +20,13 @@ const Home: NextPage = () => {
   if (loading) return <p>Loading ...</p>
   return (
     <>
-      <Navbar />
-
-      <Layout>
-        <HomePageWrapper>
-          <Columns columns={page} />
-        </HomePageWrapper>
-      </Layout>
+      <Theme>
+        <Layout>
+          <HomePageWrapper>
+            <Columns columns={page} />
+          </HomePageWrapper>
+        </Layout>
+      </Theme>
     </>
   )
 }

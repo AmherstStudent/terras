@@ -21,19 +21,28 @@ const SearchTool = () => {
   const handleChange = event => {
     setSearchTerm(event.target.value)
   }
+
+  useEffect(() => {
+    const results = people.filter(person => person.toLowerCase().includes(searchTerm))
+    setSearchResults(results)
+  }, [searchTerm])
+
+  return (
+    <>
+      <input type="text" placeholder="Search" value={searchTerm} onChange={handleChange} />
+    </>
+  )
 }
 
 const Search: NextPage = () => {
-  const { loading, error, data } = useQuery(HomeDocument)
-  let page = data && data.pageBy.blocks
-  if (loading) return <p>Loading ...</p>
   return (
     <>
       <Navbar />
 
       <Layout>
         <HomePageWrapper>
-          <Columns columns={page} />
+          <SearchTool />
+          {'Djd'}
         </HomePageWrapper>
       </Layout>
     </>
