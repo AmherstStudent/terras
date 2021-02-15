@@ -229,12 +229,12 @@ function AmherstUprising() {
         </p>
         <FullBleedImage>
           <FullBleedImageContent>
-            <blockqute>
+            <blockquote>
               “In Amherst Uprising, to me, there wasn't anything super radical or revolutionary being asked. I think they were very baseline
               demands...If you look at Uprising’s demands, at Integrate Amherst’s demands, at Reclaim Amherst —, if you look at all of those
               movements, A lot of what's being asked on behalf of the administration are the same things that were asked [in the]1980s. I
               think that it can be a little bit disheartening when you see the same things being asked for almost 50, years later.”
-            </blockqute>
+            </blockquote>
           </FullBleedImageContent>
         </FullBleedImage>
         <p>
