@@ -8,6 +8,8 @@ const BodyText = styled.p`
   font-weight: normal;
   font-size: 1.15em;
   line-height: 172%;
+  margin: 0;
+  margin-bottom: 1.2em;
 `
 interface ParagraphContent {
   content: String

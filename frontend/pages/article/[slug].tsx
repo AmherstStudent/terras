@@ -9,6 +9,7 @@ import {NewBlock} from "../../components/article/RenderBlocks"
 import AuthorBio from "../../components/article/AuthorBio"
 import FeaturedArticles from "../../components/article/FeaturedArticles"
 import styled from "styled-components"
+import Theme from '../../components/Theme'
 import ArticleSEO from "../../components/article/ArticleSEO"
 
 
@@ -36,14 +37,12 @@ const ArticleAside = styled.aside`
   }
 `
 const ArticleWrapped = styled.div`
-
+  margin-top: 15px;
   display: grid;
   grid-template-columns:
     1fr
     min(80ch, 100%)
     1fr;
-  font-family:'URWBaskervilleW01-Regular';
-  /* This past November marked the fifth anniversary of Amherst Uprising, a multi-day sit-in of Frost Library led by students who that demanded attention and change surrounding racism on campus. Yet for many, the Uprising never ended — and, it didn’t begin in November 2015. Rather, it marked just a moment in a decades-long struggle for racial justice and Black equality within the institution. The activism bred by Amherst Uprising was not new or unprecedented, but embodied traditions set by Amherst students in the decades prior to the 2015 sit-in. In the spring of 1969, for instance, the college experienced two moratoriums on classes — one initiated by the college to reflect on the Vietnam War, civil rights and coeducation in light of uprisings at Columbia and UC Berkeley;, another staged by the Afro- American Society to address the role of racism on campus. With these Out of the moratoriaum came the college’s Black studies department, which was approved by the faculty voted in favor of that spring and officially founded two years later in 1971. Or take the divestment movement of the late 1970s, in which Amherst students pressed the college to pull investments from apartheid in South Africa. Students succeeded and, which the college fully divesteding in 1985. The 2015 sit-in was not an isolated moment — Uprising has continually happened at the college, and will continue to happen. */
 
   /* Body Text */
   font-family: Baskerville;
@@ -62,7 +61,7 @@ const ArticleWrapped = styled.div`
   
 & > * {
   grid-column: 2;
-  margin-bottom: 34px;
+  
 }
 
 `
@@ -80,8 +79,7 @@ const Article = ({slug}) => {
   ))
 
   return (
-    <>
-    <Navbar />
+    <Theme>
     {article.featuredImage && (<FeaturedImage {...article.featuredImage} />)}
   
       {/* <ArticleSEO {...article} /> */}
@@ -99,7 +97,7 @@ const Article = ({slug}) => {
     </ArticleWrapped>
    
   
-    </>
+    </Theme>
     
   )
 }

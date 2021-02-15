@@ -100,10 +100,11 @@ export const OrganizationSEO = {
 const Theme: React.FunctionComponent = ({ children }) => (
   <>
     <Navbar />
+    <link href="https://necolas.github.io/normalize.css/latest/normalize.css" rel="stylesheet" />
 
     <GlobalFonts />
     <GlobalStyle />
-    {children}
+    <body>{children}</body>
   </>
 )
 
