@@ -22,10 +22,10 @@ const SearchTool = () => {
     setSearchTerm(event.target.value)
   }
 
-  useEffect(() => {
-    const results = people.filter(person => person.toLowerCase().includes(searchTerm))
-    setSearchResults(results)
-  }, [searchTerm])
+  // useEffect(() => {
+  //   const results = people.filter(person => person.toLowerCase().includes(searchTerm))
+  //   setSearchResults(results)
+  // }, [searchTerm])
 
   return (
     <>
