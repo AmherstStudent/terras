@@ -6,7 +6,7 @@ import List from './List'
 import Paragraph from './Paragraph'
 import Quote from './Quote'
 import Pullquote from './PullquoteBlock'
-
+import CoreMediaText from './CoreMediaTextBlock'
 import React from 'react'
 import HeroImage from '../homepage/HeroImage'
 import SmallArticleBlock from '../homepage/SmallArticleBlock'
@@ -60,6 +60,7 @@ const Blocks = {
   HomeFeaturedPostlistBlock: Postlist,
   CoreHtmlBlock: HTMLBlock,
   CorePullquoteBlock: Pullquote,
+  CoreMediaTextBlock: CoreMediaText,
   // TODO: 'core-embed/spotify': SpotifyEmbed,
   // TODO: Recursively do columns
   // TODO: Add Group Columns
@@ -70,15 +71,18 @@ const HomepageBlocks = {}
 interface BaseBlock {
   __typename: string
   attributes: object
+  [key: string]: any
 }
 
 export const NewBlock = (block: BaseBlock) => {
-  console.log(block)
   let Component = Blocks[block.__typename]
   if (Component == null || undefined) {
     console.log(block.__typename)
     console.log(block.attributes)
     return <p>Couldn't find anything</p>
+  }
+  if (block.__typename === 'CoreMediaTextBlock') {
+    return <Component {...block} />
   }
 
   return <Component {...block.attributes} />

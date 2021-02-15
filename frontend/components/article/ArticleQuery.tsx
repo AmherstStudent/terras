@@ -53,6 +53,33 @@ export const ArticleDocument = gql`
             }
           }
         }
+        ... on CoreMediaTextBlock {
+          originalContent
+          innerBlocks {
+            __typename
+            ... on CoreQuoteBlock {
+              attributes {
+                citation
+                value
+              }
+            }
+            ... on CoreParagraphBlock {
+              attributes {
+                ... on CoreParagraphBlockAttributesV3 {
+                  __typename
+                  content
+                  dropCap
+                  align
+                }
+              }
+            }
+          }
+          attributes {
+            ... on CoreMediaTextBlockAttributes {
+              mediaUrl
+            }
+          }
+        }
         ... on CoreQuoteBlock {
           __typename
           attributes {
