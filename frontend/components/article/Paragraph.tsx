@@ -6,8 +6,8 @@ const BodyText = styled.p`
   font-family: Baskerville;
   font-style: normal;
   font-weight: normal;
-  font-size: 1.15em;
-  line-height: 172%;
+  font-size: 1.2em;
+  line-height: 1.75em;
   margin: 0;
   margin-bottom: 1.2em;
 `

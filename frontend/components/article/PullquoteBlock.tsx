@@ -5,15 +5,15 @@ interface QuoteContent {
   citation: string
 }
 
-const QuoteWrapper = styled.blockquote`
-  border-left: 3px solid #3f1f69;
-  padding-top: 10px;
-  padding-bottom: 10px;
-  padding-left: 20px;
+const QuoteWrapper = styled.figure`
+  display: flex;
+  align-content: center;
+  flex-direction: column;
+  padding-top: 2em;
+  padding-bottom: 4em;
 `
 const QuoteCitation = styled.span`
-  font-family: Halyard-Text;
-  font-style: italic;
+  font-family: Halyard Micro;
   font-weight: normal;
   font-size: 18px;
   line-height: 150%;
@@ -30,13 +30,14 @@ const QuoteLine = styled.h6`
   line-height: 87px;
   text-align: center;
   color: #3f1f69;
+  margin: 0;
 `
 
 const Pullquote = (attributes: QuoteContent) => (
-  <figure>
+  <QuoteWrapper>
     <QuoteLine dangerouslySetInnerHTML={{ __html: attributes.value }} />
     <QuoteCitation dangerouslySetInnerHTML={{ __html: attributes.citation }} />
-  </figure>
+  </QuoteWrapper>
 )
 
 export default Pullquote

@@ -28,7 +28,7 @@ const Section = styled.span`
   text-decoration: none;
 `
 const ArticleTitle = styled.h1`
-  font-family: var(--header-font);
+  font-family: 'Cormorant';
   font-weight: 600;
   font-size: 54px;
   line-height: 65px;
@@ -40,16 +40,15 @@ const ArticleTitle = styled.h1`
   }
 `
 const ArticleByline = styled.p`
-  font-family: var(--span-font);
-  font-size: 12px;
-  font-weight: 600;
+  font-family: Halyard Micro;
+  font-size: 0.85em;
   line-height: 150%;
   font-style: normal;
   font-weight: 300;
   color: #595959;
 `
 const ArticleDescription = styled.h2`
-  font-family: var(--span-font);
+  font-family: Halyard Micro;
   font-weight: 300;
   font-size: 18px;
   line-height: 172.1%;

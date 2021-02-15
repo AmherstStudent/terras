@@ -18,8 +18,10 @@ const UnorderedList = styled.ul`
     font-family: Baskerville;
     font-style: normal;
     font-weight: normal;
-    font-size: 1.1em;
-    line-height: 172%;
+    font-size: 1.4rem;
+    line-height: 1.75em;
+    margin: 0;
+    margin-bottom: 1.2em;
 
     color: #373a3c;
   }

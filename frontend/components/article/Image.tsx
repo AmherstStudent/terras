@@ -14,6 +14,7 @@ const Caption = styled.figcaption`
   font-weight: normal;
   font-size: 16px;
   color: #000000;
+  line-height: 1.7em;
 `
 
 // For this image wrapper, we might want to consider the full-screen vs. within col.

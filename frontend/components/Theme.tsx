@@ -76,7 +76,8 @@ export const GlobalStyle = createGlobalStyle`
   body {
     width: 100vw;
     max-width: 100vw;
-    margin-top: 6em;
+    padding-top: 1.5em;
+    font-size: 16px;
   }
   * {
     box-sizing: border-box;

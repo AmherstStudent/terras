@@ -31,6 +31,10 @@ const data2 = {
         'rgba(75, 192, 192, 0.2)',
         'rgba(153, 102, 255, 0.2)',
         'rgba(255, 159, 64, 0.2)',
+        'rgba(100, 223, 235, 0.2)',
+        'rgba(0, 153, 188, 0.2)',
+        'rgba(63, 31, 105, 0.2)',
+        'rgba( 223, 114, 61, 0.2)',
       ],
       borderColor: [
         'rgba(255, 99, 132, 1)',
@@ -53,15 +57,15 @@ const data = {
     'Computer Science',
     'Biology',
     'Chemistry',
-    'Biology',
-    'Chemistry',
     'Physics',
     'Enviromental Studies',
+    'Music',
+    'Geology',
   ],
   datasets: [
     {
       label: 'Black Underrepresentation in Majors',
-      data: [-38, -28, -18, -15, -10, -9, -9, -7],
+      data: [-38, -28, -18, -15, -10, -9, -9, -7, -7, -6],
       backgroundColor: [
         'rgba(255, 99, 132, 0.2)',
         'rgba(54, 162, 235, 0.2)',
@@ -69,6 +73,10 @@ const data = {
         'rgba(75, 192, 192, 0.2)',
         'rgba(153, 102, 255, 0.2)',
         'rgba(255, 159, 64, 0.2)',
+        'rgba(100, 223, 235, 0.2)',
+        'rgba(0, 153, 188, 0.2)',
+        'rgba(63, 31, 105, 0.2)',
+        'rgba( 223, 114, 61, 0.2)',
       ],
       borderColor: [
         'rgba(255, 99, 132, 1)',
@@ -77,6 +85,10 @@ const data = {
         'rgba(75, 192, 192, 1)',
         'rgba(153, 102, 255, 1)',
         'rgba(255, 159, 64, 1)',
+        'rgba(100, 223, 235, 1)',
+        'rgba(0, 153, 188, 1)',
+        'rgba(63, 31, 105, 1)',
+        'rgba( 223, 114, 61, 1)',
       ],
       borderWidth: 1,
     },
@@ -552,6 +564,16 @@ function AmherstUprising() {
               legend: {
                 display: false,
                 suggestedMin: 0,
+              },
+              scales: {
+                yAxes: [
+                  {
+                    ticks: {
+                      beginAtZero: true,
+                      suggestedMin: 0,
+                    },
+                  },
+                ],
               },
             }}
           />

@@ -39,17 +39,18 @@ const ArticleAside = styled.aside`
 const ArticleWrapped = styled.div`
   margin-top: 15px;
   display: grid;
+  width: 100%;
   grid-template-columns:
     1fr
-    min(80ch, 100%)
+    min(75ch, 100%)
     1fr;
 
   /* Body Text */
   font-family: Libre Baskerville;
   font-style: normal;
   font-weight: normal;
-  font-size: 1.1em;
-  line-height: 172%;
+  font-size: 1.30em;
+  line-height: 1em;
  
   & blockquote {
     background: #f9f9f9;

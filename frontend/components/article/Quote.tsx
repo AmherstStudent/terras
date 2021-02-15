@@ -9,32 +9,29 @@ interface QuoteContent {
 
 const QuoteWrapper = styled.blockquote`
   border-left: 3px solid #3f1f69;
-  padding-top: 10px;
-  padding-bottom: 10px;
-  padding-left: 20px;
+  padding-bottom: 20px !important;
+  padding-left: 2em !important;
+  margin: 0 auto;
 `
 const QuoteCitation = styled.span`
-  font-family: var(--header-font);
-  font-style: italic;
+  font-family: Baskerville;
+  color: #595959;
 `
 const QuoteLine = styled.h6`
-  font-family: var(--span-font);
-  font-style: italic;
+  font-family: Baskerville;
   font-weight: 300;
-  font-size: 18px;
-  line-height: 172.1%;
+  font-size: 1.25em;
+  line-height: 1.7em;
   color: #595959;
   margin-block-start: 0;
   margin-block-end: 0;
-  margin-top: 15px;
-  margin-bottom: 15px;
   width: 95%;
 `
 
 const Quote: React.FunctionComponent<QuoteContent> = (attributes: QuoteContent) => (
   <QuoteWrapper>
-    <QuoteLine>{attributes.quote.replace(/<[^>]*>?/gm, '')}</QuoteLine>
-    <QuoteCitation>{attributes.source}</QuoteCitation>
+    <QuoteLine dangerouslySetInnerHTML={{ __html: attributes.quote }} />
+    <QuoteCitation dangerouslySetInnerHTML={{ __html: attributes.source }} />
   </QuoteWrapper>
 )
 
