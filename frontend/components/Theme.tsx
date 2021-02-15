@@ -6,37 +6,39 @@ import Footer from './base/Footer'
 import ga from '../lib/ga'
 
 export const GlobalFonts = createGlobalStyle`
+
+@import url('https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&display=swap');
 @font-face {
     font-family: 'Halyard-Text';
-    src: url('../fonts/HalyardTextLt.otf');
+    src: url('fonts/HalyardTextLt.otf');
     font-style: normal;
     font-weight: 300;
   }
 
   @font-face {
     font-family: 'Halyard-Text';
-    src: url('../fonts/HalyardTextLt-It.otf');
+    src: url('fonts/HalyardTextLt-It.otf');
     font-style: italic;
     font-weight: 300;
   }
 
   @font-face {
     font-family: 'Halyard-Text';
-    src: url('../fonts/HalyardText-Bd.otf');
+    src: url('fonts/HalyardText-Bd.otf');
     font-style: normal;
     font-weight: 700;
   }
 
   @font-face {
     font-family: 'Halyard-Text';
-    src: url('../fonts/HalyardTextMedium.otf');
+    src: url('fonts/HalyardTextMedium.otf');
     font-style: normal;
     font-weight: 500;
   }
 
   @font-face {
     font-family: 'Halyard-Text';
-    src: url('../fonts/HalyardTextBd-It.otf');
+    src: url('fonts/HalyardTextBd-It.otf');
     font-style: italic;
     font-weight: 700;
   }
@@ -44,14 +46,14 @@ export const GlobalFonts = createGlobalStyle`
   /* Micro */
   @font-face {
     font-family: 'Halyard-Micro';
-    src: url('../fonts/HalyardMic-Regular.otf');
+    src: url('fonts/HalyardMic-Regular.otf');
     font-style: normal;
     font-weight: 400;
   }
 
   @font-face {
     font-family: 'Halyard-Micro';
-    src: url('../fonts/HalyardMic-It.otf');
+    src: url('fonts/HalyardMic-It.otf');
     font-style: italic;
     font-weight: 400;
   }
@@ -64,7 +66,7 @@ export const GlobalFonts = createGlobalStyle`
 
   @font-face {
     font-family: 'Halyard-Micro';
-    src: url('../fonts/HalyardMicBd-It.otf');
+    src: url('fonts/HalyardMicBd-It.otf');
     font-style: italic;
     font-weight: 700;
   }

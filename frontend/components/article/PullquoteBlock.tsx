@@ -12,7 +12,7 @@ const QuoteWrapper = styled.blockquote`
   padding-left: 20px;
 `
 const QuoteCitation = styled.span`
-  font-family: Halyard Text;
+  font-family: Halyard-Text;
   font-style: italic;
   font-weight: normal;
   font-size: 18px;

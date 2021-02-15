@@ -45,7 +45,7 @@ const NewsyLinks = styled.ul`
   li a {
     color: black;
   }
-  font-family: 'Halyard Text';
+  font-family: 'Halyard-Text';
   font-weight: 200;
   /* ARTS & LIVING */
 

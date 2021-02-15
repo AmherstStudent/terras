@@ -45,7 +45,7 @@ const ArticleWrapped = styled.div`
     1fr;
 
   /* Body Text */
-  font-family: Baskerville;
+  font-family: Libre Baskerville;
   font-style: normal;
   font-weight: normal;
   font-size: 1.1em;
