@@ -51,7 +51,10 @@ const ArticleWrapped = styled.main`
 `
 const Article = ({post : article}) => {
 
-  const elements = article.blocks.map(block => (
+  if (article == undefined){
+    return (<> Can't find </>)
+  }
+  const elements = article?.blocks?.map(block => (
     <NewBlock key={article.__typename} {...block} />
   ))
 
@@ -81,7 +84,7 @@ const Article = ({post : article}) => {
 
 export const GET_ALL_POSTS_WITH_SLUG = `
   {
-    posts(first: 100) {
+    posts(first: 1000) {
       edges {
         node {
           slug

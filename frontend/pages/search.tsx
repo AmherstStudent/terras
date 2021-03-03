@@ -35,14 +35,10 @@ const SearchTool = () => {
 const Search: NextPage = () => {
   return (
     <>
-      <Navbar />
-
-      <Layout>
-        <HomePageWrapper>
-          <SearchTool />
-          {'Djd'}
-        </HomePageWrapper>
-      </Layout>
+      <HomePageWrapper>
+        <SearchTool />
+        {'Djd'}
+      </HomePageWrapper>
     </>
   )
 }
