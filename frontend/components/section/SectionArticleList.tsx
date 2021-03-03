@@ -1,7 +1,5 @@
 import { PostList } from '../../components/Pagination'
-import { useQuery } from '@apollo/client'
-import gql from 'graphql-tag'
-
+import { useQuery, gql } from '@apollo/client'
 const CategoryQuery = gql`
   query Category($cursor: String, $categoryID: ID!) {
     category(id: $categoryID) {

@@ -11,8 +11,14 @@ const HomePageWrapper = styled.main`
   grid-row-gap: 18px;
   margin-top: 24px;
   min-height: 100vh;
-
   margin: 0 auto;
+`
+
+const Ad = styled.img`
+  grid-column: 1 / -1;
+  width: 100%;
+  margin-top: 24px;
+  margin-bottom: 24px;
 `
 
 const Home: NextPage = () => {
@@ -23,6 +29,7 @@ const Home: NextPage = () => {
     <>
       <HomePageWrapper>
         <Columns columns={page} />
+        <Ad src="colloq.png" />
       </HomePageWrapper>
     </>
   )
