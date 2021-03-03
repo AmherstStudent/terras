@@ -1,5 +1,4 @@
-import { useQuery } from '@apollo/client'
-import gql from 'graphql-tag'
+import { useQuery, gql } from '@apollo/client';
 import { PostList } from '../../components/Pagination'
 import styled from 'styled-components'
 
