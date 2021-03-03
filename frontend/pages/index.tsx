@@ -14,10 +14,16 @@ const HomePageWrapper = styled.main`
   margin: 0 auto;
 `
 
+const AdWrapper = styled.a`
+  max-width: 80vw;
+  grid-column: 1 / -1;
+  margin: 0 auto;
+`
 const Ad = styled.img`
   grid-column: 1 / -1;
   margin-top: 24px;
   margin-bottom: 24px;
+  max-width: 80vw;
 `
 
 const Home: NextPage = () => {
@@ -28,10 +34,10 @@ const Home: NextPage = () => {
     <>
       <HomePageWrapper>
         <Columns columns={page} />
-        <a href="https://www.amherst.edu/news/campus_community_events/virtual/presidents-colloquium">
+        <AdWrapper href="https://www.amherst.edu/news/campus_community_events/virtual/presidents-colloquium">
           {' '}
           <Ad src="colloq.png" />
-        </a>
+        </AdWrapper>
       </HomePageWrapper>
     </>
   )
