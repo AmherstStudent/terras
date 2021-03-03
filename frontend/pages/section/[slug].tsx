@@ -36,6 +36,7 @@ const Section = ({name, categoryID}) => (<>
       <Wrapper>
         <SectionArticleList categoryID={categoryID} />
       </Wrapper>
+      
     </>)
 
 
