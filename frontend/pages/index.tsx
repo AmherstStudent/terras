@@ -29,7 +29,10 @@ const Home: NextPage = () => {
     <>
       <HomePageWrapper>
         <Columns columns={page} />
-        <Ad src="colloq.png" />
+        <a href="https://www.amherst.edu/news/campus_community_events/virtual/presidents-colloquium">
+          {' '}
+          <Ad src="colloq.png" />
+        </a>
       </HomePageWrapper>
     </>
   )
