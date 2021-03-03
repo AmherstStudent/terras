@@ -8,19 +8,20 @@ const Wrapper = styled.div`
 `
 
 const Author = ({slug}) => {
-    const { fetchMore, loading, error, data, variables } = useQuery(AuthorQuery, {
-        variables: { cursor: '', slug: slug },
-      })
-      if (loading) return <p>Loading Post...</p>
-      if (error) return <p>Something wrong happened! {variables} </p>
+    // const { fetchMore, loading, error, data, variables } = useQuery(AuthorQuery, {
+    //     variables: { cursor: '', slug: slug },
+    //   })
+    //   if (loading) return <p>Loading Post...</p>
+    //   if (error) return <p>Something wrong happened! {variables} </p>
        
-      let { users: {nodes } } = data
-      let {name, description, posts: { nodes: articles, pageInfo }}  = nodes[0]
+    //   let { users: {nodes } } = data
+    //   let {name, description, posts: { nodes: articles, pageInfo }}  = nodes[0]
      
     
       return (
         <>
-        
+        tm
+{/*         
         <h1>{name}</h1>
         <p>{description}</p>
         <Wrapper>
@@ -62,7 +63,7 @@ const Author = ({slug}) => {
             })
           }
         />
-              </Wrapper>
+              </Wrapper> */}
 
         </>
       )
