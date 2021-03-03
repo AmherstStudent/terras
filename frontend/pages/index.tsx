@@ -16,7 +16,6 @@ const HomePageWrapper = styled.main`
 
 const Ad = styled.img`
   grid-column: 1 / -1;
-  width: 100%;
   margin-top: 24px;
   margin-bottom: 24px;
 `
