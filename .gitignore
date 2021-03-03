@@ -4,12 +4,11 @@ yarn-error.log
 data
 
 # dependencies
-frontend/node_modules
 
-# testing
-frontend/coverage
+
 
 # production
+frontend/node_modules
 frontend/build
 frontend/dist
 frontend/.next

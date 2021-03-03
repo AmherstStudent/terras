@@ -1,17 +1,18 @@
 import { NextPage } from 'next'
-import Layout from '../components/layout'
-import Navbar from '../components/base/Navbar'
 import { gql, useQuery } from '@apollo/client'
 import { HomeDocument } from '../components/homepage/HomeQuery'
 import Columns from '../components/homepage/Columns'
 import styled from 'styled-components'
-import Theme from '../components/Theme'
-const HomePageWrapper = styled.div`
+
+const HomePageWrapper = styled.main`
   display: grid;
-  grid-column-gap: 20px;
+  grid-column-gap: 18px;
   grid-template-columns: repeat(12, 1fr);
-  grid-row-gap: 10px;
-  margin-top: 20px;
+  grid-row-gap: 18px;
+  margin-top: 24px;
+  min-height: 100vh;
+
+  margin: 0 auto;
 `
 
 const Home: NextPage = () => {
@@ -20,13 +21,9 @@ const Home: NextPage = () => {
   if (loading) return <p>Loading ...</p>
   return (
     <>
-      <Theme>
-        <Layout>
-          <HomePageWrapper>
-            <Columns columns={page} />
-          </HomePageWrapper>
-        </Layout>
-      </Theme>
+      <HomePageWrapper>
+        <Columns columns={page} />
+      </HomePageWrapper>
     </>
   )
 }

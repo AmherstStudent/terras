@@ -24,6 +24,16 @@ const AuthorName = styled.a`
   text-decoration: none;
   text-transform: capitalize;
 `
+// Smart Strip tags
+const SEO = props => {
+  return (
+    <>
+      <title>{props.title}</title>
+      <meta name="description" content={props.description} />
+      <meta name="robots" content="index, follow" />
+    </>
+  )
+}
 
 const AuthorNameLink = author => {
   return (
@@ -40,46 +50,3 @@ export const AuthorNames = ({ authors }) =>
   authors?.map(author => {
     return <AuthorNameLink {...author} />
   })
-
-// const paginatedFetch = async (contentType, allContentNodes) => {
-//   fetch
-//   if .limit
-//   const response
-//   const {data} = response
-//   if (!data?.(contentType)?.nodes)
-
-//   if (nodes && nodes.length) {
-//     nodes.forEach(node => {
-//       node = normalizeNode({ node, nodeTypeName })
-//       allContentNodes.push(node)
-//     })
-
-//     // MediaItem type is incremented in createMediaItemNode
-//     if (nodeTypeName !== `MediaItem`) {
-//       store.dispatch.logger.incrementActivityTimer({
-//         typeName: nodeTypeName,
-//         by: nodes.length,
-//       })
-//     }
-//   }
-
-//   if (
-//     hasNextPage &&
-//     endCursor &&
-//     (!settings.limit || settings.limit > allContentNodes.length)
-//   ) {
-//     return paginatedWpNodeFetch({
-//       ...variables,
-//       contentTypePlural,
-//       nodeTypeName,
-//       query,
-//       allContentNodes,
-//       helpers,
-//       settings,
-//       after: endCursor,
-//       headers,
-//     })
-//   } else {
-//     return allContentNodes
-//   }
-// }

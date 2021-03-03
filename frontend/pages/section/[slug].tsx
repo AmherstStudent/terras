@@ -1,8 +1,6 @@
-import { NextPage } from 'next';
-import Layout from '../../components/layout'
-import Navbar from "../../components/base/Navbar"
-import CategoryHead from "../../components/section/CategoryHead"
 import styled from 'styled-components'
+
+import CategoryHead from "../../components/section/CategoryHead"
 import SectionArticleList from "../../components/section/SectionArticleList"
 
 const Wrapper = styled.div`
@@ -34,13 +32,10 @@ let categories = [
 ]
 
 const Section = ({name, categoryID}) => (<>
-    <Navbar /> 
-    <Layout>
       <CategoryHead category={name} />
       <Wrapper>
         <SectionArticleList categoryID={categoryID} />
       </Wrapper>
-    </Layout>
     </>)
 
 

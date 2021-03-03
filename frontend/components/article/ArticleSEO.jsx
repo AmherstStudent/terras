@@ -1,16 +1,8 @@
 import React from 'react'
-import { NextSeo, ArticleJsonLd } from 'next-seo'
 import Head from 'next/head'
 
-{
-  /* <meta property="og:title" content="<?php the_title(); ?>" />
-<meta property="og:type" content="article" />
-<meta property="og:url" content="<?php the_permalink(); ?>"/>
-<meta property="og:description" content="<?php echo esc_attr( wp_strip_all_tags( esc_html( get_the_excerpt() ) ) ); ?>" />
-<meta name="description" content="<?php echo esc_attr( wp_strip_all_tags( esc_html( get_the_excerpt() ) ) ); ?>" /> */
-}
-
 export default article => {
+  let articleUrl = `https://amherststudent.com/article/${article.slug}`
   let data = {
     '@context': 'http://schema.org/',
     '@type': 'NewsArticle',
@@ -48,7 +40,6 @@ export default article => {
   article.coAuthors.forEach(function(coAuthor) {
     let author = {
       '@type': 'Person',
-      '@context': 'http://schema.org',
       name: `${coAuthor.display_name}`,
       url: `amherststudent.com/author/${coAuthor.slug}`,
     }
@@ -58,6 +49,18 @@ export default article => {
   data['author'] = authors
   return (
     <Head>
+      <title>{article.title}</title>
+      <meta name="description" content={article.excerpt} />
+      <meta name="twitter:title" content={article.title} />
+      <meta name="twitter:card" content="summary" key="twcard" />
+      <meta name="twitter:creator" content="@amherststudent" key="twhandle" />
+
+      <meta property="og:url" content={articleUrl} key="ogurl" />
+      <meta property="og:image" content={article?.featuredImage?.sourceUrl} key="ogimage" />
+      <meta property="og:site_name" content="amherststudent.com" key="ogsitename" />
+      <meta property="og:title" content={article.title | 'The Amherst Student'} key="ogtitle" />
+      <meta property="og:description" content={article.description} key="ogdesc" />
+
       <title dangerouslySetInnerHTML={{ __html: article.title + '| Amherst Student' }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({ data }) }}></script>
     </Head>

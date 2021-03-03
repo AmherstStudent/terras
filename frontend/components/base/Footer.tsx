@@ -1,72 +1,87 @@
 import styled from 'styled-components'
 
-const FooterWrapper = styled.footer`
-  padding-top: 1em;
-  padding-bottom: 1em;
-  margin: 0 auto;
-  background: #311a4d;
-  bottom: 0;
-  width: 100vw;
-`
-
 const FooterContent = styled.div`
-  max-width: 85%;
-  padding: 0.25em 1em;
-  font-family: var(--span-font);
-  font-weight: 300;
-  font-size: 14px;
-  color: #595959;
+  max-width: 1244px;
   color: white;
-  display: flex;
-  flex-direction: row;
-  @media screen and (max-width: 1200px) {
-    margin: 0 5%;
-  }
-  width: 85%;
-  display: flex;
+  margin: 0 auto;
+`
+const FootWrapper = styled.footer`
+  padding-top: 2vh;
+  background-color: #311a4d;
+  padding-bottom: 2vh;
 `
 
-const NewsyLinks = styled.ul`
-  text-decoration: none;
-  color: #000000;
-  padding-left: 1em;
-  flex-grow: 1;
+const InsidesGutts = styled.div`
   display: flex;
-  align-items: center;
-  li {
-    padding-left: 10px;
-    padding-right: 10px;
-    list-style-type: none;
-  }
-  li a {
-    color: white !important;
-  }
-  font-family: 'Halyard-Text';
+  justify-content: space-between;
+  align-items: flex-start;
+  margin: 40px 0;
+`
+const BasicDescription = styled.div`
+  max-width: 40%;
+  font-size: 24px;
+  font-family: Halyard-Text;
   font-weight: 200;
-  /* ARTS & LIVING */
+  padding-left: 24px;
+`
 
-  font-style: italic;
-  font-weight: 300;
-  font-size: 16px;
-  line-height: 20px;
+const ListyStuff = styled.ul`
+  column-count: 2;
+  flex-grow: 1;
+  margin: 0 0 36px;
+  padding: 0;
+  max-width: 40%;
 
-  color: #000000;
-  @media (max-width: 768px) {
-    display: none;
+  & li {
+    list-style: none;
+    margin-bottom: 5px;
+    font-family: Halyard-Text;
+    font-weight: 200;
+    font-size: 18px;
+    line-height: 1.5;
+  }
+  & li a {
+    box-shadow: inset 0 -1px #df723d;
   }
 `
 
 const Footer = () => (
-  <FooterWrapper>
+  <FootWrapper>
     <FooterContent>
-      <span>(c) 2020 The Amherst Student. All Rights Reserved.</span>
-      {/* <NewsyLinks>
-        <li>Contact us</li>
-        <li>About</li>
-        <li>Staff</li>
-      </NewsyLinks> */}
+      <InsidesGutts>
+        <BasicDescription>
+          <b>The Amherst Student</b> <br />
+          Founded in 1868, the Student remains the source for all news Amherst.
+        </BasicDescription>
+        <ListyStuff>
+          <li>
+            <a>Donate</a>
+          </li>
+          <li>
+            <a>Subscribe to our Newsletter</a>
+          </li>
+          <li>
+            <a>Join The Team</a>
+          </li>
+          <li>
+            <a>Contact Us</a>
+          </li>
+          <li>
+            <a>About Us</a>
+          </li>
+          <li>
+            <a>Advertising</a>
+          </li>
+          <li>
+            <a>Podcasts</a>
+          </li>
+          <li>
+            <a>Privacy</a>
+          </li>
+        </ListyStuff>
+      </InsidesGutts>
     </FooterContent>
-  </FooterWrapper>
+  </FootWrapper>
 )
 
 export default Footer

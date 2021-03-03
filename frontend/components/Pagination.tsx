@@ -43,9 +43,7 @@ const PostTitle = styled.h2`
   margin: 10px 0;
 `
 const Byline = styled.span`
-  font-family: var(--span-font);
   font-weight: 300;
-  font-size: 0.85em;
   line-height: 150%;
   color: #595959;
   text-decoration: none;
@@ -112,11 +110,7 @@ const MiniImage = styled.img`
     width: 100%;
   }
 `
-const IssueLink = (issue: Issue) => (
-  <Link href={{ pathname: `/issue/${issue.slug}` }} passHref>
-    <LinkText>{issue.name}</LinkText>
-  </Link>
-)
+
 const StyleLink = styled.a`
   text-decoration: none;
 `
@@ -141,10 +135,10 @@ const PostBlock = (post: PostBlock) => {
         <Authors authors={authors} />
       </div>
       <Byline>
-        <TimeDate unformattedDate={post.date} /> || Issue <IssueLink {...issue} />
+        <TimeDate unformattedDate={post.date} /> || Issue
       </Byline>
       <BioWrapper>
-        <Excerpt> {htmlDecode(post.excerpt)}</Excerpt>
+        <Excerpt> {post.excerpt}</Excerpt>
         {post.featuredImage ? <MiniImage src={post.featuredImage.sourceUrl} /> : ''}
       </BioWrapper>
     </Wrapper>

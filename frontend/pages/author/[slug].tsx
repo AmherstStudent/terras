@@ -1,5 +1,3 @@
-import Layout from '../../components/layout'
-import Navbar from "../../components/base/Navbar"
 import { useQuery } from '@apollo/react-hooks'
 import gql from 'graphql-tag'
 import { PostList } from '../../components/Pagination'
@@ -23,9 +21,7 @@ const Author = ({slug}) => {
     
       return (
         <>
-        <Navbar /> 
         
-        <Layout>
         <h1>{name}</h1>
         <p>{description}</p>
         <Wrapper>
@@ -69,7 +65,6 @@ const Author = ({slug}) => {
         />
               </Wrapper>
 
-        </Layout>
         </>
       )
 }

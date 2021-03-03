@@ -1,9 +1,6 @@
-import Layout from '../components/layout'
-import Navbar from "../components/base/Navbar"
 import { gql, useQuery } from "@apollo/client";
 import {NewBlock} from "../components/article/RenderBlocks"
 import styled from "styled-components"
-import Theme from "../components/Theme"
 
 const HeaderText = styled.h2`
 font-family: Cormorant;
@@ -42,12 +39,10 @@ const Page = ({slug}) => {
   ))
   return (<>
   
-   <Theme>
       <Wrapper>
       <HeaderText>{data.pageBy.title}</HeaderText>
       {elements}
       </Wrapper>
-    </Theme>
 
     </>)
 }

@@ -34,17 +34,15 @@ const Card = styled.div`
   }
 `
 const Category = styled.span`
-  font-family: var(--span-font);
-  text-tranform: uppercase;
-
-  font-style: normal;
+  font-family: 'Halyard-Text';
+  text-transform: uppercase;
   font-weight: bold;
-  font-size: 16px;
-  /* or 0% */
+  font-size: 1.2em;
   display: flex;
   align-items: center;
   letter-spacing: 0.05em;
   color: #3f1f69;
+  margin: 12px 0;
 `
 const CardTitle = styled.h1`
   font-family: 'Cormorant';
@@ -61,7 +59,7 @@ const CardTitle = styled.h1`
   }
 `
 const AuthorsTagline = styled.span`
-  font-family: var(--span-font);
+  font-family: 'Halyard-Text';
   font-weight: 300;
   font-size: 13px;
   line-height: 18px;
@@ -77,16 +75,31 @@ const AuthorUnderline = styled.div`
   margin: 15px 0;
 `
 
-const HeroImage = (attributes: { authors; featuredImageUrl; category; title; date; slug }) => {
+const HeroContainer = styled.section`
+  padding: 18px;
+  font-family: 'Halyard-Text';
+  height: 100%;
+`
+const HeroImageWrap = styled.img`
+  width: 100%;
+  height: auto;
+  max-height: 50%;
+  vertical-align: middle;
+`
+const HeroTitle = styled.a`
+  line-decoration: none;
+  & h1 {
+    font-family: Cormorant;
+    font-size: 2em;
+  }
+`
+const HeroText = styled.p`
+  line-height: 1.5;
+  font-weight: 200;
+`
+const HeroImageX = (attributes: { authors; featuredImageUrl; category; title; date; slug }) => {
   let authors = JSON.parse(attributes.authors)
-  let titles =
-    authors.length > 1
-      ? authors
-          ?.map(author => {
-            return author.reporter_title
-          })
-          .join(' & ')
-      : authors[0].reporter_title
+
   return (
     <HeroImageWrapper>
       {attributes.featuredImageUrl && <HeroImg src={attributes.featuredImageUrl} />}
@@ -98,7 +111,7 @@ const HeroImage = (attributes: { authors; featuredImageUrl; category; title; dat
           </Link>
         </CardTitle>
         <AuthorsTagline>
-          by <Authors authors={authors} /> || <time>{formatDate(attributes.date)}</time>
+          <Authors authors={authors} /> &middot; <time>{formatDate(attributes.date)}</time>
         </AuthorsTagline>
         <AuthorUnderline />
       </Card>
@@ -106,4 +119,17 @@ const HeroImage = (attributes: { authors; featuredImageUrl; category; title; dat
   )
 }
 
+const HeroImage = (attributes: { authors; excerpt; featuredImageUrl; category; title; date; slug }) => (
+  <HeroContainer>
+    <HeroImageWrap src={attributes?.featuredImageUrl} />
+    <Category>{attributes.category}</Category>
+    <Link href={`/article/${attributes.slug}`}>
+      <HeroTitle>
+        <h1>{attributes.title}</h1>
+      </HeroTitle>
+    </Link>
+    <HeroText>{attributes.excerpt}</HeroText>
+    <Authors authors={JSON.parse(attributes.authors)} /> &middot; <time>{formatDate(attributes.date)}</time>
+  </HeroContainer>
+)
 export default HeroImage

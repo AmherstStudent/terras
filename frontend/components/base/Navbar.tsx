@@ -8,15 +8,17 @@ import Link from 'next/link'
 const NavBarWrapper = styled.nav`
   height: 67px;
   padding: 16px 10px;
-  width: 100vw;
+  width: 85vw;
   background: white;
   margin: 0 auto;
   display: flex;
-  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2);
-  position: fixed;
+  position: static;
   top: 0;
   z-index: 2;
-  margin-bottom: 2em;
+  margin-bottom: 1rem;
+  border-bottom: 1px solid #e9e9e9;
+  padding-left: 5vw;
+  padding-right: 5vw;
 `
 
 const NavBarContent = styled.div`
@@ -49,14 +51,14 @@ const NewsyLinks = styled.ul`
   font-weight: 200;
   /* ARTS & LIVING */
 
-  font-style: italic;
   font-weight: 300;
-  font-size: 16px;
+  font-size: 1rem;
   line-height: 20px;
   /* or 62% */
   display: flex;
   align-items: center;
   color: #000000;
+
   @media (max-width: 768px) {
     display: none;
   }
@@ -98,22 +100,22 @@ function Navbar() {
             <Logo src="/logo.svg" alt="the Amherst Student" />
           </a>
           <NewsyLinks>
-            <Link href={{ pathname: '/section/news' }}>
+            <Link href="/section/news">
               <a>
                 <li>NEWS</li>
               </a>
             </Link>
-            <Link href={{ pathname: '/section/opinion' }}>
+            <Link href="/section/opinion">
               <a>
                 <li>OPINION</li>
               </a>
             </Link>
-            <Link href={{ pathname: '/section/arts-and-living' }}>
+            <Link href="/section/arts-and-living">
               <a>
                 <li>ARTS AND LIVING</li>
               </a>
             </Link>
-            <Link href={{ pathname: '/section/sports' }}>
+            <Link href="/section/sports">
               <a>
                 <li>SPORTS</li>
               </a>
