@@ -1,16 +1,14 @@
-
-import FeaturedImage from '../../components/article/FeaturedImage';
+import FeaturedImage from '../../components/article/FeaturedImage'
 import ArticleHeader from '../../components/article/ArticleHeader'
-import {NewBlock} from "../../components/article/RenderBlocks"
-import AuthorBio from "../../components/article/AuthorBio"
-import FeaturedArticles from "../../components/article/FeaturedArticles"
-import styled from "styled-components"
-import ArticleSEO from "../../components/article/ArticleSEO"
-
+import { NewBlock } from '../../components/article/RenderBlocks'
+import AuthorBio from '../../components/article/AuthorBio'
+import {Category} from "../../components/styles"
+import FeaturedArticles from '../../components/article/FeaturedArticles'
+import styled from 'styled-components'
+import ArticleSEO from '../../components/article/ArticleSEO'
+import DisqusComments from '../../components/article/disqus-comments'
 
 // TODO: We're going to have add multiple themes, will be a mini refactor.
-
-
 
 const ArticleAside = styled.aside`
   grid-column: 6 / -1;
@@ -20,67 +18,53 @@ const ArticleAside = styled.aside`
   }
 `
 
-
 const ArticleWrapped = styled.main`
-  margin-top: 15px;
+  margin: 0 auto;
+  margin-top: 24px;
   display: grid;
-  grid-template-columns:
-    1fr
-    min(65ch, 100%)
-    1fr;
+  grid-template-columns: 1fr min(75ch, calc(100% - 48px)) 1fr;
+  grid-column-gap: 24px;
+  
 
-  /* Body Text */
-  font-family: Libre Baskerville;
-  font-style: normal;
-  font-weight: normal;
-  font-size: 1.30em;
-  line-height: 1em;
- 
   & blockquote {
     background: #f9f9f9;
-  border-left: 10px solid #ccc;
-  margin: 1.5em 10px;
-  padding: 0.5em 10px;
+    border-left: 10px solid #ccc;
+    margin: 1.5em 10px;
+    padding: 0.5em 10px;
   }
-  
+
   & > * {
     grid-column: 2;
   }
-  
-
 `
-const Article = ({post : article}) => {
-
-  if (article == undefined){
-    return (<> Can't find </>)
+const Article = ({ post: article }) => {
+  if (article == undefined) {
+    return <> Can't find </>
   }
-  const elements = article?.blocks?.map(block => (
-    <NewBlock key={article.__typename} {...block} />
-  ))
+  const elements = article?.blocks?.map(block => <NewBlock key={article.__typename} {...block} />)
 
   return (
     <>
-    
-   {(article.featuredImage) && (<FeaturedImage {...article.featuredImage} />)}
-  
-      {/* <ArticleSEO {...article} /> */}
-    <ArticleWrapped itemscope itemtype="http://schema.org/Article">
-    <ArticleHeader 
-        title={article.title}
-        description={article.excerpt.replace(/<[^>]*>?/gm, '')}
-        coAuthors={article.coAuthors}
-        date={article.date}
-        section={article.categories.nodes[0]}
-      />
-      {elements}
 
-      <AuthorBio authors={article.coAuthors}/>
-  
-    </ArticleWrapped>
-</>
+      {/* <ArticleSEO {...article} /> */}
+      <ArticleWrapped itemscope itemtype="http://schema.org/Article">
+        {article.featuredImage && <FeaturedImage {...article.featuredImage} />}
+
+        <ArticleHeader
+          title={article.title}
+          description={article.excerpt.replace(/<[^>]*>?/gm, '')}
+          coAuthors={article.coAuthors}
+          date={article.date}
+          section={article.categories.nodes[0]}
+        />
+        {elements}
+
+        <AuthorBio authors={article.coAuthors} />
+        <DisqusComments post={article} />
+      </ArticleWrapped>
+    </>
   )
 }
-
 
 export const GET_ALL_POSTS_WITH_SLUG = `
   {
@@ -91,9 +75,10 @@ export const GET_ALL_POSTS_WITH_SLUG = `
         }
       }
     }
-  }`;
+  }`
 
-  const ArticleDoc = (slug) => {return `
+const ArticleDoc = slug => {
+  return `
   query {
     postBy(slug: "${slug}") {
       __typename
@@ -235,49 +220,48 @@ export const GET_ALL_POSTS_WITH_SLUG = `
       }
     }
   }
-`}
+`
+}
 
-  const API_URL = 'https://admin.amherststudent.com/graphql';
-  const fetchAPI = async (query,variables={}) => {
-    const headers = new Headers();
-  
-    headers.append('Content-Type', 'application/json');
-  
-    if (process.env.WORDPRESS_AUTH_REFRESH_TOKEN) {
-      headers.append('Authorization', `Bearer ${process.env.WORDPRESS_AUTH_REFRESH_TOKEN}`);
-    }
-    const res = await fetch(API_URL, {
-      method: 'POST',
-      headers,
-      body: JSON.stringify({
-        query,
-        variables,
-      }),
-    });
-    const json = await res.json();
-    if (json.errors) {
-      throw new Error('Failed to fetch API');
-    }
-  
-    return json.data;
+const API_URL = 'https://admin.amherststudent.com/graphql'
+const fetchAPI = async (query, variables = {}) => {
+  const headers = new Headers()
+
+  headers.append('Content-Type', 'application/json')
+
+  if (process.env.WORDPRESS_AUTH_REFRESH_TOKEN) {
+    headers.append('Authorization', `Bearer ${process.env.WORDPRESS_AUTH_REFRESH_TOKEN}`)
+  }
+  const res = await fetch(API_URL, {
+    method: 'POST',
+    headers,
+    body: JSON.stringify({
+      query,
+      variables,
+    }),
+  })
+  const json = await res.json()
+  if (json.errors) {
+    throw new Error('Failed to fetch API')
   }
 
+  return json.data
+}
+
 export const getStaticPaths = async () => {
-  const data = await fetchAPI(GET_ALL_POSTS_WITH_SLUG);
-  const allPosts = data.posts;
-  const paths = allPosts.edges.map(({node}) => `/article/${node.slug}`)
+  const data = await fetchAPI(GET_ALL_POSTS_WITH_SLUG)
+  const allPosts = data.posts
+  const paths = allPosts.edges.map(({ node }) => `/article/${node.slug}`)
   return {
     paths,
     fallback: true,
   }
 }
 
-export const getStaticProps = async ({params}) => {
+export const getStaticProps = async ({ params }) => {
   const doc = ArticleDoc(params.slug)
-  const post = await fetchAPI(doc);
-  return {props: {post: post.postBy}, revalidate: 1}
+  const post = await fetchAPI(doc)
+  return { props: { post: post.postBy }, revalidate: 1 }
 }
 
-
-
-export default Article;
+export default Article

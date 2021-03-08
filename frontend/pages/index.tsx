@@ -1,5 +1,5 @@
 import { NextPage } from 'next'
-import { gql, useQuery } from '@apollo/client'
+import { useQuery } from '@apollo/client'
 import { HomeDocument } from '../components/homepage/HomeQuery'
 import Columns from '../components/homepage/Columns'
 import styled from 'styled-components'

@@ -37,7 +37,7 @@ export default article => {
   }
 
   let authors = []
-  article.coAuthors.forEach(function(coAuthor) {
+  article.coAuthors.forEach(function (coAuthor) {
     let author = {
       '@type': 'Person',
       name: `${coAuthor.display_name}`,

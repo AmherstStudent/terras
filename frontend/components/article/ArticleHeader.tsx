@@ -1,20 +1,11 @@
 import styled from 'styled-components'
-import { AuthorInterface } from './AuthorBio'
 import { formatDate } from '../util'
 import { Authors } from '../Pagination'
 
-interface ArticleContent {
-  section: any
-  title: string
-  description: string
-  date: string
-  coAuthors: AuthorInterface[]
-}
 
 const ArticleMeta = styled.header`
-  grid-column: 1 / -1;
-  margin-top: 40px;
-  margin-bottom: 40px;
+  margin-top: 24px;
+  margin-bottom: 24px;
 `
 const Section = styled.span`
   font-family: var(--span-font);
@@ -59,7 +50,7 @@ const ArticleDescription = styled.h2`
   width: 95%;
 `
 
-const ArticleHeader = (attributes: ArticleContent) => {
+const ArticleHeader = (attributes) => {
   return (
     <ArticleMeta>
       <Section>{attributes.section.slug}</Section>
@@ -67,7 +58,7 @@ const ArticleHeader = (attributes: ArticleContent) => {
       <ArticleByline>
         by <Authors authors={attributes.coAuthors} /> | <time>{formatDate(attributes.date)}</time>
       </ArticleByline>
-      <ArticleDescription> {attributes.description}</ArticleDescription>
+      <ArticleDescription dangerouslySetInnerHTML={{ __html: attributes.description }}/>
     </ArticleMeta>
   )
 }

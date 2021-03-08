@@ -97,27 +97,27 @@ const HeroText = styled.p`
   line-height: 1.5;
   font-weight: 200;
 `
-const HeroImageX = (attributes: { authors; featuredImageUrl; category; title; date; slug }) => {
-  let authors = JSON.parse(attributes.authors)
+// const HeroImageX = (attributes: { authors; featuredImageUrl; category; title; date; slug }) => {
+//   let authors = JSON.parse(attributes.authors)
 
-  return (
-    <HeroImageWrapper>
-      {attributes.featuredImageUrl && <HeroImg src={attributes.featuredImageUrl} />}
-      <Card>
-        <Category>{attributes.category}</Category>
-        <CardTitle>
-          <Link href={{ pathname: '/article', query: { slug: attributes.slug } }} as={'/article/' + attributes.slug} passHref>
-            <a dangerouslySetInnerHTML={{ __html: attributes.title }} />
-          </Link>
-        </CardTitle>
-        <AuthorsTagline>
-          <Authors authors={authors} /> &middot; <time>{formatDate(attributes.date)}</time>
-        </AuthorsTagline>
-        <AuthorUnderline />
-      </Card>
-    </HeroImageWrapper>
-  )
-}
+//   return (
+//     <HeroImageWrapper>
+//       {attributes.featuredImageUrl && <HeroImg src={attributes.featuredImageUrl} />}
+//       <Card>
+//         <Category>{attributes.category}</Category>
+//         <CardTitle>
+//           <Link href={{ pathname: '/article', query: { slug: attributes.slug } }} as={'/article/' + attributes.slug} passHref>
+//             <a dangerouslySetInnerHTML={{ __html: attributes.title }} />
+//           </Link>
+//         </CardTitle>
+//         <AuthorsTagline>
+//           <Authors authors={authors} /> &middot; <time>{formatDate(attributes.date)}</time>
+//         </AuthorsTagline>
+//         <AuthorUnderline />
+//       </Card>
+//     </HeroImageWrapper>
+//   )
+// }
 
 const HeroImage = (attributes: { authors; excerpt; featuredImageUrl; category; title; date; slug }) => (
   <HeroContainer>

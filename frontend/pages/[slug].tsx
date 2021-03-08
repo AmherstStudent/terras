@@ -1,50 +1,48 @@
-import { gql, useQuery } from "@apollo/client";
-import {NewBlock} from "../components/article/RenderBlocks"
-import styled from "styled-components"
+import { gql, useQuery } from '@apollo/client'
+import { NewBlock } from '../components/article/RenderBlocks'
+import styled from 'styled-components'
 
 const HeaderText = styled.h2`
-font-family: Cormorant;
-font-style: normal;
-font-weight: bold;
-font-size: 2em;
-color: #000000;
-margin-top: .5em;
-margin-bottom: .5em;
-& > a {
-  text-decoration: none;
+  font-family: Cormorant;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 2em;
   color: #000000;
-}`
-
-
-const Wrapper = styled.div`
-display: grid;
-grid-template-columns:
-  1fr
-  min(85ch, 100%)
-  1fr;
-& > * {
-  grid-column: 2;
-}
+  margin-top: 0.5em;
+  margin-bottom: 0.5em;
+  & > a {
+    text-decoration: none;
+    color: #000000;
+  }
 `
 
-const Page = ({slug}) => {
-  const { loading, error, data } = useQuery(PageDocument, {
-    variables: {slug}
-  })
-  if (loading) return <p>Loading Post...</p>;
-  if (error) return <p>Something wrong happened!</p>;
-  // TODO: Add a 404 page
-  const elements = data.pageBy.blocks.map(block => (
-    <NewBlock {...block} />
-  ))
-  return (<>
-  
-      <Wrapper>
-      <HeaderText>{data.pageBy.title}</HeaderText>
-      {elements}
-      </Wrapper>
+const Wrapper = styled.div`
+  display: grid;
+  grid-template-columns:
+    1fr
+    min(85ch, 100%)
+    1fr;
+  & > * {
+    grid-column: 2;
+  }
+`
 
-    </>)
+const Page = ({ slug }) => {
+  const { loading, error, data } = useQuery(PageDocument, {
+    variables: { slug },
+  })
+  if (loading) return <p>Loading Post...</p>
+  if (error) return <p>Something wrong happened!</p>
+  // TODO: Add a 404 page
+  const elements = data.pageBy.blocks.map(block => <NewBlock {...block} />)
+  return (
+    <>
+      <Wrapper>
+        <HeaderText>{data.pageBy.title}</HeaderText>
+        {elements}
+      </Wrapper>
+    </>
+  )
 }
 
 Page.getInitialProps = async ({ query }) => {
@@ -52,85 +50,83 @@ Page.getInitialProps = async ({ query }) => {
 }
 
 const PageDocument = gql`
-query Page($slug: String) {
-  pageBy(uri: $slug){
-    __typename
-    title
-    id
-    date
-    desiredSlug
-    excerpt
-    featuredImage {
-      sourceUrl
-      altText
-    }
-    blocks {
+  query Page($slug: String) {
+    pageBy(uri: $slug) {
       __typename
-      ... on CoreHeadingBlock {
+      title
+      id
+      date
+      desiredSlug
+      excerpt
+      featuredImage {
+        sourceUrl
+        altText
+      }
+      blocks {
         __typename
-        attributes {
+        ... on CoreHeadingBlock {
           __typename
-          ... on CoreHeadingBlockAttributes {
+          attributes {
             __typename
-            content
-            level
+            ... on CoreHeadingBlockAttributes {
+              __typename
+              content
+              level
+            }
           }
         }
-      }
-      ... on CoreImageBlock {
-        attributes {
+        ... on CoreImageBlock {
+          attributes {
+            __typename
+            ... on CoreImageBlockAttributes {
+              __typename
+              url
+              caption
+            }
+          }
+        }
+        ... on CoreQuoteBlock {
           __typename
-          ... on CoreImageBlockAttributes {
-            __typename
-            url
-            caption
+          attributes {
+            ... on CoreQuoteBlockAttributes {
+              __typename
+              quote: value
+              source: citation
+            }
           }
         }
-      }
-      ... on CoreQuoteBlock {
-        __typename
-        attributes {
-          ... on CoreQuoteBlockAttributes {
-            __typename
-            quote: value
-            source: citation
+        ... on CoreListBlock {
+          __typename
+          attributes {
+            values
           }
         }
-      }
-      ... on CoreListBlock {
-        __typename
-        attributes {
-          values
-        }
-      }
-      ... on CoreParagraphBlock {
-        __typename
-        name
-        attributes {
-          ... on CoreParagraphBlockAttributesV3 {
-            __typename
-            content
-            dropCap
-            align
+        ... on CoreParagraphBlock {
+          __typename
+          name
+          attributes {
+            ... on CoreParagraphBlockAttributesV3 {
+              __typename
+              content
+              dropCap
+              align
+            }
           }
         }
-      }
-      ... on CoreGalleryBlock {
-        __typename
-        attributes {
-          ... on CoreGalleryBlockAttributes {
-            __typename
-            ids
-            images
-            linkTo
+        ... on CoreGalleryBlock {
+          __typename
+          attributes {
+            ... on CoreGalleryBlockAttributes {
+              __typename
+              ids
+              images
+              linkTo
+            }
           }
         }
       }
     }
   }
-}
-
-
 `
 
 export default Page

@@ -1,27 +1,25 @@
-import { useQuery, gql } from '@apollo/client';
+import { useQuery, gql } from '@apollo/client'
 import { PostList } from '../../components/Pagination'
 import styled from 'styled-components'
 
 const Wrapper = styled.div`
   grid-column: 1 / 3;
-
 `
 
-const Author = ({slug}) => {
-    // const { fetchMore, loading, error, data, variables } = useQuery(AuthorQuery, {
-    //     variables: { cursor: '', slug: slug },
-    //   })
-    //   if (loading) return <p>Loading Post...</p>
-    //   if (error) return <p>Something wrong happened! {variables} </p>
-       
-    //   let { users: {nodes } } = data
-    //   let {name, description, posts: { nodes: articles, pageInfo }}  = nodes[0]
-     
-    
-      return (
-        <>
-        tm
-{/*         
+const Author = ({ slug }) => {
+  // const { fetchMore, loading, error, data, variables } = useQuery(AuthorQuery, {
+  //     variables: { cursor: '', slug: slug },
+  //   })
+  //   if (loading) return <p>Loading Post...</p>
+  //   if (error) return <p>Something wrong happened! {variables} </p>
+
+  //   let { users: {nodes } } = data
+  //   let {name, description, posts: { nodes: articles, pageInfo }}  = nodes[0]
+
+  return (
+    <>
+      tm
+      {/*         
         <h1>{name}</h1>
         <p>{description}</p>
         <Wrapper>
@@ -64,9 +62,8 @@ const Author = ({slug}) => {
           }
         />
               </Wrapper> */}
-
-        </>
-      )
+    </>
+  )
 }
 
 // (
@@ -81,15 +78,13 @@ const Author = ({slug}) => {
 // )
 
 Author.getInitialProps = async ({ query }) => {
-    return { slug: query.slug }
-  }
+  return { slug: query.slug }
+}
 
-export default Author;
-
-
+export default Author
 
 const AuthorQuery = gql`
-query Author($cursor: String, $slug: String) {
+  query Author($cursor: String, $slug: String) {
     users(where: { nicename: $slug }) {
       nodes {
         id
@@ -177,4 +172,3 @@ query Author($cursor: String, $slug: String) {
 //     />
 //   )
 // }
-

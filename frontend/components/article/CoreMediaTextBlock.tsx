@@ -8,7 +8,6 @@ const FullBleedImage = styled.div`
   margin: 0 auto;
   background-size: cover;
   background-position: 50% 50%;
-
   background-image: url(${props => props.url});
 `
 

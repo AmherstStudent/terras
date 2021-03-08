@@ -2379,7 +2379,13 @@ type Menu {
 }
 
 type MenuItem {
-  childItems(first: Int, last: Int, after: String, before: String, where: MenuItemToMenuItemConnectionWhereArgs): MenuItemToMenuItemConnection
+  childItems(
+    first: Int
+    last: Int
+    after: String
+    before: String
+    where: MenuItemToMenuItemConnectionWhereArgs
+  ): MenuItemToMenuItemConnection
   connectedObject: MenuItemObjectUnion
   cssClasses: [String]
   description: String
@@ -3300,7 +3306,13 @@ type RootQuery {
   seriesN(first: Int, last: Int, after: String, before: String, where: RootQueryToSeriesConnectionWhereArgs): RootQueryToSeriesConnection
   allSettings: Settings
   blocksBy(json: String): [Block]
-  categories(first: Int, last: Int, after: String, before: String, where: RootQueryToCategoryConnectionWhereArgs): RootQueryToCategoryConnection
+  categories(
+    first: Int
+    last: Int
+    after: String
+    before: String
+    where: RootQueryToCategoryConnectionWhereArgs
+  ): RootQueryToCategoryConnection
   category(id: ID!): Category
   comment(id: ID!): Comment
   comments(first: Int, last: Int, after: String, before: String, where: RootQueryToCommentConnectionWhereArgs): RootQueryToCommentConnection
@@ -3308,10 +3320,22 @@ type RootQuery {
   generalSettings: GeneralSettings
   mediaItem(id: ID!): MediaItem
   mediaItemBy(id: ID, mediaItemId: Int, uri: String, slug: String): MediaItem
-  mediaItems(first: Int, last: Int, after: String, before: String, where: RootQueryToMediaItemConnectionWhereArgs): RootQueryToMediaItemConnection
+  mediaItems(
+    first: Int
+    last: Int
+    after: String
+    before: String
+    where: RootQueryToMediaItemConnectionWhereArgs
+  ): RootQueryToMediaItemConnection
   menu(id: ID!): Menu
   menuItem(id: ID!): MenuItem
-  menuItems(first: Int, last: Int, after: String, before: String, where: RootQueryToMenuItemConnectionWhereArgs): RootQueryToMenuItemConnection
+  menuItems(
+    first: Int
+    last: Int
+    after: String
+    before: String
+    where: RootQueryToMenuItemConnectionWhereArgs
+  ): RootQueryToMenuItemConnection
   menus(first: Int, last: Int, after: String, before: String, where: RootQueryToMenuConnectionWhereArgs): RootQueryToMenuConnection
   node(id: ID): Node
   page(id: ID!): Page
@@ -3326,7 +3350,13 @@ type RootQuery {
   readingSettings: ReadingSettings
   revision(id: ID!): Revision
   revisionBy(id: ID, revisionId: Int, uri: String, slug: String): Revision
-  revisions(first: Int, last: Int, after: String, before: String, where: RootQueryToRevisionConnectionWhereArgs): RootQueryToRevisionConnection
+  revisions(
+    first: Int
+    last: Int
+    after: String
+    before: String
+    where: RootQueryToRevisionConnectionWhereArgs
+  ): RootQueryToRevisionConnection
   tag(id: ID!): Tag
   tags(first: Int, last: Int, after: String, before: String, where: RootQueryToTagConnectionWhereArgs): RootQueryToTagConnection
   theme(id: ID!): Theme

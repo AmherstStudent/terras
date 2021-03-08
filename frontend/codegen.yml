@@ -1,6 +1,6 @@
 overwrite: true
-schema: "https://admin.amherststudent.com/graphql"
-documents: "**/*.graphql"
+schema: 'https://admin.amherststudent.com/graphql'
+documents: '**/*.graphql'
 generates:
   ./_generated_/_generated-schema.graphql:
     plugins:
@@ -8,4 +8,3 @@ generates:
   ./_generated_/fragmentTypes.json:
     plugins:
       - fragment-matcher
-

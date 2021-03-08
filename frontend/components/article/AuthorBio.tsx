@@ -12,7 +12,7 @@ export interface AuthorInterface {
 
 // TODO: Abstract, and create a sidebar panel component, sharing wwith FeaturedArticles
 const BioSectonTitle = styled.h3`
-  font-family: var(--span-text2);
+  font-family: 'Halyard-Text';
   font-style: normal;
   font-weight: normal;
   font-size: 18px;
@@ -20,34 +20,17 @@ const BioSectonTitle = styled.h3`
   color: #000000;
   margin: 0;
   border-bottom: 5px solid black;
+  margin-bottom: 12px;
   padding-bottom: 5px;
 `
 
-const BioSection = styled.div`
-  margin-top: 20px;
-`
-const AuthorBioWrapper = styled.div`
-  display: flex;
-  flex-direction: row;
-  justify-content: flex-start;
-  padding-top: 10px;
-  padding-bottom: 10px;
-  height: auto;
-`
-const AuthorImageContainer = styled.div`
-  text-align: left;
-  margin-right: 10px;
-`
-const AuthorImage = styled.img`
-  min-width: 100px;
-  width: auto;
-  height: auto;
-  min-height: 100px;
-  background-color: #c4c4c4;
-  border-radius: 50%;
+const AuthorName = styled.h2`
+font-family: 'Halyard-Text';
+margin: 0;
+
 `
 const Bio = styled.p`
-  font-family: var(--span-font);
+  font-family: 'Halyard-Text';
   font-weight: 300;
   font-size: 1em;
   line-height: 1.25em;
@@ -56,24 +39,31 @@ const Bio = styled.p`
   overflow-wrap: anywhere;
   height: auto;
 `
+const ReadMore = styled.a`
+text-decoration: none;
+font-size: .5em;
+font-weight: 300;
+`
+const Author = (author) => {
+  return (
+    <>
+    
+      <AuthorName>{author.display_name} <Link href={{ pathname: `/author/${author.slug}` }} passHref><ReadMore>
+        read more</ReadMore></Link></AuthorName>
 
+      
+     <Bio>{author.bio}</Bio>
+    </>
+   
+  )
+}
 const AuthorBio = (props: { authors: Array<AuthorInterface> }) => {
   return (
     <>
-      <BioSection>
-        <BioSectonTitle>{props.authors.length > 1 ? 'AUTHORS' : props.authors[0].display_name}</BioSectonTitle>
-
-        {props.authors.map((author, id) => (
-          <AuthorBioWrapper key={id}>
-            <AuthorImageContainer>
-              <Link href={author.slug}>
-                <AuthorImage src={author.avatar || 'https://secure.gravatar.com/avatar/74cfdcd474dce8adf60dfd12baff4e9a?s=96&d=mm&r=g'} />
-              </Link>
-            </AuthorImageContainer>
-            <Bio>{author.bio}</Bio>
-          </AuthorBioWrapper>
-        ))}
-      </BioSection>
+      <BioSectonTitle>{props.authors.length > 1 ? 'AUTHORS' : props.authors[0].display_name}</BioSectonTitle>
+      {props.authors.map(author => (
+        <Author {...author} />
+      ))}
     </>
   )
 }

@@ -13,5 +13,6 @@ const FeaturedImage = styled.img<FeaturedImageInterface>`
   border-bottom: 10px solid #3f1f69;
   max-height: 600px;
   object-fit: cover;
+  grid-column: 1 / 4 !important;
 `
 export default FeaturedImage
