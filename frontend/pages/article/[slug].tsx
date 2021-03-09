@@ -2,7 +2,7 @@ import FeaturedImage from '../../components/article/FeaturedImage'
 import ArticleHeader from '../../components/article/ArticleHeader'
 import { NewBlock } from '../../components/article/RenderBlocks'
 import AuthorBio from '../../components/article/AuthorBio'
-import {Category} from "../../components/styles"
+import { Category } from '../../components/styles'
 import FeaturedArticles from '../../components/article/FeaturedArticles'
 import styled from 'styled-components'
 import ArticleSEO from '../../components/article/ArticleSEO'
@@ -24,7 +24,6 @@ const ArticleWrapped = styled.main`
   display: grid;
   grid-template-columns: 1fr min(75ch, calc(100% - 48px)) 1fr;
   grid-column-gap: 24px;
-  
 
   & blockquote {
     background: #f9f9f9;
@@ -42,11 +41,10 @@ const Article = ({ post: article }) => {
     return <> Can't find </>
   }
   const elements = article?.blocks?.map(block => <NewBlock key={article.__typename} {...block} />)
-
+  let authors = article.coAuthors
   return (
     <>
-
-      {/* <ArticleSEO {...article} /> */}
+      <ArticleSEO {...article} />
       <ArticleWrapped itemscope itemtype="http://schema.org/Article">
         {article.featuredImage && <FeaturedImage {...article.featuredImage} />}
 
@@ -59,7 +57,7 @@ const Article = ({ post: article }) => {
         />
         {elements}
 
-        <AuthorBio authors={article.coAuthors} />
+        <AuthorBio authors={article.coAuthors}/>
         <DisqusComments post={article} />
       </ArticleWrapped>
     </>

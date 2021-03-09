@@ -2,7 +2,6 @@ import styled from 'styled-components'
 import { formatDate } from '../util'
 import { Authors } from '../Pagination'
 
-
 const ArticleMeta = styled.header`
   margin-top: 24px;
   margin-bottom: 24px;
@@ -50,7 +49,7 @@ const ArticleDescription = styled.h2`
   width: 95%;
 `
 
-const ArticleHeader = (attributes) => {
+const ArticleHeader = attributes => {
   return (
     <ArticleMeta>
       <Section>{attributes.section.slug}</Section>
@@ -58,7 +57,7 @@ const ArticleHeader = (attributes) => {
       <ArticleByline>
         by <Authors authors={attributes.coAuthors} /> | <time>{formatDate(attributes.date)}</time>
       </ArticleByline>
-      <ArticleDescription dangerouslySetInnerHTML={{ __html: attributes.description }}/>
+      <ArticleDescription dangerouslySetInnerHTML={{ __html: attributes.description }} />
     </ArticleMeta>
   )
 }

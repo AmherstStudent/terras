@@ -1,14 +1,6 @@
 import styled from 'styled-components'
 import Link from 'next/link'
 
-export interface AuthorInterface {
-  display_name: string
-  avatar: string
-  slug: string
-  bio: string
-  id: number
-  reporter_title: string
-}
 
 // TODO: Abstract, and create a sidebar panel component, sharing wwith FeaturedArticles
 const BioSectonTitle = styled.h3`
@@ -23,11 +15,9 @@ const BioSectonTitle = styled.h3`
   margin-bottom: 12px;
   padding-bottom: 5px;
 `
-
 const AuthorName = styled.h2`
-font-family: 'Halyard-Text';
-margin: 0;
-
+  font-family: 'Halyard-Text';
+  margin: 0;
 `
 const Bio = styled.p`
   font-family: 'Halyard-Text';
@@ -40,29 +30,30 @@ const Bio = styled.p`
   height: auto;
 `
 const ReadMore = styled.a`
-text-decoration: none;
-font-size: .5em;
-font-weight: 300;
+  text-decoration: none;
+  font-size: 0.5em;
+  font-weight: 300;
 `
-const Author = (author) => {
+const Author = author => {
   return (
     <>
-    
-      <AuthorName>{author.display_name} <Link href={{ pathname: `/author/${author.slug}` }} passHref><ReadMore>
-        read more</ReadMore></Link></AuthorName>
-
-      
-     <Bio>{author.bio}</Bio>
+      <AuthorName>
+        {author.display_name}{' '}
+        <Link href={{ pathname: `/author/${author.slug}` }} passHref>
+          <ReadMore>read more</ReadMore>
+        </Link>
+      </AuthorName>
+      <Bio>{author.bio}</Bio>
     </>
-   
   )
 }
-const AuthorBio = (props: { authors: Array<AuthorInterface> }) => {
+const AuthorBio = ( {authors} ) => {
+  let title = authors.length > 1 ? "AUTHORS" : "AUTHOR"
   return (
     <>
-      <BioSectonTitle>{props.authors.length > 1 ? 'AUTHORS' : props.authors[0].display_name}</BioSectonTitle>
-      {props.authors.map(author => (
-        <Author {...author} />
+      <BioSectonTitle>{title}</BioSectonTitle>
+      {authors.map((author, i)=> (
+        <Author key={i} {...author} />
       ))}
     </>
   )

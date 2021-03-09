@@ -1,7 +1,7 @@
 import React from 'react'
 import Head from 'next/head'
 
-export default article => {
+const ArticleSEO = (article) => {
   let articleUrl = `https://amherststudent.com/article/${article.slug}`
   let data = {
     '@context': 'http://schema.org/',
@@ -59,10 +59,12 @@ export default article => {
       <meta property="og:image" content={article?.featuredImage?.sourceUrl} key="ogimage" />
       <meta property="og:site_name" content="amherststudent.com" key="ogsitename" />
       <meta property="og:title" content={article.title | 'The Amherst Student'} key="ogtitle" />
-      <meta property="og:description" content={article.description} key="ogdesc" />
+      <meta property="og:description" content={article.excerpt} key="ogdesc" />
 
       <title dangerouslySetInnerHTML={{ __html: article.title + '| Amherst Student' }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({ data }) }}></script>
     </Head>
   )
 }
+
+export default ArticleSEO
