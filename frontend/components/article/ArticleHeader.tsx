@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import {Category} from "../styles/index"
+import { Category } from '../styles/index'
 import { formatDate } from '../util'
 import { Authors } from '../Pagination'
 
@@ -21,7 +21,6 @@ const ArticleTitle = styled.h1`
   }
 `
 const ArticleByline = styled.p`
-  
   color: #595959;
 `
 const ArticleDescription = styled.h2`

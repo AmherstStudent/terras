@@ -1,4 +1,3 @@
-import { AuthorInterface } from './article/AuthorBio'
 import styled from 'styled-components'
 import { formatDate, TimeDate } from './util'
 import Link from 'next/link'
@@ -20,7 +19,7 @@ type PostBlock = {
   slug: string
   title: String
   excerpt: String
-  coAuthors: AuthorInterface[]
+  coAuthors: any[]
   featuredImage: any
   date: string
   issues: IssueList
@@ -73,7 +72,6 @@ const BioWrapper = styled.div`
   }
 `
 
-  
 export const Authors = ({ authors }) => {
   return (
     <Byline>
@@ -81,7 +79,9 @@ export const Authors = ({ authors }) => {
         .map(author => (
           <Byline itemprop="author" itemscope itemtype="http://schema.org/Person" key={author.slug}>
             <Link key={author.slug} href={{ pathname: `/article/${author.slug}` }} passHref>
-              <LinkText itemprop="url" rel="author">{author.display_name + ', '}</LinkText>
+              <LinkText itemprop="url" rel="author">
+                {author.display_name + ', '}
+              </LinkText>
             </Link>{' '}
             {author.reporter_title}
           </Byline>
@@ -118,9 +118,9 @@ const StyleLink = styled.a`
 
 /// If less than have the next line
 const PostBlock = (post: PostBlock) => {
-  let issue: Issue = post?.issues?.nodes[0]
-  let series = post?.seriesN?.nodes[0]
-  let authors: AuthorInterface[] = post.coAuthors
+  // let issue: Issue = post?.issues?.nodes[0]
+  // let series = post?.seriesN?.nodes[0]
+  let authors = post.coAuthors
   return (
     <Wrapper key={post.id}>
       <Link href={{ pathname: `/article/${post.slug}` }} passHref>
