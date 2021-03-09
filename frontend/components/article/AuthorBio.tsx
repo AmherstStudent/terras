@@ -1,7 +1,6 @@
 import styled from 'styled-components'
 import Link from 'next/link'
 
-
 // TODO: Abstract, and create a sidebar panel component, sharing wwith FeaturedArticles
 const BioSectonTitle = styled.h3`
   font-family: 'Halyard-Text';
@@ -47,12 +46,12 @@ const Author = author => {
     </>
   )
 }
-const AuthorBio = ( {authors} ) => {
-  let title = authors.length > 1 ? "AUTHORS" : "AUTHOR"
+const AuthorBio = ({ authors }) => {
+  let title = authors.length > 1 ? 'AUTHORS' : 'AUTHOR'
   return (
     <>
       <BioSectonTitle>{title}</BioSectonTitle>
-      {authors.map((author, i)=> (
+      {authors.map((author, i) => (
         <Author key={i} {...author} />
       ))}
     </>

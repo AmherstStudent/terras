@@ -1,7 +1,7 @@
 import React from 'react'
 import Head from 'next/head'
 
-const ArticleSEO = (article) => {
+const ArticleSEO = article => {
   let articleUrl = `https://amherststudent.com/article/${article.slug}`
   let data = {
     '@context': 'http://schema.org/',

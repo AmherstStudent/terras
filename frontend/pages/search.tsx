@@ -1,5 +1,4 @@
 import { NextPage } from 'next'
-import { useQuery } from '@apollo/react-hooks'
 import { HomeDocument } from '../components/homepage/HomeQuery'
 import Columns from '../components/homepage/Columns'
 import styled from 'styled-components'

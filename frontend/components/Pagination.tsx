@@ -73,6 +73,7 @@ const BioWrapper = styled.div`
   }
 `
 
+  
 export const Authors = ({ authors }) => {
   return (
     <Byline>
@@ -80,7 +81,7 @@ export const Authors = ({ authors }) => {
         .map(author => (
           <Byline itemprop="author" itemscope itemtype="http://schema.org/Person" key={author.slug}>
             <Link key={author.slug} href={{ pathname: `/article/${author.slug}` }} passHref>
-              <LinkText itemprop="url">{author.display_name + ', '}</LinkText>
+              <LinkText itemprop="url" rel="author">{author.display_name + ', '}</LinkText>
             </Link>{' '}
             {author.reporter_title}
           </Byline>
@@ -114,11 +115,7 @@ const MiniImage = styled.img`
 const StyleLink = styled.a`
   text-decoration: none;
 `
-const htmlDecode = (html: String) => {
-  const regex = /(<([^>]+)>)/gi
-  const result = html.replace(regex, '').replace('[&hellip;]', '[...]')
-  return result.replace('&nbsp;', '')
-}
+
 /// If less than have the next line
 const PostBlock = (post: PostBlock) => {
   let issue: Issue = post?.issues?.nodes[0]

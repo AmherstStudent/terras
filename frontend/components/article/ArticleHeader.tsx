@@ -1,4 +1,5 @@
 import styled from 'styled-components'
+import {Category} from "../styles/index"
 import { formatDate } from '../util'
 import { Authors } from '../Pagination'
 
@@ -6,17 +7,7 @@ const ArticleMeta = styled.header`
   margin-top: 24px;
   margin-bottom: 24px;
 `
-const Section = styled.span`
-  font-family: var(--span-font);
-  font-style: normal;
-  font-weight: bold;
-  font-size: 16px;
-  line-height: 23px;
-  letter-spacing: 0.05em;
-  color: #3f1f69;
-  text-transform: uppercase;
-  text-decoration: none;
-`
+
 const ArticleTitle = styled.h1`
   font-family: 'Cormorant';
   font-weight: 600;
@@ -30,29 +21,21 @@ const ArticleTitle = styled.h1`
   }
 `
 const ArticleByline = styled.p`
-  font-family: Halyard Micro;
-  font-size: 0.85em;
-  line-height: 150%;
-  font-style: normal;
-  font-weight: 300;
+  
   color: #595959;
 `
 const ArticleDescription = styled.h2`
-  font-family: Halyard Micro;
-  font-weight: 300;
-  font-size: 18px;
-  line-height: 172.1%;
+  font-family: Halyard-Text;
+  font-weight: 200;
+  font-size: 1.2em;
+  line-height: 1.7;
   color: #595959;
-  margin-block-start: 0;
-  margin-block-end: 0;
-  margin-top: 15px;
-  width: 95%;
 `
 
 const ArticleHeader = attributes => {
   return (
     <ArticleMeta>
-      <Section>{attributes.section.slug}</Section>
+      <Category>{attributes.section.slug}</Category>
       <ArticleTitle itemprop="name" dangerouslySetInnerHTML={{ __html: attributes.title }} />
       <ArticleByline>
         by <Authors authors={attributes.coAuthors} /> | <time>{formatDate(attributes.date)}</time>

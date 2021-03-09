@@ -8,7 +8,6 @@
   "private": false,
   "dependencies": {
     "@apollo/client": "^3.3.8",
-    "@apollo/react-hooks": "^3.1.5",
     "@babel/runtime-corejs2": "^7.12.13",
     "@graphql-codegen/fragment-matcher": "^1.17.8",
     "@graphql-codegen/schema-ast": "^1.18.1",

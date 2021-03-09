@@ -57,7 +57,7 @@ const Article = ({ post: article }) => {
         />
         {elements}
 
-        <AuthorBio authors={article.coAuthors}/>
+        <AuthorBio authors={article.coAuthors} />
         <DisqusComments post={article} />
       </ArticleWrapped>
     </>

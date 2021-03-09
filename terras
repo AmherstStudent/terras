@@ -1,0 +1,19 @@
+terras 
+
+- Theme contains the following things to it
+
+- Need to set the right upload_max_size, post_max_size, max_execution_size
+- Need to set the login logo
+- Create custom custom_taxonomies (series, issue)
+- Need to add issuu link to issue 
+
+- Need to be able to add a reporter title, class year, socials to user 
+- Need to be able to view coauthors to GraphQL
+- Need to able to add capacity for new template 
+- Need abilty to set the menus of the navigation 
+- Perhaps need to be able to add Sentry 
+- Need to be able to find get_frontend_origin - from Environment variable 
+- Set preview link to be /preview 
+- docker-compose changed 
+Plugins neccesary 
+- Wp GraphQL
