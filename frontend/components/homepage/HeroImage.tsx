@@ -3,7 +3,6 @@ import Link from 'next/link'
 import { formatDate } from '../util'
 import { Authors } from '../Pagination'
 
-
 const Category = styled.span`
   font-family: 'Halyard-Text';
   text-transform: uppercase;

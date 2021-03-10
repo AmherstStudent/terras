@@ -1,7 +1,6 @@
-import React from 'react'
 import Head from 'next/head'
 
-const ArticleSEO = (article) => {
+const ArticleSEO = article => {
   let articleUrl = `https://amherststudent.com/article/${article.slug}`
   let data = {
     '@context': 'http://schema.org/',
@@ -47,13 +46,17 @@ const ArticleSEO = (article) => {
   })
 
   data['author'] = authors
+
   return (
     <Head>
       <title>{article.title}</title>
       <meta name="description" content={article.excerpt} />
+      <meta property="og:site_name" content="The Amherst Student" />
+
       <meta name="twitter:title" content={article.title} />
       <meta name="twitter:card" content="summary" key="twcard" />
       <meta name="twitter:creator" content="@amherststudent" key="twhandle" />
+      <meta name="twitter:site" content="@amherststudent" />
 
       <meta property="og:url" content={articleUrl} key="ogurl" />
       <meta property="og:image" content={article?.featuredImage?.sourceUrl} key="ogimage" />

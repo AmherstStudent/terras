@@ -8,8 +8,6 @@ import ArticleSEO from '../../components/article/ArticleSEO'
 import DisqusComments from '../../components/article/disqus-comments'
 import { useRouter } from 'next/router'
 
-
-
 const ArticleWrapped = styled.main`
   margin: 0 auto;
   margin-top: 24px;
@@ -32,8 +30,8 @@ const Article = ({ post: article }) => {
   const router = useRouter()
   if (router.isFallback) {
     return (
-    <ArticleWrapped>
-      <h1>Article loading</h1>
+      <ArticleWrapped>
+        <h1>Article loading</h1>
       </ArticleWrapped>
     )
   }

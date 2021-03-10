@@ -23,6 +23,7 @@ const FeaturedFigure = styled.figure`
   margin-inline-start: 0;
   margin-inline-end: 0;
   font-family: 'Halyard-Text', sans-serif;
+  font-weight: 300;
 `
 
 const FeaturedImage = (attributes: FeaturedImageInterface) => (
@@ -31,6 +32,5 @@ const FeaturedImage = (attributes: FeaturedImageInterface) => (
     <div dangerouslySetInnerHTML={{ __html: attributes.caption }} />
   </FeaturedFigure>
 )
-
 
 export default FeaturedImage

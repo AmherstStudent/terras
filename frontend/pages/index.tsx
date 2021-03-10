@@ -9,9 +9,7 @@ const HomePageWrapper = styled.main`
   grid-column-gap: 18px;
   grid-template-columns: repeat(12, 1fr);
   grid-row-gap: 24px;
-  
 `
-
 
 const Home: NextPage = () => {
   const { loading, error, data } = useQuery(HomeDocument)
@@ -22,11 +20,9 @@ const Home: NextPage = () => {
     <>
       <HomePageWrapper>
         <Columns columns={page} />
-        
       </HomePageWrapper>
     </>
   )
 }
-
 
 export default Home

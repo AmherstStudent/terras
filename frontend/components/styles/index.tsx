@@ -7,7 +7,7 @@ const Theme = {
     lg: '1200px',
   },
   fonts: {
-    halyardText: 'Halyard-Text, sans-serif'
+    halyardText: 'Halyard-Text, sans-serif',
   },
   colors: {
     amherstPurple: '#3f1f69',
