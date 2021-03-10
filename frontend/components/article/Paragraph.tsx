@@ -12,10 +12,10 @@ const BodyText = styled.p`
   margin-bottom: 1.2em;
 `
 interface ParagraphContent {
-  content: String
-  align?: String
-  dropCap?: Boolean
-  className?: String
+  content: string
+  align?: string
+  dropCap?: boolean
+  className?: string
 }
 
 const Paragraph = (attributes: ParagraphContent) => <BodyText dangerouslySetInnerHTML={{ __html: attributes.content }} />

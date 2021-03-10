@@ -72,7 +72,7 @@ const Tagline = styled.p`
 
 /// STEAL FROM TAGS PAGE
 const Post = ({ date, title, authors, category, id, slug }) => {
-  let titles =
+  const titles =
     authors.length > 1
       ? authors
           ?.map(author => {
@@ -105,7 +105,7 @@ const PostlistWrapper = styled.div`
 `
 const Postlist = () => {
   const { loading, error, data } = useQuery(TagsQuery)
-  let articles = data?.tag?.posts?.nodes
+  const articles = data?.tag?.posts?.nodes
   return (
     <PostlistWrapper>
       {articles?.map(article => {

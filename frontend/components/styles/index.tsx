@@ -6,6 +6,9 @@ const Theme = {
     md: '992px',
     lg: '1200px',
   },
+  fonts: {
+    halyardText: 'Halyard-Text, sans-serif'
+  },
   colors: {
     amherstPurple: '#3f1f69',
   },

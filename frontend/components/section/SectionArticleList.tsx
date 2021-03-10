@@ -46,7 +46,7 @@ const SectionArticleList = ({ categoryID }) => {
   if (loading) return <p>Loading Post...</p>
   if (error) return <p>Something wrong happened! {variables} </p>
   // const {posts: articles, pageInfo} = category
-  let {
+  const {
     category: {
       name,
       posts: { nodes: articles, pageInfo },

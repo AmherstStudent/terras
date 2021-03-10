@@ -5,12 +5,12 @@ import styled from 'styled-components'
 // align, anchor, content, level (h2, 3, etc.),
 
 interface HeadingContent {
-  className?: String
+  className?: string
   anchor?: string
   align?: string
-  textcolor?: String
-  content: String
-  level: Number
+  textcolor?: string
+  content: string
+  level: number
 }
 
 const HeadingLevel1 = styled.h1`

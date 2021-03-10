@@ -75,7 +75,7 @@ interface BaseBlock {
 }
 
 export const NewBlock = (block: BaseBlock) => {
-  let Component = Blocks[block.__typename]
+  const Component = Blocks[block.__typename]
   if (Component == null || undefined) {
     console.log(block.__typename)
     console.log(block.attributes)

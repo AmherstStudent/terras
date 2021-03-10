@@ -35,7 +35,7 @@ const FullBleedHighlight = styled.h2`
 `
 const CoreMediaText = block => {
   console.log(block)
-  let innerBlock = block.innerBlocks[0]
+  const innerBlock = block.innerBlocks[0]
   console.log(innerBlock.attributes)
   return (
     <>

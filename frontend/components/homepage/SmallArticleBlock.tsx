@@ -57,7 +57,7 @@ const ArticleBio = styled.p`
 `
 
 const SmallArticleBlock = (attributes: { authors; title; category; featuredImage; date; excerpt; slug }) => {
-  let authors = JSON.parse(attributes.authors)
+  const authors = JSON.parse(attributes.authors)
 
   return (
     <ArticleBlockWrapper>

@@ -1,58 +1,55 @@
+// .eslintrc.js
 module.exports = {
+  root: true,
   env: {
-    es6: true,
-    browser: true,
     node: true,
+    es6: true,
   },
-  extends: ['airbnb', 'plugin:jest/recommended', 'jest-enzyme'],
-  plugins: ['babel', 'import', 'jsx-a11y', 'react', 'prettier'],
-  parser: 'babel-eslint',
-  parserOptions: {
-    ecmaVersion: 6,
-    sourceType: 'module',
-    ecmaFeatures: {
-      jsx: true,
-    },
-  },
-  rules: {
-    'linebreak-style': 'off', // Don't play nicely with Windows.
-    semi: [0, 'never'],
-    'arrow-parens': 'off', // Incompatible with prettier
-    'object-curly-newline': 'off', // Incompatible with prettier
-    'no-mixed-operators': 'off', // Incompatible with prettier
-    'arrow-body-style': 'off', // Not our taste?
-    'function-paren-newline': 'off', // Incompatible with prettier
-    'no-plusplus': 'off',
-    'space-before-function-paren': 0, // Incompatible with prettier
-
-    'max-len': ['error', 100, 2, { ignoreUrls: true }], // airbnb is allowing some edge cases
-    'no-console': 'error', // airbnb is using warn
-    'no-alert': 'error', // airbnb is using warn
-
-    'no-param-reassign': 'off', // Not our taste?
-    radix: 'off', // parseInt, parseFloat radix turned off. Not my taste.
-
-    'react/require-default-props': 'off', // airbnb use error
-    'react/forbid-prop-types': 'off', // airbnb use error
-    'react/jsx-filename-extension': ['error', { extensions: ['.js'] }], // airbnb is using .jsx
-
-    'prefer-destructuring': 'off',
-
-    'react/no-find-dom-node': 'off', // I don't know
-    'react/no-did-mount-set-state': 'off',
-    'react/no-unused-prop-types': 'off', // Is still buggy
-    'react/jsx-one-expression-per-line': 'off',
-
-    'jsx-a11y/anchor-is-valid': ['error', { components: ['Link'], specialLink: ['to'] }],
-    'jsx-a11y/label-has-for': [
-      2,
-      {
-        required: {
-          every: ['id'],
-        },
+  parserOptions: { ecmaVersion: 8 }, // to enable features such as async/await
+  ignorePatterns: ['node_modules/*', '.next/*', '.out/*', '!.prettierrc.js'], // We don't want to lint generated files nor node_modules, but we want to lint .prettierrc.js (ignored by default by eslint)
+  extends: ['eslint:recommended', 'plugin:prettier/recommended'],
+  overrides: [
+    // This configuration will apply only to TypeScript files
+    {
+      files: ['**/*.ts', '**/*.tsx'],
+      parser: '@typescript-eslint/parser',
+      settings: { react: { version: 'detect' } },
+      env: {
+        browser: true,
+        node: true,
+        es6: true,
       },
-    ], // for nested label htmlFor error
+      extends: [
+        'eslint:recommended',
+        'plugin:@typescript-eslint/recommended', // TypeScript rules
+        'plugin:react/recommended', // React rules
+        'plugin:react-hooks/recommended', // React hooks rules
+        'plugin:jsx-a11y/recommended', // Accessibility rules
+      ],
+      rules: {
+        // We will use TypeScript's types for component props instead
+        'react/prop-types': 'off',
 
-    'prettier/prettier': ['error'],
-  },
+        // No need to import React when using Next.js
+        'react/react-in-jsx-scope': 'off',
+
+        // This rule is not compatible with Next.js's <Link /> components
+        'jsx-a11y/anchor-is-valid': 'off',
+
+        // Why would you want unused vars?
+        '@typescript-eslint/no-unused-vars': ['error'],
+
+        'prettier/prettier': ['error', {}, { usePrettierrc: true }], // Includes .prettierrc.js rules
+
+        // I suggest this setting for requiring return types on functions only where useful
+        '@typescript-eslint/explicit-function-return-type': [
+          'warn',
+          {
+            allowExpressions: true,
+            allowConciseArrowFunctionExpressionsStartingWithVoid: true,
+          },
+        ],
+      },
+    },
+  ],
 }

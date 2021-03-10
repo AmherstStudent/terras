@@ -4,7 +4,7 @@ import { ImageContent } from './Image'
 import ImageGallery from 'react-image-gallery'
 
 interface GalleryContent {
-  caption: String
+  caption: string
   className?: string
   ids: string
   images: string //

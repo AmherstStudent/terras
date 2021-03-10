@@ -1,7 +1,5 @@
 const Vibes = () => {
-    return (
-        <> Hello</>
-    )
+  return <> Hello</>
 }
 
 export default Vibes

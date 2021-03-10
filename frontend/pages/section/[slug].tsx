@@ -7,7 +7,7 @@ const Wrapper = styled.div`
   grid-column: 1 / 3;
 `
 
-let categories = [
+const categories = [
   {
     id: 'Y2F0ZWdvcnk6Mg==',
     name: 'Arts and Living',
@@ -40,7 +40,7 @@ const Section = ({ name, categoryID }) => (
 )
 
 Section.getInitialProps = async ({ query }) => {
-  let category = categories.find(category => category.slug == query.slug)
+  const category = categories.find(category => category.slug == query.slug)
   return { categoryID: category.id, name: category.name }
 }
 

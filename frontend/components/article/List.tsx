@@ -6,7 +6,7 @@ import styled from 'styled-components'
 
 interface ListContent {
   values: string
-  ordered?: Boolean
+  ordered?: boolean
   className?: string
 }
 

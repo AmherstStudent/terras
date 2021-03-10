@@ -14,6 +14,7 @@ const client = new ApolloClient({
   cache: new InMemoryCache(),
 })
 
+
 export default function App({ Component, pageProps }: AppProps) {
   const router = useRouter()
 

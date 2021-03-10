@@ -47,7 +47,7 @@ const Author = author => {
   )
 }
 const AuthorBio = ({ authors }) => {
-  let title = authors.length > 1 ? 'AUTHORS' : 'AUTHOR'
+  const title = authors.length > 1 ? 'AUTHORS' : 'AUTHOR'
   return (
     <>
       <BioSectonTitle>{title}</BioSectonTitle>

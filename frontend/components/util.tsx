@@ -2,16 +2,16 @@ import Link from 'next/link'
 import styled from 'styled-components'
 
 export const formatDate = (date: string) => {
-  let updatedDate = new Date(date)
-  var options = { year: 'numeric', month: 'long', day: 'numeric' }
-  let formattedDate = updatedDate.toLocaleDateString('en-US', options)
+  const updatedDate = new Date(date)
+  const options = { year: 'numeric', month: 'long', day: 'numeric' }
+  const formattedDate = updatedDate.toLocaleDateString('en-US', options)
   return formattedDate
 }
 
 export const TimeDate = ({ unformattedDate }) => {
-  let updatedDate = new Date(unformattedDate)
-  var options = { year: 'numeric', month: 'long', day: 'numeric' }
-  let formattedDate = updatedDate.toLocaleDateString('en-US', options)
+  const updatedDate = new Date(unformattedDate)
+  const options = { year: 'numeric', month: 'long', day: 'numeric' }
+  const formattedDate = updatedDate.toLocaleDateString('en-US', options)
   return <time dateTime={unformattedDate}>{formattedDate}</time>
 }
 
@@ -50,3 +50,7 @@ export const AuthorNames = ({ authors }) =>
   authors?.map(author => {
     return <AuthorNameLink {...author} />
   })
+
+
+// Get static paths 
+

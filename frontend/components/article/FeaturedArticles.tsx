@@ -74,7 +74,7 @@ const ArticleWrapper = styled.div`
   border-bottom: solid black 1px;
 `
 const Article = article => {
-  var options = { year: 'numeric', month: 'long', day: 'numeric' }
+  const options = { year: 'numeric', month: 'long', day: 'numeric' }
 
   return (
     <ArticleWrapper>
@@ -93,7 +93,7 @@ const Article = article => {
 
 const FeaturedArticles = () => {
   const { loading, error, data } = useQuery(TagsQuery)
-  let articles: Array<Object> = data?.tag?.posts?.nodes
+  const articles: Array<Object> = data?.tag?.posts?.nodes
 
   return (
     <FeaturedWrapper>

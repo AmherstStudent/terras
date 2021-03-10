@@ -1,7 +1,7 @@
 import React from 'react'
 import Head from 'next/head'
 
-const ArticleSEO = article => {
+const ArticleSEO = (article) => {
   let articleUrl = `https://amherststudent.com/article/${article.slug}`
   let data = {
     '@context': 'http://schema.org/',
@@ -58,7 +58,7 @@ const ArticleSEO = article => {
       <meta property="og:url" content={articleUrl} key="ogurl" />
       <meta property="og:image" content={article?.featuredImage?.sourceUrl} key="ogimage" />
       <meta property="og:site_name" content="amherststudent.com" key="ogsitename" />
-      <meta property="og:title" content={article.title | 'The Amherst Student'} key="ogtitle" />
+      <meta property="og:title" content={`${article.title} | 'The Amherst Student'`} key="ogtitle" />
       <meta property="og:description" content={article.excerpt} key="ogdesc" />
 
       <title dangerouslySetInnerHTML={{ __html: article.title + '| Amherst Student' }} />

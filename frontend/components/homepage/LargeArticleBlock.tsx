@@ -74,8 +74,8 @@ const AuthorName = styled.a`
 `
 
 const LargeArticleBlock = (attributes: { article; date; category; authors; title; excerpt; slug }) => {
-  let authors = JSON.parse(attributes.authors)
-  let titles =
+  const authors = JSON.parse(attributes.authors)
+  const titles =
     authors.length > 1
       ? authors
           ?.map(author => {

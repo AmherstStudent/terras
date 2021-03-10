@@ -4,7 +4,7 @@ interface QuoteContent {
   quote: string
   source: string
   align?: string
-  dropCap?: Boolean
+  dropCap?: boolean
 }
 
 const QuoteWrapper = styled.blockquote`

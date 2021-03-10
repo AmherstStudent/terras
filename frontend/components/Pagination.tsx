@@ -17,8 +17,8 @@ type Issue = {
 type PostBlock = {
   id: string
   slug: string
-  title: String
-  excerpt: String
+  title: string
+  excerpt: string
   coAuthors: any[]
   featuredImage: any
   date: string
@@ -120,7 +120,7 @@ const StyleLink = styled.a`
 const PostBlock = (post: PostBlock) => {
   // let issue: Issue = post?.issues?.nodes[0]
   // let series = post?.seriesN?.nodes[0]
-  let authors = post.coAuthors
+  const authors = post.coAuthors
   return (
     <Wrapper key={post.id}>
       <Link href={{ pathname: `/article/${post.slug}` }} passHref>
@@ -148,7 +148,7 @@ interface PostListProps {
   pageInfo?: PageInfo
 }
 interface PageInfo {
-  hasNextPage: Boolean
+  hasNextPage: boolean
   cursor: string
 }
 

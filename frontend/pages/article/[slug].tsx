@@ -2,21 +2,13 @@ import FeaturedImage from '../../components/article/FeaturedImage'
 import ArticleHeader from '../../components/article/ArticleHeader'
 import { NewBlock } from '../../components/article/RenderBlocks'
 import AuthorBio from '../../components/article/AuthorBio'
-import { Category } from '../../components/styles'
 import FeaturedArticles from '../../components/article/FeaturedArticles'
 import styled from 'styled-components'
 import ArticleSEO from '../../components/article/ArticleSEO'
 import DisqusComments from '../../components/article/disqus-comments'
+import { useRouter } from 'next/router'
 
-// TODO: We're going to have add multiple themes, will be a mini refactor.
 
-const ArticleAside = styled.aside`
-  grid-column: 6 / -1;
-  width: 100%;
-  @media screen and (max-width: 1200px) {
-    grid-column: 1/ -1;
-  }
-`
 
 const ArticleWrapped = styled.main`
   margin: 0 auto;
@@ -37,11 +29,18 @@ const ArticleWrapped = styled.main`
   }
 `
 const Article = ({ post: article }) => {
+  const router = useRouter()
+  if (router.isFallback) {
+    return (
+    <ArticleWrapped>
+      <h1>Article loading</h1>
+      </ArticleWrapped>
+    )
+  }
   if (article == undefined) {
     return <> Can't find </>
   }
   const elements = article?.blocks?.map(block => <NewBlock key={article.__typename} {...block} />)
-  let authors = article.coAuthors
   return (
     <>
       <ArticleSEO {...article} />
@@ -59,6 +58,7 @@ const Article = ({ post: article }) => {
 
         <AuthorBio authors={article.coAuthors} />
         <DisqusComments post={article} />
+        <FeaturedArticles />
       </ArticleWrapped>
     </>
   )
@@ -87,9 +87,10 @@ const ArticleDoc = slug => {
       content
       excerpt
       featuredImage {
-        sourceUrl
         altText
         srcSet
+        caption
+        description
         sizes
       }
       categories {

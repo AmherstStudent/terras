@@ -26,7 +26,7 @@ const Image = (attributes: ImageContent) => (
   </ImageWrapper>
 )
 export interface ImageContent {
-  className?: String
+  className?: string
   url: string
   alt: string
   caption?: string

@@ -87,7 +87,7 @@ const Socials = styled.ul`
 `
 
 function Navbar() {
-  let [isActive, setIsActive] = useState(false)
+  const [isActive, setIsActive] = useState(false)
   function handleClick() {
     setIsActive(!isActive)
   }

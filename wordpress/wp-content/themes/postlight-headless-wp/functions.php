@@ -297,7 +297,21 @@ add_action( 'rest_api_init', function(){
     ));
 } );
 
+function set_headless_preview_link( $link ) {
+	if (WP_DEBUG === true) {
+		return 'http://localhost:3000/'
+			. '_preview/'
+			. get_the_ID() . '/'
+			. wp_create_nonce( 'wp_rest' );
+	} else {
+		return 'https://amherststudent.com/'
+			. '_preview/'
+			. get_the_ID() . '/'
+			. wp_create_nonce( 'wp_rest' );
+	}
+}
 
+add_filter( 'preview_post_link', 'set_headless_preview_link' );
 // add_action('graphql_register_types', function () {
 //     register_graphql_field('Page', 'pageTemplate', [
 //         'type' => 'String',
