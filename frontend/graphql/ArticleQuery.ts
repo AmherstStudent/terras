@@ -1,17 +1,34 @@
 import { gql } from 'graphql-request'
 
 const ArticleQuery = gql`
-  query Page($slug: String) {
+  query Article($slug: String) {
     postBy(uri: $slug) {
       __typename
       title
       id
       date
-      desiredSlug
+      slug
+      content
       excerpt
       featuredImage {
         sourceUrl
         altText
+        srcSet
+        sizes
+      }
+      categories {
+        nodes {
+          name
+          slug
+        }
+      }
+      coAuthors {
+        id
+        display_name
+        slug
+        bio
+        avatar
+        reporter_title
       }
       blocks {
         __typename
@@ -36,6 +53,33 @@ const ArticleQuery = gql`
             }
           }
         }
+        ... on CoreMediaTextBlock {
+          originalContent
+          innerBlocks {
+            __typename
+            ... on CoreQuoteBlock {
+              attributes {
+                citation
+                value
+              }
+            }
+            ... on CoreParagraphBlock {
+              attributes {
+                ... on CoreParagraphBlockAttributesV3 {
+                  __typename
+                  content
+                  dropCap
+                  align
+                }
+              }
+            }
+          }
+          attributes {
+            ... on CoreMediaTextBlockAttributes {
+              mediaUrl
+            }
+          }
+        }
         ... on CoreQuoteBlock {
           __typename
           attributes {
@@ -43,6 +87,16 @@ const ArticleQuery = gql`
               __typename
               quote: value
               source: citation
+            }
+          }
+        }
+        ... on CorePullquoteBlock {
+          __typename
+          attributes {
+            ... on CorePullquoteBlockAttributesV2 {
+              __typename
+              value
+              citation
             }
           }
         }
@@ -72,6 +126,15 @@ const ArticleQuery = gql`
               ids
               images
               linkTo
+            }
+          }
+        }
+        ... on CoreHtmlBlock {
+          __typename
+          attributes {
+            ... on CoreHtmlBlockAttributes {
+              __typename
+              html: content
             }
           }
         }

@@ -1,5 +1,5 @@
 import { fetchAPI, gql } from './request'
-
+import ArticleQuery from './ArticleQuery'
 const GET_ALL_POSTS_WITH_SLUG = gql`
   {
     posts(first: 1000) {
@@ -46,6 +46,17 @@ const RSS_FEED = gql`
     }
   }
 `
+const CategoriesQuery = gql`
+  {
+    categories {
+      nodes {
+        categoryId
+        slug
+      }
+    }
+  }
+`
+
 // perhaps create a function for looping over all articles
 export const getAllPostsSlugs = async (): Promise<Array<string>> => {
   const resp = await fetchAPI(GET_ALL_POSTS_WITH_SLUG)
@@ -69,8 +80,19 @@ export const getAllAuthorPaths = async (): Promise<Array<string>> => {
 }
 
 export const getRecentArticlesMeta = async () => {
-    const resp = await fetchAPI(RSS_FEED)
-    const articleList = resp.posts.edges
-    return articleList
+  const resp = await fetchAPI(RSS_FEED)
+  const articleList = resp.posts.edges
+  return articleList
 }
-  
+
+export const getArticle = async slug => {
+  const resp = await fetchAPI(ArticleQuery, { slug })
+  const article = resp.postBy
+  return article
+}
+
+export const getCategories = async () => {
+  const resp = await fetchAPI(CategoriesQuery)
+  const paths = resp.categories.nodes.map(( node ) => `/section/${node.slug}`)
+  return paths
+}

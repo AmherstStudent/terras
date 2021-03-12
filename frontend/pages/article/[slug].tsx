@@ -7,6 +7,7 @@ import styled from 'styled-components'
 import ArticleSEO from '../../components/article/ArticleSEO'
 import DisqusComments from '../../components/article/disqus-comments'
 import { useRouter } from 'next/router'
+import { getAllPostsSlugs, getArticle } from '../../graphql'
 
 const ArticleWrapped = styled.main`
   margin: 0 auto;
@@ -62,193 +63,9 @@ const Article = ({ post: article }) => {
   )
 }
 
-export const GET_ALL_POSTS_WITH_SLUG = `
-  {
-    posts(first: 1000) {
-      edges {
-        node {
-          slug
-        }
-      }
-    }
-  }`
-
-const ArticleDoc = slug => {
-  return `
-  query {
-    postBy(slug: "${slug}") {
-      __typename
-      title
-      id
-      date
-      slug
-      content
-      excerpt
-      featuredImage {
-        altText
-        srcSet
-        caption
-        description
-        sizes
-      }
-      categories {
-        nodes {
-          name
-          slug
-        }
-      }
-      coAuthors {
-        id
-        display_name
-        slug
-        bio
-        avatar
-        reporter_title
-      }
-      blocks {
-        __typename
-        ... on CoreHeadingBlock {
-          __typename
-          attributes {
-            __typename
-            ... on CoreHeadingBlockAttributes {
-              __typename
-              content
-              level
-            }
-          }
-        }
-        ... on CoreImageBlock {
-          attributes {
-            __typename
-            ... on CoreImageBlockAttributes {
-              __typename
-              url
-              caption
-            }
-          }
-        }
-        ... on CoreMediaTextBlock {
-          originalContent
-          innerBlocks {
-            __typename
-            ... on CoreQuoteBlock {
-              attributes {
-                citation
-                value
-              }
-            }
-            ... on CoreParagraphBlock {
-              attributes {
-                ... on CoreParagraphBlockAttributesV3 {
-                  __typename
-                  content
-                  dropCap
-                  align
-                }
-              }
-            }
-          }
-          attributes {
-            ... on CoreMediaTextBlockAttributes {
-              mediaUrl
-            }
-          }
-        }
-        ... on CoreQuoteBlock {
-          __typename
-          attributes {
-            ... on CoreQuoteBlockAttributes {
-              __typename
-              quote: value
-              source: citation
-            }
-          }
-        }
-        ... on CorePullquoteBlock {
-          __typename
-
-          attributes {
-            ... on CorePullquoteBlockAttributesV2 {
-              __typename
-              value
-              citation
-            }
-          }
-        }
-        ... on CoreListBlock {
-          __typename
-          attributes {
-            values
-          }
-        }
-        ... on CoreParagraphBlock {
-          __typename
-          name
-          attributes {
-            ... on CoreParagraphBlockAttributesV3 {
-              __typename
-              content
-              dropCap
-              align
-            }
-          }
-        }
-        ... on CoreGalleryBlock {
-          __typename
-          attributes {
-            ... on CoreGalleryBlockAttributes {
-              __typename
-              ids
-              images
-              linkTo
-            }
-          }
-        }
-        ... on CoreHtmlBlock {
-          __typename
-          attributes {
-            ... on CoreHtmlBlockAttributes {
-              __typename
-              html: content
-            }
-          }
-        }
-      }
-    }
-  }
-`
-}
-
-const API_URL = 'https://admin.amherststudent.com/graphql'
-const fetchAPI = async (query, variables = {}) => {
-  const headers = new Headers()
-
-  headers.append('Content-Type', 'application/json')
-
-  if (process.env.WORDPRESS_AUTH_REFRESH_TOKEN) {
-    headers.append('Authorization', `Bearer ${process.env.WORDPRESS_AUTH_REFRESH_TOKEN}`)
-  }
-  const res = await fetch(API_URL, {
-    method: 'POST',
-    headers,
-    body: JSON.stringify({
-      query,
-      variables,
-    }),
-  })
-  const json = await res.json()
-  if (json.errors) {
-    throw new Error('Failed to fetch API')
-  }
-
-  return json.data
-}
 
 export const getStaticPaths = async () => {
-  const data = await fetchAPI(GET_ALL_POSTS_WITH_SLUG)
-  const allPosts = data.posts
-  const paths = allPosts.edges.map(({ node }) => `/article/${node.slug}`)
+  const paths = await getAllPostsSlugs()
   return {
     paths,
     fallback: true,
@@ -256,9 +73,8 @@ export const getStaticPaths = async () => {
 }
 
 export const getStaticProps = async ({ params }) => {
-  const doc = ArticleDoc(params.slug)
-  const post = await fetchAPI(doc)
-  return { props: { post: post.postBy }, revalidate: 1 }
+  const article = await getArticle(params.slug)
+  return { props: { post: article }, revalidate: 1 }
 }
 
 export default Article

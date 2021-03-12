@@ -5,69 +5,6 @@ import { FaTwitter, FaSearch, FaInstagram, FaFacebookF } from 'react-icons/fa'
 import SideNav from './SideNav'
 import Link from 'next/link'
 
-const NavBarWrapper = styled.nav`
-  height: 67px;
-  padding: 16px 10px;
-  width: 85vw;
-  background: white;
-  margin: 0 auto;
-  display: flex;
-  position: static;
-  top: 0;
-  z-index: 2;
-  margin-bottom: 1rem;
-  border-bottom: 1px solid #e9e9e9;
-  padding-left: 5vw;
-  padding-right: 5vw;
-`
-
-const NavBarContent = styled.div`
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  flex: 0 0 100%;
-`
-const Logo = styled.img`
-  max-height: 20px;
-  align-items: flex-start;
-`
-
-const NewsyLinks = styled.ul`
-  text-decoration: none;
-  color: #000000;
-  padding-left: 1em;
-  flex-grow: 1;
-  display: flex;
-  align-items: center;
-  li {
-    padding-left: 10px;
-    padding-right: 10px;
-    list-style-type: none;
-  }
-  li a {
-    color: black;
-  }
-  font-family: 'Halyard-Text';
-  font-weight: 200;
-  /* ARTS & LIVING */
-
-  font-weight: 300;
-  font-size: 1rem;
-  line-height: 20px;
-  /* or 62% */
-  display: flex;
-  align-items: center;
-  color: #000000;
-
-  @media (max-width: 768px) {
-    display: none;
-  }
-
-  & a {
-    text-decoration: none;
-    color: #000000;
-  }
-`
 
 const Socials = styled.ul`
   text-decoration: none;
@@ -76,6 +13,7 @@ const Socials = styled.ul`
   display: flex;
   justify-content: flex-end;
   align-items: center;
+  grid-column: 3;
   li {
     padding-left: 10px;
     padding-right: 10px;
@@ -86,6 +24,53 @@ const Socials = styled.ul`
   }
 `
 
+const NavWrap = styled.div`
+  width: 100%;
+`
+const Nav = styled.nav`
+  /* width: min(calc(100% - 48px), 1280px); */
+  max-width: 1316px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  padding: 12px 0;
+  & a {
+    transition: .3s all ease-in-out;
+  }
+  border-bottom: 1px solid #e9e9e9;
+`
+const LeftMenu = styled.div`
+  grid-column: 1;
+  font-family: 'Halyard-Text';
+  font-weight: 200;
+  /* ARTS & LIVING */
+  font-weight: 300;
+  line-height: 20px;
+  /* or 62% */
+  text-transform: uppercase;
+  & a {
+    text-decoration: none;
+    color: black;
+    margin-left: 15px;
+    font-size: 16px;
+  }
+  & a:hover {
+    border-bottom: 4px solid rgba(63, 31, 105, .8);
+
+  }
+  @media screen and (max-width: 992px) {
+    & a {
+      display:none;
+    }
+  }
+  align-self: center;
+`
+
+const LogoImage = styled.img`
+    grid-column: 2;
+    max-height: 21px;
+    align-self: center;
+`
 function Navbar() {
   const [isActive, setIsActive] = useState(false)
   function handleClick() {
@@ -93,34 +78,24 @@ function Navbar() {
   }
   return (
     <>
-      <NavBarWrapper>
-        <NavBarContent>
-          <HamburgerArrow buttonWidth={23} isActive={isActive} toggleButton={handleClick} />
-          <a href="https://amherststudent.com">
-            <Logo src="/logo.svg" alt="the Amherst Student" />
-          </a>
-          <NewsyLinks>
+    <NavWrap>
+      <Nav>
+          <LeftMenu>
+          <HamburgerArrow buttonWidth={21}  isActive={isActive} toggleButton={handleClick} />
             <Link href="/section/news">
-              <a>
-                <li>NEWS</li>
-              </a>
-            </Link>
-            <Link href="/section/opinion">
-              <a>
-                <li>OPINION</li>
-              </a>
-            </Link>
-            <Link href="/section/arts-and-living">
-              <a>
-                <li>ARTS AND LIVING</li>
-              </a>
-            </Link>
-            <Link href="/section/sports">
-              <a>
-                <li>SPORTS</li>
-              </a>
-            </Link>
-          </NewsyLinks>
+              <a>News</a>
+              </Link>
+              <Link href="/section/arts-and-living">
+              <a href="#">Arts and Living</a>
+              </Link>
+              <Link href="/section/news">
+              <a href="#">Sports</a>
+              </Link>
+              <Link href="/section/opinion">
+              <a href="#">Opinion</a>
+              </Link>
+          </LeftMenu>
+          <LogoImage  src="/logo.svg" alt="the Amherst Student" />
           <Socials>
             <li>
               <a href="https://www.facebook.com/AmherstStudent/">
@@ -145,9 +120,10 @@ function Navbar() {
               </Link>
             </li>
           </Socials>
-        </NavBarContent>
-      </NavBarWrapper>
-      {isActive ? <SideNav /> : ''}
+      </Nav>
+    </NavWrap>
+    {isActive ? <SideNav /> : ''} 
+    {/* I want to push the page down actually */}
     </>
   )
 }

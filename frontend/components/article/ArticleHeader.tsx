@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import { Category } from '../styles/index'
+import { Category } from '../styles'
 import { formatDate } from '../util'
 import { Authors } from '../Pagination'
 

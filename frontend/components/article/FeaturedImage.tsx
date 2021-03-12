@@ -25,11 +25,13 @@ const FeaturedFigure = styled.figure`
   font-family: 'Halyard-Text', sans-serif;
   font-weight: 300;
 `
-
+const Caption = styled.div`
+  margin: 24px;
+`
 const FeaturedImage = (attributes: FeaturedImageInterface) => (
   <FeaturedFigure>
     <FeaturedBaseImage srcSet={attributes.srcSet} alt={attributes.alt} />
-    <div dangerouslySetInnerHTML={{ __html: attributes.caption }} />
+    <Caption dangerouslySetInnerHTML={{ __html: attributes.caption }} />
   </FeaturedFigure>
 )
 

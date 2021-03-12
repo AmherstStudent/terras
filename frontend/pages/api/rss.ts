@@ -20,7 +20,7 @@ const RSS = async (req: NextApiRequest, res: NextApiResponse) => {
     })
     .join('')
 
-    const baseFeed = `
+  const baseFeed = `
         <?xml version="1.0"?>
         <rss version="2.0">
         <channel>
@@ -34,7 +34,6 @@ const RSS = async (req: NextApiRequest, res: NextApiResponse) => {
     `
   res.write(baseFeed)
   res.end()
-
 }
 
 export default RSS

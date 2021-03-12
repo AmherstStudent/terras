@@ -21,7 +21,7 @@ const Box = styled.div`
   width: 177px;
   padding: 10px 0;
   background: #3f1f69;
-  font-family: var(--span-font);
+  font-family: 'Halyard-Text';
   text-transform: uppercase;
   color: white;
 `

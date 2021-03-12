@@ -48,7 +48,7 @@ const Byline = styled.span`
   text-decoration: none;
 `
 const Excerpt = styled.div`
-  font-family: var(--span-font);
+  font-family: 'Halyard-Text';
   font-weight: 300;
   font-style: normal;
   font-size: 1em;
@@ -118,7 +118,7 @@ const StyleLink = styled.a`
 
 /// If less than have the next line
 const PostBlock = (post: PostBlock) => {
-  // let issue: Issue = post?.issues?.nodes[0]
+  let issue: Issue = post?.issues?.nodes[0]
   // let series = post?.seriesN?.nodes[0]
   const authors = post.coAuthors
   return (
@@ -132,10 +132,10 @@ const PostBlock = (post: PostBlock) => {
         <Authors authors={authors} />
       </div>
       <Byline>
-        <TimeDate unformattedDate={post.date} /> || Issue
+        <TimeDate unformattedDate={post.date} /> || Issue {issue.name}
       </Byline>
       <BioWrapper>
-        <Excerpt> {post.excerpt}</Excerpt>
+        <Excerpt dangerouslySetInnerHTML={{ __html: post.excerpt }}/>
         {post.featuredImage ? <MiniImage src={post.featuredImage.sourceUrl} /> : ''}
       </BioWrapper>
     </Wrapper>

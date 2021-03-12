@@ -27,12 +27,14 @@ const BasicDescription = styled.div`
   padding-bottom: 24px;
   @media (min-width: 768px) {
     flex-basis: 400px;
+    flex-grow: 0.8;
   }
 `
 
 const ListyStuff = styled.nav`
   list-style-type: none;
   column-count: 2;
+  flex-grow: 1;
   @media (max-width: 600px) {
     column-count: 1;
     font-size: 28px;

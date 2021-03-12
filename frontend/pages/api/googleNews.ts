@@ -25,7 +25,7 @@ const RSS = async (req: NextApiRequest, res: NextApiResponse) => {
     })
     .join('')
 
-    const baseFeed = `
+  const baseFeed = `
      <?xml version="1.0" encoding="UTF-8"?>
     <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
             xmlns:news="http://www.google.com/schemas/sitemap-news/0.9">
@@ -36,7 +36,6 @@ const RSS = async (req: NextApiRequest, res: NextApiResponse) => {
     `
   res.write(baseFeed)
   res.end()
-
 }
 
 export default RSS
