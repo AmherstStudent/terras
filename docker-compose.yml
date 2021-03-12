@@ -77,7 +77,7 @@ services:
         ports:
             - '3000:3000'
         depends_on:
-            - wp-healdess
+            - wp-headless
         user: node
         volumes:
             - ./frontend:/home/node/app
