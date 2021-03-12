@@ -1,4 +1,3 @@
-import Layout from '../components/Layout' // We import the Layout
 import '../components/globals.css' // SPOILER OF STYLING 👉👈
 import { AppProps } from 'next/app'
 import { ApolloClient, InMemoryCache } from '@apollo/client'
@@ -6,6 +5,7 @@ import { ApolloProvider } from '@apollo/client'
 import { useRouter } from 'next/router'
 import * as gtag from '../lib/ga'
 import { useEffect } from 'react'
+import Layout from '../components/Layout'
 
 const client = new ApolloClient({
   uri: 'https://admin.amherststudent.com/graphql',
