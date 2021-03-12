@@ -3,6 +3,8 @@ import CategoryHead from '../../components/section/CategoryHead'
 import SectionArticleList from '../../components/section/SectionArticleList'
 import { getCategories } from '../../graphql'
 import Head from 'next/head'
+import { GetStaticProps, GetStaticPaths } from 'next'
+import { useRouter } from 'next/router'
 
 const categories = [
   {
@@ -40,7 +42,9 @@ const Wrapper = styled.main`
 `
 
 const Section = ({ slug }) => {
-  const category = categories.find(category => category.slug == slug)
+  const router = useRouter()
+  if (router.isFallback) return <div>Loading...</div>
+  const category = categories.find(category => category.slug === slug)
   return (
     <>
       <Head>
@@ -59,17 +63,16 @@ const Section = ({ slug }) => {
 //   return { categoryID: category.id, name: category.name }
 // }
 
-export const getStaticPaths = async () => {
+export const getStaticPaths: GetStaticPaths = async () => {
   // const paths = getAllAuthorPaths()
   // Get all categories, create it into a slug
   const paths = await getCategories()
-
   return {
     paths,
     fallback: true,
   }
 }
-export const getStaticProps = async ({ params }) => {
+export const getStaticProps: GetStaticProps = async ({ params }) => {
   return { props: { slug: params.slug }, revalidate: 1 }
 }
 
