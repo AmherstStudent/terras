@@ -25,12 +25,12 @@ const Page = ({ page }) => {
   if (router.isFallback) return <div>Loading...</div>
   const elements = page.blocks.map(block => <NewBlock {...block} />)
   return (
-    <>
+
       <Wrapper>
         <h2>{page.title}</h2>
         {elements}
       </Wrapper>
-    </>
+  
   )
 }
 
