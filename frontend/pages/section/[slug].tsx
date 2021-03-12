@@ -46,7 +46,7 @@ Section.getInitialProps = async ({ query }) => {
 export const getStaticPaths = async () => {
   // const paths = getAllAuthorPaths()
   return {
-    paths:[],
+    paths: [],
     fallback: true,
   }
 }

@@ -25,8 +25,7 @@ const AuthorName = styled.a`
   text-transform: capitalize;
 `
 
-
-const AuthorNameLink = (author) => {
+const AuthorNameLink = author => {
   return (
     <Link href={{ pathname: `/author/${author.slug}` }} passHref>
       <AuthorName>

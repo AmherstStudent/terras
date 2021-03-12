@@ -28,7 +28,6 @@ const BasicDescription = styled.div`
   @media (min-width: 768px) {
     flex-basis: 400px;
   }
-
 `
 
 const ListyStuff = styled.nav`
@@ -55,7 +54,7 @@ const footerLinks = [
   { link: '/contact-us', title: 'Contact Us' },
   { link: '/careers', title: 'Join The Team' },
   { link: '/privacy', title: 'Privacy' },
-  { link: '/subscribe', title: 'Subscribe' }
+  { link: '/subscribe', title: 'Subscribe' },
 ]
 
 const Footer = () => (
@@ -66,14 +65,13 @@ const Footer = () => (
         Founded in 1868, the Student remains the source for all news Amherst.
       </BasicDescription>
       <ListyStuff>
-
-      {footerLinks.map((linkCombo) => (
-        <li>
-        <Link href={linkCombo.link} passHref>
-          <a>{linkCombo.title}</a>
-        </Link>
-        </li>
-      ))}
+        {footerLinks.map(linkCombo => (
+          <li>
+            <Link href={linkCombo.link} passHref>
+              <a>{linkCombo.title}</a>
+            </Link>
+          </li>
+        ))}
       </ListyStuff>
 
       {/* <ListyStuff>

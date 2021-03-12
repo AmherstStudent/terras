@@ -1,5 +1,5 @@
 import { request, gql } from 'graphql-request'
-import PageDocument from "../graphql/PageDocument"
+import PageDocument from '../graphql/PageDocument'
 import { NewBlock } from '../components/article/RenderBlocks'
 import styled from 'styled-components'
 import { getAllPageSlugs } from '../components/util'
@@ -17,7 +17,6 @@ const Wrapper = styled.main`
 `
 
 const Page = ({ page }) => {
- 
   // if (loading) return <p>Loading Post...</p>
   // if (error) return <p>Something wrong happened!</p>
   // TODO: Add a 404 page
@@ -32,8 +31,6 @@ const Page = ({ page }) => {
   )
 }
 
-
-
 export const getStaticPaths = async () => {
   const paths = await getAllPageSlugs()
   return {
@@ -42,12 +39,10 @@ export const getStaticPaths = async () => {
   }
 }
 
-export const getStaticProps = async ({params}) => {
+export const getStaticProps = async ({ params }) => {
   const variables = { slug: params.slug }
   const resp = await request('https://admin.amherststudent.com/graphql', PageDocument, variables)
   return { props: { page: resp.pageBy }, revalidate: 10 }
 }
-
-
 
 export default Page

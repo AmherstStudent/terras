@@ -1,9 +1,9 @@
 import { useQuery, gql } from '@apollo/client'
 import { PostList } from '../../components/Pagination'
 import styled from 'styled-components'
-import {GetStaticPaths} from 'next'
+import { GetStaticPaths } from 'next'
 import { getAllAuthorPaths } from '../../graphql'
-import { useRouter } from 'next/router';
+import { useRouter } from 'next/router'
 
 const Wrapper = styled.div`
   grid-column: 1 / 3;
@@ -18,8 +18,8 @@ const Author = ({ slug }) => {
 
   //   let { users: {nodes } } = data
   //   let {name, description, posts: { nodes: articles, pageInfo }}  = nodes[0]
-  const router = useRouter();
-  if (router.isFallback)  return <div>Loading...</div>;
+  const router = useRouter()
+  if (router.isFallback) return <div>Loading...</div>
 
   return (
     <>
@@ -86,16 +86,14 @@ Author.getInitialProps = async ({ query }) => {
   return { slug: query.slug }
 }
 
-
-
 // TODO: ISsue with querying
 export const getStaticPaths = async () => {
   // const paths = getAllAuthorPaths()
   return {
-    paths:[],
+    paths: [],
     fallback: true,
   }
-} 
+}
 
 export default Author
 
