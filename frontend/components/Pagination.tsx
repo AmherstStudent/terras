@@ -135,7 +135,7 @@ const PostBlock = (post: PostBlock) => {
         <TimeDate unformattedDate={post.date} /> || Issue {issue.name}
       </Byline>
       <BioWrapper>
-        <Excerpt dangerouslySetInnerHTML={{ __html: post.excerpt }}/>
+        <Excerpt dangerouslySetInnerHTML={{ __html: post.excerpt }} />
         {post.featuredImage ? <MiniImage src={post.featuredImage.sourceUrl} /> : ''}
       </BioWrapper>
     </Wrapper>

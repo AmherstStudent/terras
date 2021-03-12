@@ -93,6 +93,6 @@ export const getArticle = async slug => {
 
 export const getCategories = async () => {
   const resp = await fetchAPI(CategoriesQuery)
-  const paths = resp.categories.nodes.map(( node ) => `/section/${node.slug}`)
+  const paths = resp.categories.nodes.map(node => `/section/${node.slug}`)
   return paths
 }

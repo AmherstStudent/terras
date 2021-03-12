@@ -2,7 +2,7 @@ import styled from 'styled-components'
 import Link from 'next/link'
 import { formatDate } from '../util'
 import { Authors } from '../Pagination'
-import { Category } from "../styles"
+import { Category } from '../styles'
 
 const HeroContainer = styled.section`
   padding: 18px;
@@ -16,8 +16,8 @@ const HeroImageWrap = styled.img`
   vertical-align: middle;
 `
 const HeroTitle = styled.h1`
-    font-family: 'Cormorant';
-    font-size: 2em;
+  font-family: 'Cormorant';
+  font-size: 2em;
   & a {
     text-decoration: none;
     color: black;
@@ -38,7 +38,6 @@ const HeroImage = (attributes: { authors; excerpt; featuredImageUrl; category; t
         <a>{attributes.title}</a>
       </Link>
     </HeroTitle>
-    
     <HeroText>{attributes.excerpt}</HeroText>
     <Authors authors={JSON.parse(attributes.authors)} /> &middot; <time>{formatDate(attributes.date)}</time>
   </HeroContainer>

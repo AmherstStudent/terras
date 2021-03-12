@@ -63,7 +63,6 @@ const Article = ({ post: article }) => {
   )
 }
 
-
 export const getStaticPaths = async () => {
   const paths = await getAllPostsSlugs()
   return {

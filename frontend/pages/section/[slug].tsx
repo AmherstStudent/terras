@@ -2,7 +2,7 @@ import styled from 'styled-components'
 import CategoryHead from '../../components/section/CategoryHead'
 import SectionArticleList from '../../components/section/SectionArticleList'
 import { getCategories } from '../../graphql'
-import Head from "next/head"
+import Head from 'next/head'
 
 const categories = [
   {
@@ -42,16 +42,17 @@ const Wrapper = styled.main`
 const Section = ({ slug }) => {
   const category = categories.find(category => category.slug == slug)
   return (
-  <>
-  <Head>
-    <title>{category.name} | Amherst Student</title>
-  </Head>
-    <Wrapper>
-      <CategoryHead category={category.name} />
-      <SectionArticleList categoryID={category.id} />
-    </Wrapper>
-  </>
-)}
+    <>
+      <Head>
+        <title>{category.name} | Amherst Student</title>
+      </Head>
+      <Wrapper>
+        <CategoryHead category={category.name} />
+        <SectionArticleList categoryID={category.id} />
+      </Wrapper>
+    </>
+  )
+}
 
 // Section.getInitialProps = async ({ query }) => {
 //   const category = categories.find(category => category.slug == query.slug)
@@ -62,14 +63,13 @@ export const getStaticPaths = async () => {
   // const paths = getAllAuthorPaths()
   // Get all categories, create it into a slug
   const paths = await getCategories()
-  
+
   return {
     paths,
     fallback: true,
   }
 }
-export const getStaticProps = async ({params}) => {
-
+export const getStaticProps = async ({ params }) => {
   return { props: { slug: params.slug }, revalidate: 1 }
 }
 

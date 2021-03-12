@@ -86,14 +86,14 @@ Author.getInitialProps = async ({ query }) => {
   return { slug: query.slug }
 }
 
-// TODO: ISsue with querying
-export const getStaticPaths = async () => {
-  // const paths = getAllAuthorPaths()
-  return {
-    paths: [],
-    fallback: true,
-  }
-}
+// // TODO: ISsue with querying
+// export const getStaticPaths = async () => {
+//   // const paths = getAllAuthorPaths()
+//   return {
+//     paths: [],
+//     fallback: true,
+//   }
+// }
 
 export default Author
 

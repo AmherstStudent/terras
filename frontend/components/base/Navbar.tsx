@@ -5,7 +5,6 @@ import { FaTwitter, FaSearch, FaInstagram, FaFacebookF } from 'react-icons/fa'
 import SideNav from './SideNav'
 import Link from 'next/link'
 
-
 const Socials = styled.ul`
   text-decoration: none;
   color: #000000;
@@ -35,7 +34,7 @@ const Nav = styled.nav`
   grid-template-columns: 1fr auto 1fr;
   padding: 12px 0;
   & a {
-    transition: .3s all ease-in-out;
+    transition: 0.3s all ease-in-out;
   }
   border-bottom: 1px solid #e9e9e9;
 `
@@ -55,21 +54,20 @@ const LeftMenu = styled.div`
     font-size: 16px;
   }
   & a:hover {
-    border-bottom: 4px solid rgba(63, 31, 105, .8);
-
+    border-bottom: 4px solid rgba(63, 31, 105, 0.8);
   }
   @media screen and (max-width: 992px) {
     & a {
-      display:none;
+      display: none;
     }
   }
   align-self: center;
 `
 
 const LogoImage = styled.img`
-    grid-column: 2;
-    max-height: 21px;
-    align-self: center;
+  grid-column: 2;
+  max-height: 21px;
+  align-self: center;
 `
 function Navbar() {
   const [isActive, setIsActive] = useState(false)
@@ -78,24 +76,24 @@ function Navbar() {
   }
   return (
     <>
-    <NavWrap>
-      <Nav>
+      <NavWrap>
+        <Nav>
           <LeftMenu>
-          <HamburgerArrow buttonWidth={21}  isActive={isActive} toggleButton={handleClick} />
+            <HamburgerArrow buttonWidth={21} isActive={isActive} toggleButton={handleClick} />
             <Link href="/section/news">
               <a>News</a>
-              </Link>
-              <Link href="/section/arts-and-living">
+            </Link>
+            <Link href="/section/arts-and-living">
               <a href="#">Arts and Living</a>
-              </Link>
-              <Link href="/section/news">
+            </Link>
+            <Link href="/section/news">
               <a href="#">Sports</a>
-              </Link>
-              <Link href="/section/opinion">
+            </Link>
+            <Link href="/section/opinion">
               <a href="#">Opinion</a>
-              </Link>
+            </Link>
           </LeftMenu>
-          <LogoImage  src="/logo.svg" alt="the Amherst Student" />
+          <LogoImage src="/logo.svg" alt="the Amherst Student" />
           <Socials>
             <li>
               <a href="https://www.facebook.com/AmherstStudent/">
@@ -120,10 +118,10 @@ function Navbar() {
               </Link>
             </li>
           </Socials>
-      </Nav>
-    </NavWrap>
-    {isActive ? <SideNav /> : ''} 
-    {/* I want to push the page down actually */}
+        </Nav>
+      </NavWrap>
+      {isActive ? <SideNav /> : ''}
+      {/* I want to push the page down actually */}
     </>
   )
 }
