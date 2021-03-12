@@ -2,9 +2,9 @@ import Link from 'next/link'
 import styled from 'styled-components'
 
 export const formatDate = (date: string) => {
-  const updatedDate = new Date(date)
+  const updatedDate: Date = new Date(date)
   const options = { year: 'numeric', month: 'long', day: 'numeric' }
-  const formattedDate = updatedDate.toLocaleDateString('en-US', options)
+  const formattedDate: string = updatedDate.toLocaleDateString('en-US', options)
   return formattedDate
 }
 
@@ -16,7 +16,7 @@ export const TimeDate = ({ unformattedDate }) => {
 }
 
 const AuthorName = styled.a`
-  font-family: var(--span-font);
+  font-family: 'Halyard-Text';
   font-style: normal;
   font-weight: bold;
   line-height: 150%;
@@ -24,20 +24,11 @@ const AuthorName = styled.a`
   text-decoration: none;
   text-transform: capitalize;
 `
-// Smart Strip tags
-const SEO = props => {
-  return (
-    <>
-      <title>{props.title}</title>
-      <meta name="description" content={props.description} />
-      <meta name="robots" content="index, follow" />
-    </>
-  )
-}
 
-const AuthorNameLink = author => {
+
+const AuthorNameLink = (author) => {
   return (
-    <Link key={author.id} href={{ pathname: '/author', query: { id: author.id } }} as={'/author/' + author.id} passHref>
+    <Link href={{ pathname: `/author/${author.slug}` }} passHref>
       <AuthorName>
         {author.display_name}
         {',  '}
@@ -48,11 +39,12 @@ const AuthorNameLink = author => {
 
 export const AuthorNames = ({ authors }) =>
   authors?.map(author => {
-    return <AuthorNameLink {...author} />
+    return <AuthorNameLink key={author.id} {...author} />
   })
 
 // Get static paths
 const API_URL = 'https://admin.amherststudent.com/graphql'
+
 export const fetchAPI = async (query, variables = {}) => {
   const headers = new Headers()
 
@@ -109,7 +101,7 @@ export const getAllPostsSlugs = async () => {
 
 export const getAllPageSlugs = async () => {
   const resp = await fetchAPI(GET_ALL_PAGES_SLUGS)
-  const allBaseSlugs = resp.pages;
+  const allBaseSlugs = resp.pages
   const paths = allBaseSlugs.edges.map(({ node }) => `/${node.slug}`)
   return paths
 }

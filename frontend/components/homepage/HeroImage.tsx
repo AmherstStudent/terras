@@ -42,7 +42,7 @@ const HeroImage = (attributes: { authors; excerpt; featuredImageUrl; category; t
   <HeroContainer>
     <HeroImageWrap src={attributes?.featuredImageUrl} />
     <Category>{attributes.category}</Category>
-    <Link href={`/article/${attributes.slug}`}>
+    <Link href={`/author/${attributes.slug}`}>
       <HeroTitle>
         <h1>{attributes.title}</h1>
       </HeroTitle>

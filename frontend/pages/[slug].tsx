@@ -1,132 +1,53 @@
-import { gql, useQuery } from '@apollo/client'
+import { request, gql } from 'graphql-request'
+import PageDocument from "../graphql/PageDocument"
 import { NewBlock } from '../components/article/RenderBlocks'
 import styled from 'styled-components'
+import { getAllPageSlugs } from '../components/util'
 
-const HeaderText = styled.h2`
-  font-family: Cormorant;
-  font-style: normal;
-  font-weight: bold;
-  font-size: 2em;
-  color: #000000;
-  margin-top: 0.5em;
-  margin-bottom: 0.5em;
-  & > a {
-    text-decoration: none;
-    color: #000000;
-  }
-`
-
-const Wrapper = styled.div`
+const Wrapper = styled.main`
+  margin: 0 auto;
+  margin-top: 24px;
   display: grid;
-  grid-template-columns:
-    1fr
-    min(85ch, 100%)
-    1fr;
+  grid-template-columns: 1fr min(75ch, calc(100% - 48px)) 1fr;
+  grid-column-gap: 24px;
+
   & > * {
     grid-column: 2;
   }
 `
 
-const Page = ({ slug }) => {
-  const { loading, error, data } = useQuery(PageDocument, {
-    variables: { slug },
-  })
-  if (loading) return <p>Loading Post...</p>
-  if (error) return <p>Something wrong happened!</p>
+const Page = ({ page }) => {
+ 
+  // if (loading) return <p>Loading Post...</p>
+  // if (error) return <p>Something wrong happened!</p>
   // TODO: Add a 404 page
-  const elements = data.pageBy.blocks.map(block => <NewBlock {...block} />)
+  const elements = page.blocks.map(block => <NewBlock {...block} />)
   return (
     <>
       <Wrapper>
-        <HeaderText>{data.pageBy.title}</HeaderText>
+        <h2>{page.title}</h2>
         {elements}
       </Wrapper>
     </>
   )
 }
 
-Page.getInitialProps = async ({ query }) => {
-  return { slug: query.slug }
+
+
+export const getStaticPaths = async () => {
+  const paths = await getAllPageSlugs()
+  return {
+    paths,
+    fallback: true,
+  }
 }
 
-const PageDocument = gql`
-  query Page($slug: String) {
-    pageBy(uri: $slug) {
-      __typename
-      title
-      id
-      date
-      desiredSlug
-      excerpt
-      featuredImage {
-        sourceUrl
-        altText
-      }
-      blocks {
-        __typename
-        ... on CoreHeadingBlock {
-          __typename
-          attributes {
-            __typename
-            ... on CoreHeadingBlockAttributes {
-              __typename
-              content
-              level
-            }
-          }
-        }
-        ... on CoreImageBlock {
-          attributes {
-            __typename
-            ... on CoreImageBlockAttributes {
-              __typename
-              url
-              caption
-            }
-          }
-        }
-        ... on CoreQuoteBlock {
-          __typename
-          attributes {
-            ... on CoreQuoteBlockAttributes {
-              __typename
-              quote: value
-              source: citation
-            }
-          }
-        }
-        ... on CoreListBlock {
-          __typename
-          attributes {
-            values
-          }
-        }
-        ... on CoreParagraphBlock {
-          __typename
-          name
-          attributes {
-            ... on CoreParagraphBlockAttributesV3 {
-              __typename
-              content
-              dropCap
-              align
-            }
-          }
-        }
-        ... on CoreGalleryBlock {
-          __typename
-          attributes {
-            ... on CoreGalleryBlockAttributes {
-              __typename
-              ids
-              images
-              linkTo
-            }
-          }
-        }
-      }
-    }
-  }
-`
+export const getStaticProps = async ({params}) => {
+  const variables = { slug: params.slug }
+  const resp = await request('https://admin.amherststudent.com/graphql', PageDocument, variables)
+  return { props: { page: resp.pageBy }, revalidate: 10 }
+}
+
+
 
 export default Page

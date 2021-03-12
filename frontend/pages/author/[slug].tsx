@@ -1,6 +1,9 @@
 import { useQuery, gql } from '@apollo/client'
 import { PostList } from '../../components/Pagination'
 import styled from 'styled-components'
+import {GetStaticPaths} from 'next'
+import { getAllAuthorPaths } from '../../graphql'
+import { useRouter } from 'next/router';
 
 const Wrapper = styled.div`
   grid-column: 1 / 3;
@@ -15,6 +18,8 @@ const Author = ({ slug }) => {
 
   //   let { users: {nodes } } = data
   //   let {name, description, posts: { nodes: articles, pageInfo }}  = nodes[0]
+  const router = useRouter();
+  if (router.isFallback)  return <div>Loading...</div>;
 
   return (
     <>
@@ -81,50 +86,18 @@ Author.getInitialProps = async ({ query }) => {
   return { slug: query.slug }
 }
 
-export default Author
 
-const AuthorQuery = gql`
-  query Author($cursor: String, $slug: String) {
-    users(where: { nicename: $slug }) {
-      nodes {
-        id
-        name
-        description
-        slug
-        posts(first: 10, after: $cursor) {
-          nodes {
-            title
-            excerpt(format: RENDERED)
-            date
-            slug
-            featuredImage {
-              sourceUrl
-              altText
-            }
-            coAuthors {
-              display_name
-              avatar
-              slug
-              reporter_title
-              id
-            }
-            issues {
-              nodes {
-                id
-                name
-                slug
-              }
-            }
-          }
-          pageInfo {
-            hasNextPage
-            endCursor
-          }
-        }
-      }
-    }
+
+// TODO: ISsue with querying
+export const getStaticPaths = async () => {
+  // const paths = getAllAuthorPaths()
+  return {
+    paths:[],
+    fallback: true,
   }
-`
+} 
+
+export default Author
 
 // const SectionArticleList = ({ slug }) => {
 //   const { fetchMore, loading, error, data, variables } = useQuery(AuthorQuery, {

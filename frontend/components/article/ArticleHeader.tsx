@@ -23,8 +23,8 @@ const ArticleTitle = styled.h1`
 const ArticleByline = styled.p`
   color: #595959;
 `
-const ArticleDescription = styled.h2`
-  font-family: Halyard-Text;
+const ArticleDescription = styled.p`
+  font-family: 'Halyard-Text', sans-serif;
   font-weight: 200;
   font-size: 1.2em;
   line-height: 1.7;

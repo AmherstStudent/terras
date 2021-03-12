@@ -62,28 +62,8 @@ const AuthorUnderline = styled.div`
   margin: 20px 0;
 `
 
-const AuthorName = styled.a`
-  font-family: var(--span-font);
-  font-style: normal;
-  font-weight: bold;
-  font-size: 12px;
-  line-height: 150%;
-  color: #595959;
-  text-decoration: none;
-  text-transform: capitalize;
-`
-
 const LargeArticleBlock = (attributes: { article; date; category; authors; title; excerpt; slug }) => {
   const authors = JSON.parse(attributes.authors)
-  const titles =
-    authors.length > 1
-      ? authors
-          ?.map(author => {
-            return author.reporter_title
-          })
-          .join(' & ')
-      : authors[0].reporter_title
-
   return (
     <ArticleBlockWrapper>
       <ArticleTextContent>

@@ -1,5 +1,4 @@
 import styled from 'styled-components'
-
 import CategoryHead from '../../components/section/CategoryHead'
 import SectionArticleList from '../../components/section/SectionArticleList'
 
@@ -42,6 +41,14 @@ const Section = ({ name, categoryID }) => (
 Section.getInitialProps = async ({ query }) => {
   const category = categories.find(category => category.slug == query.slug)
   return { categoryID: category.id, name: category.name }
+}
+
+export const getStaticPaths = async () => {
+  // const paths = getAllAuthorPaths()
+  return {
+    paths:[],
+    fallback: true,
+  }
 }
 
 export default Section
