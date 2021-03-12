@@ -76,6 +76,8 @@ services:
         image: node:latest
         ports:
             - '3000:3000'
+        depends_on:
+            - wp-healdess
         user: node
         volumes:
             - ./frontend:/home/node/app
