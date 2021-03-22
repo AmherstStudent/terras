@@ -64,11 +64,18 @@ const LeftMenu = styled.div`
   align-self: center;
 `
 
-const LogoImage = styled.img`
+const Logo = styled.a`
   grid-column: 2;
-  max-height: 21px;
   align-self: center;
+  
+  display: flex:
+  align-items: center;
+
+  img {
+    max-height: 21px;
+  }
 `
+
 function Navbar() {
   const [isActive, setIsActive] = useState(false)
   function handleClick() {
@@ -93,7 +100,13 @@ function Navbar() {
               <a href="#">Opinion</a>
             </Link>
           </LeftMenu>
-          <LogoImage src="/logo.svg" alt="the Amherst Student" />
+          <Link href="/">
+            <Logo>
+              <a href="#">
+                <img src="/logo.svg" alt="The Amherst Student" />
+              </a>
+            </Logo>
+          </Link>
           <Socials>
             <li>
               <a href="https://www.facebook.com/AmherstStudent/">
