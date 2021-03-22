@@ -86,7 +86,7 @@ function Navbar() {
             <Link href="/section/arts-and-living">
               <a href="#">Arts and Living</a>
             </Link>
-            <Link href="/section/news">
+            <Link href="/section/sports">
               <a href="#">Sports</a>
             </Link>
             <Link href="/section/opinion">
