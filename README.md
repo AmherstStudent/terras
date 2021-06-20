@@ -71,7 +71,6 @@ Terras, the monorepo for amherststudent.com (derived from Postlight headless pro
 To run this on your local device, you'll need to first install the prequestio 
 
 ### Prerequisites
-* 
 * Yarn
 * Docker (brew install docker)
 * nvm (install version latest)
