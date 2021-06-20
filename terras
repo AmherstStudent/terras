@@ -17,3 +17,67 @@ terras
 - docker-compose changed 
 Plugins neccesary 
 - Wp GraphQL
+
+- Section pageds
+- build them all with multiple Promises.all()
+https://github.com/etchteam/next-pagination
+- Build all tag pages too
+
+GitHub setup
+-Issues, setup labels
+- add renovate 
+set asserts 
+https://github.com/manifoldco/ui/blob/5c62b31f75ba1f663f85372b56f8a23a9dfaf863/src/utils/graphqlFetch.ts
+https://github.com/CodersAKL/wp-react
+https://github.com/ThreeMammals/george
+https://github.com/WebDevStudios/wds-headless-wordpress
+https://github.com/rgfindl/headless-wordpress
+https://github.com/imranhsayed/nextjs-headless-wordpress
+// should we do webhooks to build paginated tags pages and shit
+https://davedavies.dev/post/using-webhooks-to-trigger-a-rebuild-with-headless-wordpress/
+https://www.netlify.com/blog/2021/03/03/shipping-node.js-at-netlify/
+https://github.com/imranhsayed/nextjs-headless-wordpress
+have an overall package.json
+https://github.com/dzuelke/wordpress-12factor
+
+analytics - umami cloud? https://www.mokkapps.de/blog/how-i-replaced-google-analytics-with-a-private-open-source-and-self-hosted-alternative/
+// run wordpress local
+https://github.com/sierra-leone/civil-registration/blob/ea28e4d24c0a378313d1f01f7630458a9fcd2e9c/modules-js/next-client-common/src/next-client-common.ts
+
+https://medium.com/@jchiatt/headless-wordpress-with-react-d573bca02ee0
+
+https://www.mokkapps.de/blog/how-i-replaced-google-analytics-with-a-private-open-source-and-self-hosted-alternative/
+
+
+build release run
+
+https://polyawesomism.wordpress.com/2015/08/12/cheat-sheet-twelve-factor-app/
+https://medium.com/@eduardoromero/10ish-factor-wordpress-for-continous-engineering-543181ac8ca3
+http://www.press-room.io
+
+
+
+https://anotherescape.com
+
+
+https://github.com/jesseduffield/lazydocker
+
+types
+config
+helpers
+services
+-apiServices (request GQL)
+components
+layouts
+pages
+-errorPage (accepts 404, etc.)
+
+Components folder 
+- need to be seperated blocks
+- blocks + data
+- blocks test
+- layouts
+
+
+create components folder
+have services folder 
